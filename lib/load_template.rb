@@ -1,4 +1,4 @@
-require 'load_data.rb'
+load 'load_file.rb'
 
 class LoadTemplate < LoadData
   def self.load(dir = 'lib/data', file = 'Guests.json')

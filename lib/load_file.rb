@@ -1,8 +1,10 @@
-# require 'load_data.rb'
+load 'load_data.rb'
 
 class LoadFile < LoadData
-  def self.load(file, dir = 'lib/data')
+  def self.load(file, dir = 'data')
     target = File.join(dir, file)
-    return File.open(target)
+    File.open(target)
   end
+
+  # Need a hook here to feel out where the commands are being called from
 end

@@ -10,8 +10,7 @@ describe ".load" do
     end
     
     it "should return without an error" do
-      human_error = "file should open without issue"
-      expect { LoadFile.load('Guests.json') }.to_not raise_error, human_error
+      expect { LoadFile.load('Guests.json', 'lib/data') }.to_not raise_error, human_error
       # ruby dev's use standarderror, as exceptions are system related
     end
   end
