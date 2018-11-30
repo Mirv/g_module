@@ -8,8 +8,8 @@ options = {}
 OptionParser.new do |opt|
   opt.on('--f', '--first_name FIRSTNAME') { |o| options[:first_name] = o }
   opt.on('--l', '--last_name LASTNAME') { |o| options[:last_name] = o }
-  opt.on('--c', '--company_name LASTNAME') { |o| options[:company_name] = o }
-  opt.on('--t', '--template_name LASTNAME') { |o| options[:template_name] = o }
+  opt.on('--c', '--company_name COMPANYNAME') { |o| options[:company_name] = o }
+  opt.on('--t', '--template_name TEMPLATENAME') { |o| options[:template_name] = o }
 end.parse!
 
 puts options
@@ -19,3 +19,5 @@ Dir.chdir('lib') do
   target_file = 'load_guest.rb'
   puts "Loading ... '#{target_file}' -- loaded successfully: #{load 'load_guest.rb'}"
 end
+
+puts "Exciting Greeting Script.  Goodbye!"
