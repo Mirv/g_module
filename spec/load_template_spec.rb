@@ -2,16 +2,13 @@ require 'load_template.rb'
 
 describe ".load" do
   context "call to LoadTemplate class" do
-    it "should return error" do
-      human_error = "non-existant file should cause an error msg"
-      expect { LoadTemplate.load('b','a') }.to raise_error(Errno::ENOENT), human_error
-      # ruby dev's use standarderror, as exceptions are system related
+    it "should contain key template" do
+      human_error = "file should open contain template key in first entry"
+      expect(json_body.first).to have_key('template'), human_error
     end
-    
-    it "should return without an error" do
-      human_error = "file should open without issue"
-      expect { LoadTemplate.load }.to_not raise_error, human_error
-      # ruby dev's use standarderror, as exceptions are system related
-    end
+  end
+  
+  def json_body
+    JSON.parse(LoadTemplate.load('Templates.json', 'lib/data').read)
   end
 end

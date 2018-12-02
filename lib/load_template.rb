@@ -1,8 +1,7 @@
 load 'load_file.rb'
 
-class LoadTemplate < LoadData
-  def self.load(dir = 'lib/data', file = 'Guests.json')
-    target = File.join(dir, file)
-    return File.open(target)
+class LoadTemplate < LoadFile
+  def self.load(file = 'Templates.json', dir = 'lib/data')
+    super
   end
 end

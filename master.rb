@@ -14,6 +14,7 @@ end.parse!
 
 puts options
 
+# Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
   # setup our dependencies
   target_file = 'load_guest.rb'
