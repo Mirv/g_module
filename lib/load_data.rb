@@ -3,7 +3,7 @@
 ###
 
 class LoadData 
-  def self.load(target_location,target_file)
+  def self.load(target_file, target_location)
     raise "Method not implemented in abstract class"
   end
   
