@@ -5,6 +5,9 @@ class GreetingSystem
   attr_reader :greeting_message
   
   def initialize(**args)
+    # generic non-explicit args list for flexibilty
+    
+    # Explicit pre checks 
     # pre lookup checks - as "" is not valid, need to check `empty`
     raise ArgumentError, "First Name was empty" if args[:first].empty?
     raise ArgumentError, "Last Name was empty" if args[:last].empty?
