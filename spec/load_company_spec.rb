@@ -1,4 +1,5 @@
 load 'load_company.rb'
+require 'json'
 
 describe ".load" do
   context "call to LoadCompany class" do

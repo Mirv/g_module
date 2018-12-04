@@ -1,4 +1,5 @@
 require 'load_template.rb'
+require 'json'
 
 describe ".load" do
   context "call to LoadTemplate class" do

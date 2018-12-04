@@ -17,7 +17,7 @@ puts options
 # Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
   # setup our dependencies
-  Dir["*.rb"].map{|x| puts load x}
+  # Dir["*.rb"].map{|x| puts load x}
   target_file = 'load_guest.rb'
   puts "Loading ... '#{target_file}' -- loaded successfully: #{load 'load_guest.rb'}"
 end
