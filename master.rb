@@ -6,10 +6,11 @@ puts "Entering Greeting Script successfully ..."
 
 options = {}
 OptionParser.new do |opt|
-  opt.on('--f', '--first_name FIRSTNAME') { |o| options[:first_name] = o }
-  opt.on('--l', '--last_name LASTNAME') { |o| options[:last_name] = o }
-  opt.on('--c', '--company_name COMPANYNAME') { |o| options[:company_name] = o }
-  opt.on('--t', '--template_name TEMPLATENAME') { |o| options[:template_name] = o }
+  opt.on('--f', '--first_name FIRST_NAME') { |o| options[:first_name] = o }
+  opt.on('--l', '--last_name LAST_NAME') { |o| options[:last_name] = o }
+  opt.on('--c', '--company_name COMPANY_NAME') { |o| options[:company_name] = o }
+  opt.on('--t', '--template_name TEMPLATE_NAME') { |o| options[:template_name] = o }
+  opt.on('--d', '--directory_name DATA_DIRECTORY') { |o| options[:directory_name] = o }
 end.parse!
 
 puts options

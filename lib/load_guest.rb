@@ -1,30 +1,34 @@
 load 'load_file.rb'
 
 class LoadGuest < LoadFile
-  # since we have first/last name already, only need reservation
-  attr_reader :reservation
+  attr_reader :data
   
   def initialize(first_name, last_name, dir = 'data')
-    @first_name = first_name
-    @last_name = last_name
-    file = LoadGuest.load('Guests.json', dir)
-    record = record_lookup(pull_customer(file))
-    @reservation = record['reservation']
+    return unless file = LoadGuest.load("#{dir}/Guests.json")
+    return unless record = pull_customer(file)
+    return unless record = record_lookup(record, first_name, last_name) 
+    @data = record['reservation']
   end
-  
-  def self.load(file = 'Guests.json', dir = 'data')
-    super
+
+  def load(file = 'data/Guests.json')
+    begin
+      super(file)
+    rescue Errno::ENOENT => e
+      puts "#{e}"
+      puts "Calling file '#{__FILE__}' -- object #{self.inspect}'"
+      return nil
+    end
   end
 
   # assumes last listed entry is the most current TODO - detect multipe entries
   def pull_customer(source)
-    data = JSON.parse(source.read)
+    return JSON.parse(source.read)
   end
 
-  def record_lookup(data)
+  def record_lookup(data, first_name, last_name)
     record = nil
     data.each do |x|
-      record = x if (x['firstName'] == @first_name && x['lastName'] == @last_name)
+      record = x if (x['firstName'] == first_name && x['lastName'] == last_name)
     end
     return record
   end

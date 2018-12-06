@@ -7,11 +7,11 @@ describe "#initialize" do
   
   context "guest lookup should load reservation" do
     it "should have roomNumber" do
-      expect(guest_reservation.reservation).to have_key('roomNumber')
+      expect(guest_reservation.data).to have_key('roomNumber')
     end
     
     it "should have startTimestamp" do
-      expect(guest_reservation.reservation).to have_key('startTimestamp')
+      expect(guest_reservation.data).to have_key('startTimestamp')
     end
   end
 end
@@ -19,6 +19,7 @@ end
 describe ".load" do
   # picking a random entry - should stop this static json at somepoint
   let(:entry) { entry = json_body[1] }
+  let(:reserved) {reserved = json_body[1]['reservation'] }
 
   context "Guest JSON file" do
     it "should have firstName" do
@@ -34,7 +35,7 @@ describe ".load" do
     end
     
     it "should have reservation containing roomNumber" do
-      expect(entry['reservation']).to have_key('roomNumber')
+      expect(reserved).to have_key('roomNumber')
     end
     
     it "should load new object from file with lastName" do
@@ -44,7 +45,7 @@ describe ".load" do
 end
 
 def json_body
-  JSON.parse(LoadGuest.load('Guests.json', 'lib/data').read)
+  JSON.parse(LoadGuest.load('lib/data/Guests.json').read)
 end
 
     
