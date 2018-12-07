@@ -3,16 +3,19 @@ load 'load_file.rb'
 class LoadGuest < LoadFile
   attr_reader :data
   
-  def initialize(first_name, last_name, dir = 'data')
+  def initialize(**args)
+    dir = args[:directory] || 'data'
+    return unless first = args[:first] 
+    return unless last = args[:last] 
     return unless file = LoadGuest.load("#{dir}/Guests.json")
     return unless record = pull_customer(file)
-    return unless record = record_lookup(record, first_name, last_name) 
+    return unless record = record_lookup(record, first, last) 
     @data = record['reservation']
   end
 
-  def load(file = 'data/Guests.json')
+  def load(directory: 'data/Guests.json')
     begin
-      super(file)
+      super(directory)
     rescue Errno::ENOENT => e
       puts "#{e}"
       puts "Calling file '#{__FILE__}' -- object #{self.inspect}'"
@@ -25,6 +28,7 @@ class LoadGuest < LoadFile
     return JSON.parse(source.read)
   end
 
+  # if nothing found it's nil 
   def record_lookup(data, first_name, last_name)
     record = nil
     data.each do |x|

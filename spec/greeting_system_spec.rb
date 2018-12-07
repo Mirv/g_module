@@ -24,19 +24,52 @@ describe "#intialization" do
   end
   
   context "a class method" do
-    let(:greeting) {  GreetingSystem.new(first: "Candy",last: "Pace", company: "c", template: "d") }
+    let(:greeting) { valid_greeting }
 
     it "should have first name set" do
       expect(greeting).to be_truthy
     end
     
-    it "should have successfully set the reservation room and time" do
-      # expect(greeting.set_reservation('lib/data')).to include("roomNumber" => 529)
-      # expect(greeting.set_reservation('lib/data')).to include("startTimestamp" => 1486654792)
+    it "should have successfully set the reservation room" do
+      greeting.hand_process
+      expect(greeting.data).to include("roomNumber" => 529)
     end
     
-    it "should unset the "
-    
-    
+    it "should have successfully set the reservation time" do
+      greeting.hand_process
+      expect(greeting.data).to include("startTimestamp" => 1486654792)
+    end
   end
+end
+
+describe "#intialization" do
+  context "hand_process" do
+    let(:greeting) { valid_greeting }
+
+    it "should load reservation hash" do
+      greeting.hand_process
+      expect(greeting.data).to have_key("roomNumber")
+    end
+    
+    it "should load reservation hash" do
+      greeting.hand_process
+      expect(greeting.data).to have_key("startTimestamp")
+    end
+
+    it "should have valid roomNumber" do
+      expected = 0
+      greeting.hand_process
+      expect(greeting.data['roomNumber']).to be > expected
+    end
+    
+    it "should have valid roomNumber" do
+      expected = 0
+      greeting.hand_process
+      expect(greeting.data['startTimestamp']).to be > expected
+    end
+  end
+end
+
+def valid_greeting
+  GreetingSystem.new(first: "Candy", last: "Pace", template: "t",company: "c", directory: "lib/data")
 end

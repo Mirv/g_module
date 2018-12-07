@@ -3,7 +3,7 @@ require 'json'
 
 describe "#initialize" do
   let(:entry) { entry = json_body[1] }
-  let(:guest_reservation){ LoadGuest.new('Candy', 'Pace', 'lib/data') }
+  let(:guest_reservation){ LoadGuest.new(first: 'Candy',last: 'Pace', directory: 'lib/data') }
   
   context "guest lookup should load reservation" do
     it "should have roomNumber" do
