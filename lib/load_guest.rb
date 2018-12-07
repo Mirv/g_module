@@ -5,8 +5,8 @@ class LoadGuest < LoadFile
   
   def initialize(**args)
     dir = args[:directory] || 'data'
-    return unless first = args[:first] 
-    return unless last = args[:last] 
+    first = args[:first] 
+    last = args[:last] 
     return unless file = LoadGuest.load("#{dir}/Guests.json")
     return unless record = pull_customer(file)
     return unless record = record_lookup(record, first, last) 
@@ -17,8 +17,10 @@ class LoadGuest < LoadFile
     begin
       super(directory)
     rescue Errno::ENOENT => e
+      # send to log files eventually
       puts "#{e}"
-      puts "Calling file '#{__FILE__}' -- object #{self.inspect}'"
+      e_location
+      puts "object #{self.inspect}"
       return nil
     end
   end
@@ -35,5 +37,12 @@ class LoadGuest < LoadFile
       record = x if (x['firstName'] == first_name && x['lastName'] == last_name)
     end
     return record
+  end
+  
+  
+  # dynamically finds the calling method name & file
+  def e_location(msg = "")
+    location = "#{caller[0][/`([^']*)'/, 1]} in __FILE___"
+    file_error = "Error: #{msg} in #{location} -- #{msg}"
   end
 end

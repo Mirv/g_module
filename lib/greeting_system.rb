@@ -1,5 +1,7 @@
 require 'json'
 load 'load_guest.rb'
+load 'load_company.rb'
+load 'load_template.rb'
 
 class GreetingSystem
   attr_reader :greeting_message, :data
@@ -28,9 +30,22 @@ class GreetingSystem
   end
 
   def hand_process
-    obj = LoadGuest.new(@names)
-    obj.data.each{ |x, y| raise(ArgumentError) unless x && y }
-    @data.merge!(obj.data) if obj.data
+    process = Hash.new
+    # ['LoadGuest', 'LoadTemplate', 'LoadCompany'].each do |x|
+    # ['LoadGuest','LoadTemplate'].each do |x|
+    ['LoadGuest'].each do |x|
+
+      obj = Object.const_get(x)
+      # obj = obj.new(@names)
+
+      file_err = e_location("File not loaded for #{x}")
+      # raise(Errno::ENOENT, file_err) unless obj = obj.new(@names)
+      obj = obj.new(@names)
+      entry_err = "Entries missing in #{obj.class.name} file"
+      obj.data.each{|x, y| raise(ArgumentError, e_location(entry_err)) unless x && y}
+      @data.merge!(obj.data) 
+      puts "Inspect #{obj.class.name} -- #{@data.inspect}"
+    end
   end
   
   ## Setter_decoupler (duck-type caller)
@@ -46,5 +61,11 @@ class GreetingSystem
     
     object
 
+  end
+  
+  # dynamically finds the calling method name & file
+  def e_location(msg = "")
+    location = "#{caller[0][/`([^']*)'/, 1]} in __FILE___"
+    file_error = "Error: #{msg} in #{location}"
   end
 end
