@@ -34,15 +34,23 @@ class GreetingSystem
     # ['LoadGuest', 'LoadTemplate', 'LoadCompany'].each do |x|
     # ['LoadGuest','LoadTemplate'].each do |x|
     ['LoadGuest'].each do |x|
-
+      puts "#{x.inspect}"
       obj = Object.const_get(x)
-      # obj = obj.new(@names)
-
-      file_err = e_location("File not loaded for #{x}")
-      # raise(Errno::ENOENT, file_err) unless obj = obj.new(@names)
-      obj = obj.new(@names)
-      entry_err = "Entries missing in #{obj.class.name} file"
-      obj.data.each{|x, y| raise(ArgumentError, e_location(entry_err)) unless x && y}
+      
+    # Needs tests
+      # Loading files and error if not loaded
+      file_msg = err_location("File not loaded for #{x} - ensure path & name were correct")
+      raise(ArgumentError, file_msg) unless obj = obj.new(@names)
+    
+     # Needs tests  
+      # Check all entries in obj exposed data have values
+      entry_msg = "Entries missing in #{obj.class.name} file"
+      obj.data.each do |x, y| 
+        # y = nil
+        # ruby has no #blank? / #empty? / #present? like rails
+        raise(ArgumentError, err_location(entry_msg)) unless x && y && y != ""
+      end
+      
       @data.merge!(obj.data) 
       puts "Inspect #{obj.class.name} -- #{@data.inspect}"
     end
@@ -57,15 +65,22 @@ class GreetingSystem
   # - Each class extending FileLoad has it's own default file string
   # - Each object should expose a data var to save into G.S obj
   #
-  def setter_decoupler(objects)
+  # def setter_decoupler(objects)
     
-    object
+  #   object
 
-  end
+  # end
+  
+  # def arg_err
   
   # dynamically finds the calling method name & file
-  def e_location(msg = "")
-    location = "#{caller[0][/`([^']*)'/, 1]} in __FILE___"
-    file_error = "Error: #{msg} in #{location}"
+  def err_location(msg = "")
+    location = "#{caller_name} in #{__FILE__}"
+    file_error = "#{msg} in #{location}"
   end
+  
+  def caller_name
+    caller[0][/`([^']*)'/, 1]
+  end
+  
 end

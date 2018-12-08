@@ -21,7 +21,7 @@ class LoadGuest < LoadFile
       puts "#{e}"
       e_location
       puts "object #{self.inspect}"
-      return nil
+      return Errno::ENOENT
     end
   end
 
