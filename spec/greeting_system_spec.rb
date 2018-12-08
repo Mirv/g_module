@@ -2,7 +2,9 @@ load 'greeting_system.rb'
 
 describe "#intialization" do
   context "class object inputs" do
+    
     let(:greeting) { valid_greeting }
+    
     it "should fail to make new object if first null" do
       expect{GreetingSystem.new(first: "", last: "l", company: "c", template: "d")}.
         to raise_error(ArgumentError, "First Name was empty")
@@ -30,7 +32,9 @@ describe "#intialization" do
 end
   
 describe "#post intialization" do
+  
   context "hand_process" do
+  
     let(:greeting) { valid_greeting }
     let(:bad_directory) { GreetingSystem.new(first: "Candy", last: "Pace", 
         template: "t",company: "c", directory: "asdf") }
@@ -62,5 +66,6 @@ describe "#post intialization" do
 end
 
 def valid_greeting
-  GreetingSystem.new(first: "Candy", last: "Pace", template: "t",company: "c", directory: "lib/data")
+  GreetingSystem.new(first: "Candy", last: "Pace", template: "t",
+    company: "c", directory: "lib/data")
 end
