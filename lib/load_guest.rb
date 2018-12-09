@@ -21,7 +21,7 @@ class LoadGuest < LoadFile
       puts "#{e}"
       e_location
       puts "object #{self.inspect}"
-      return Errno::ENOENT
+      return nil
     end
   end
 
@@ -41,8 +41,12 @@ class LoadGuest < LoadFile
   
   
   # dynamically finds the calling method name & file
-  def e_location(msg = "")
-    location = "#{caller[0][/`([^']*)'/, 1]} in __FILE___"
-    file_error = "Error: #{msg} in #{location} -- #{msg}"
+  def err_location(msg = "")
+    location = "#{caller_name} in #{__FILE__}"
+    file_error = "#{msg} in #{location}"
+  end
+  
+  def caller_name
+    caller[0][/`([^']*)'/, 1]
   end
 end

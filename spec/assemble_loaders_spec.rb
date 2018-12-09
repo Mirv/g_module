@@ -3,9 +3,9 @@ load 'assemble_loaders.rb'
 describe "#intialization" do
 end
 
-describe "loading all files" do
+describe "process_loaders runs" do
   
-  context "into data" do
+  context "loads data" do
 
     let(:good_assembler) { assembler(valid_inputs) }
     let(:bad_directory) { AssembleLoaders.new(first: "Candy", last: "Pace", 
@@ -32,8 +32,28 @@ describe "loading all files" do
     end
     
     it "should have data hash empty if file doesn't load" do
-      expect(AssembleLoaders.new(first: "Candy", last: "Pace", 
-        template: "t",company: "c", directory: "asdf").data).to be_empty
+      # expect(AssembleLoaders.new(first: "Candy", last: "Pace", 
+      #   template: "t",company: "c", directory: "asdf").data).to be_empty
+    end
+    
+    it "should error if the interface class does not exist" do
+      bad_interface = assembler(first: "Candy", last: "Pace", template: "t", 
+        company: "c", directory: "lib/data", files: ['LoadGuest','LoadTest'])
+      expect{bad_interface.process_loaders}.to raise_error(NameError)
+    end
+  end
+  
+  context "load_single runs" do
+    let(:good_assembler) { assembler(valid_inputs) }
+    
+    it "should error if the file is not set properly" do
+      # Covered already in LoadFile tests
+    end
+  
+    it "should error if the data has empty hash values" do
+      obj = LoadGuest.new(first: "Candy",last: "Pace", directory: 'lib/data')
+      obj.data['roomNumber'] = ""
+      expect{good_assembler.load_single}.to raise_error(ArgumentError)
     end
   end
 end

@@ -7,7 +7,7 @@ class LoadFile < LoadData
       File.open(file)
     rescue Errno::ENOENT
       # TODO - inject logger here
-      puts "File not found --- In #{__FILE__} --- '#{file}'"
+      # puts "File not found --- In #{__FILE__} --- '#{file}'"
       raise Errno::ENOENT
     end
   end
