@@ -52,6 +52,7 @@ describe "process_loaders runs" do
   
     it "should error if the data has empty hash values" do
       obj = LoadGuest.new(first: "Candy",last: "Pace", directory: 'lib/data')
+      obj.execute_process
       obj.data['roomNumber'] = ""
       expect{good_assembler.load_single}.to raise_error(ArgumentError)
     end

@@ -20,8 +20,6 @@ class AssembleLoaders
     # @files = ['LoadGuest']
     # @files << 'LoadTest'
     @files = args[:files] || ['LoadGuest']
-
-
     @data = Hash.new
   end
 
@@ -36,7 +34,6 @@ class AssembleLoaders
         puts err_location("Issue locating class interface for #{x}")
         raise(NameError)
       end
- 
     end
   end
   
@@ -45,7 +42,7 @@ class AssembleLoaders
     file_msg = err_location(
         "Data File not loaded for #{obj.class.name} - ensure path & name were correct")
     raise(ArgumentError, file_msg) unless obj = obj.new(@names)
-
+    obj.execute_process
     # Check all entries in obj exposed data have values
     entry_msg = "Entries missing in #{obj.class.name} file"
     

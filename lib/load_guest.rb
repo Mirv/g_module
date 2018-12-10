@@ -1,27 +1,22 @@
-load 'load_file.rb'
+load 'load_json.rb'
 require 'json'
 
-class LoadGuest < LoadFile
+class LoadGuest < LoadJson
   def initialize(**args)
-    dir = args[:directory] || 'data'
-    first = args[:first] 
-    last = args[:last] 
-    return unless file = opener("#{dir}/Guests.json")
+    @dir = args[:directory] || 'data'
+    @first = args[:first] 
+    @last = args[:last] 
+  end
+
+  def execute_process
+    return unless file = opener("#{@dir}/Guests.json")
     return unless record = pull_records(file)
-    return unless record = record_lookup(record, first, last) 
+    return unless record = record_lookup(record, @first, @last) 
     @data = record['reservation']
   end
 
   def opener(directory ='data/Guests.json')
-    begin
-      super
-      # File.open(directory)
-    rescue Errno::ENOENT => e
-      # send to log files eventually
-      puts "#{e}"
-      puts "object #{self.inspect}"
-      return nil
-    end
+    super
   end
 
   def pull_records(source)

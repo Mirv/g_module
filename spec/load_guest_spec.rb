@@ -7,10 +7,12 @@ describe "#initialize" do
   
   context "guest lookup should load reservation" do
     it "should have roomNumber" do
+      setup = guest_reservation.execute_process
       expect(guest_reservation.data).to have_key('roomNumber')
     end
     
     it "should have startTimestamp" do
+      setup = guest_reservation.execute_process
       expect(guest_reservation.data).to have_key('startTimestamp')
     end
   end
@@ -46,7 +48,7 @@ end
 
 def json_body
   guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
-  JSON.parse(guest.opener('lib/data/Guests.json').read)
+  JSON.parse(guest.opener('lib/data/Guests.json'))
 end
 
     
