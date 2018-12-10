@@ -1,6 +1,6 @@
-load 'load_file.rb'
+load 'load_json.rb'
 
-class LoadTemplate < LoadFile
+class LoadTemplate < LoadJson
   def self.opener(file = 'data/Templates.json')
     super
   end

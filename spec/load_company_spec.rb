@@ -9,6 +9,6 @@ describe ".load" do
   end
   
   def json_body
-    JSON.parse(LoadCompany.opener('lib/data/Company.json').read)
+    JSON.parse(LoadCompany.opener('lib/data/Company.json'))
   end
 end

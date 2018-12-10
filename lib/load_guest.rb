@@ -1,5 +1,4 @@
 load 'load_json.rb'
-require 'json'
 
 class LoadGuest < LoadJson
   def initialize(**args)
@@ -31,15 +30,5 @@ class LoadGuest < LoadJson
       record = x if (x['firstName'] == first_name && x['lastName'] == last_name)
     end
     return record
-  end
-  
-  # dynamically finds the calling method name & file
-  def err_location(msg = "")
-    location = "#{caller_name} in #{__FILE__}"
-    file_error = "#{msg} in #{location}"
-  end
-  
-  def caller_name
-    caller[0][/`([^']*)'/, 1]
   end
 end

@@ -26,7 +26,6 @@ class GreetingSystem
     @data = loaders.data
   end
   
-  
   # dynamically finds the calling method name & file
   def err_location(msg = "")
     location = "#{caller_name} in #{__FILE__}"
@@ -36,24 +35,5 @@ class GreetingSystem
   def caller_name(retrieve_line = 1)
     caller[retrieve_line][/`([^']*)'/, 1]
   end
-  
 end
 
-
-
-  ## Setter_decoupler (duck-type caller)
-  # - '#load' should oads all the data to be used based on user input
-  #   Currently: 
-  #     guest (first/last/room/time)
-  #     company (hotel, city for timezone)
-  #     template (format to output)
-  # - Each class extending FileLoad has it's own default file string
-  # - Each object should expose a data var to save into G.S obj
-  #
-  # def setter_decoupler(objects)
-    
-  #   object
-
-  # end
-  
-  # def arg_err

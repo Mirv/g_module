@@ -1,4 +1,4 @@
-require 'json'
+load 'cust_error_location.rb'
 load 'load_guest.rb'
 load 'load_company.rb'
 load 'load_template.rb'
@@ -12,6 +12,8 @@ load 'load_template.rb'
 # Out: exposes data which is a hash of the dataset or nil's which top level tests? 
 #
 class AssembleLoaders
+  include CustErrorLocation
+  
   attr_reader :data
     
   def initialize(**args)
@@ -54,13 +56,5 @@ class AssembleLoaders
     return obj
   end
   
-  # dynamically finds the calling method name & file
-  def err_location(msg = "")
-    location = "#{caller_name(2)} in #{__FILE__}"
-    file_error = "#{msg} in #{location}"
-  end
-  
-  def caller_name(retrieve_line = 1)
-    caller[retrieve_line][/`([^']*)'/, 1]
-  end
+
 end

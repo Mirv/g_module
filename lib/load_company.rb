@@ -1,6 +1,6 @@
-load 'load_file.rb'
+load 'load_json.rb'
 
-class LoadCompany < LoadFile
+class LoadCompany < LoadJson
   def self.load(file = 'lib/data/Company.json')
     super
   end
