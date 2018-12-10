@@ -20,8 +20,8 @@ end
 
 describe ".load" do
   # picking a random entry - should stop this static json at somepoint
-  let(:entry) { entry = json_body[1] }
-  let(:reserved) {reserved = json_body[1]['reservation'] }
+  let(:entry) { entry = parsed_json[1] }
+  let(:reserved) { reserved = parsed_json[1]['reservation'] }
 
   context "Guest JSON file" do
     it "should have firstName" do
@@ -41,14 +41,15 @@ describe ".load" do
     end
     
     it "should load new object from file with lastName" do
-      expect(json_body.first).to have_key('lastName')
+      expect(parsed_json.first).to have_key('lastName')
     end
   end
 end
 
-def json_body
+def parsed_json
   guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
-  JSON.parse(guest.opener('lib/data/Guests.json'))
+  file = guest.opener('lib/data/Guests.json')
+  guest.pull_records(file)
 end
 
     
