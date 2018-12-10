@@ -17,8 +17,8 @@ class AssembleLoaders
   def initialize(**args)
     @names = args
     # @files = args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
-    @files = ['LoadGuest']
-    @files << 'LoadTest'
+    # @files = ['LoadGuest']
+    # @files << 'LoadTest'
     @files = args[:files] || ['LoadGuest']
 
 
@@ -59,11 +59,11 @@ class AssembleLoaders
   
   # dynamically finds the calling method name & file
   def err_location(msg = "")
-    location = "#{caller_name} in #{__FILE__}"
+    location = "#{caller_name(2)} in #{__FILE__}"
     file_error = "#{msg} in #{location}"
   end
   
-  def caller_name
-    caller[2][/`([^']*)'/, 1]
+  def caller_name(retrieve_line = 1)
+    caller[retrieve_line][/`([^']*)'/, 1]
   end
 end

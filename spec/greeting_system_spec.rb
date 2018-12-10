@@ -30,6 +30,16 @@ describe "#intialization" do
     end
   end
 end
+
+describe "#intialization" do
+  
+  context "class object inputs" do
+  
+    let(:greeting) { valid_greeting }
+  
+    it "should"
+  end
+end
   
 def valid_greeting
   GreetingSystem.new(first: "Candy", last: "Pace", template: "t",

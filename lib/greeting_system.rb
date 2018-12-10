@@ -22,7 +22,7 @@ class GreetingSystem
   # In:  @names array
   # Out: hash exposed via data of user's specific data set
   def assemble_loaders(**args)
-    loaders = AssembleLoaders.new(names)
+    loaders = AssembleLoaders.new(@names)
     @data = loaders.data
   end
   
@@ -33,8 +33,8 @@ class GreetingSystem
     file_error = "#{msg} in #{location}"
   end
   
-  def caller_name
-    caller[0][/`([^']*)'/, 1]
+  def caller_name(retrieve_line = 1)
+    caller[retrieve_line][/`([^']*)'/, 1]
   end
   
 end

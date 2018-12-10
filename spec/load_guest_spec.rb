@@ -45,7 +45,8 @@ describe ".load" do
 end
 
 def json_body
-  JSON.parse(LoadGuest.load('lib/data/Guests.json').read)
+  guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
+  JSON.parse(guest.opener('lib/data/Guests.json').read)
 end
 
     

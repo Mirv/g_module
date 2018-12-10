@@ -2,13 +2,21 @@ load 'load_data.rb'
 require 'json'
 
 class LoadFile < LoadData
-  def self.load(file)
+  attr_reader :data
+
+  def opener(file)
     begin
-      File.open(file)
+      file = File.open(file)
     rescue Errno::ENOENT
       # TODO - inject logger here
       # puts "File not found --- In #{__FILE__} --- '#{file}'"
-      raise Errno::ENOENT
+      return nil
     end
+    return file
+  end
+  
+    # assumes last listed entry is the most current TODO - detect multipe entries
+  def pull_records(source)
+    return JSON.parse(source.read)
   end
 end
