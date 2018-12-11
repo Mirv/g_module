@@ -4,7 +4,6 @@ require 'json'
 class LoadJson < LoadFile
   attr_reader :data
   
-  # assumes last  entry is the most current TODO - detect multipe entries
   def process_json(source)
     begin
       value = JSON.parse(source)
@@ -24,7 +23,6 @@ class LoadJson < LoadFile
     data.each do |entry|
       arg_check = true # all hashes must match to be valid, any neg subtracts
       args.each do |key, value|
-        # unless key_match?(entry, key, value)
         unless entry[key] == value
           arg_checks = false 
           next
@@ -33,6 +31,6 @@ class LoadJson < LoadFile
       record = entry if arg_check
       return record
     end
-  end  # this might be extra c9 being weird code checking
+  end  
   
 end  

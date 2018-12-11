@@ -5,7 +5,7 @@ describe "#initialize" do
   context "call to LoadCompany class" do
     let (:company) { 
       company = LoadCompany.new(
-      first: "Candy", last: "Pace", template: "Default", 
+      firstName: "Candy", lastName: "Pace", template: "Default", 
       company: "The Prancing Pony", directory: "lib/data") 
     }
       

@@ -8,17 +8,14 @@ class LoadGuest < LoadJson
   def initialize(**args)
     dir = args[:directory] || 'data'
     @file_name = "#{dir}/Guests.json"
-    @first = args[:first] 
-    @last = args[:last] 
+    @first = args[:firstName] 
+    @last = args[:lastName]
   end
 
   def execute_process
     return unless file = opener(@file_name)
     return unless record = process_json(file)
-    return unless record = record_lookup(
-        record, 
-        firstName: @first, 
-        lastName: @last) 
+    return unless record = record_lookup(record, firstName: @first, lastName: @last) 
     @data = record['reservation']
   end
 

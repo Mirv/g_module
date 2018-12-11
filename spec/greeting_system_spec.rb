@@ -6,22 +6,22 @@ describe "#intialization" do
     let(:greeting) { valid_greeting }
     
     it "should fail to make new object if first null" do
-      expect{GreetingSystem.new(first: "", last: "l", company: "c", template: "d")}.
+      expect{GreetingSystem.new(firstName: "", lastName: "l", company: "c", template: "d")}.
         to raise_error(ArgumentError, "First Name was empty")
     end
 
     it "should fail to make new object if last null" do
-      expect{GreetingSystem.new(first: "f", last: "", company: "c", template: "d")}.
+      expect{GreetingSystem.new(firstName: "f", lastName: "", company: "c", template: "d")}.
       to raise_error(ArgumentError, "Last Name was empty")
     end
 
     it "should fail to make new object if company null" do
-      expect{GreetingSystem.new(first: "f", last: "l", company: "", template: "d")}.
+      expect{GreetingSystem.new(firstName: "f", lastName: "l", company: "", template: "d")}.
       to raise_error(ArgumentError, "Company Name was empty")
     end
 
     it "should fail to make new object if tempalte null" do
-      expect{GreetingSystem.new(first: "f", last: "l", company: "c", template: "")}.
+      expect{GreetingSystem.new(firstName: "f", lastName: "l", company: "c", template: "")}.
       to raise_error(ArgumentError, "Template Name was empty")
     end
     
@@ -42,6 +42,6 @@ end
 # end
   
 def valid_greeting
-  GreetingSystem.new(first: "Candy", last: "Pace", template: "Default",
+  GreetingSystem.new(firstName: "Candy", lastName: "Pace", template: "Default",
     company: "c", directory: "lib/data")
 end

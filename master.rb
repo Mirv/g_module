@@ -6,8 +6,8 @@ puts "Entering Greeting Script successfully ..."
 
 options = {}
 OptionParser.new do |opt|
-  opt.on('--f', '--first_name FIRST_NAME') { |o| options[:first] = o }
-  opt.on('--l', '--last_name LAST_NAME') { |o| options[:last] = o }
+  opt.on('--f', '--first_name FIRST_NAME') { |o| options[:firstName] = o }
+  opt.on('--l', '--last_name LAST_NAME') { |o| options[:lastName] = o }
   opt.on('--c', '--company_name COMPANY_NAME') { |o| options[:company] = o }
   opt.on('--t', '--template_name TEMPLATE_NAME') { |o| options[:template] = o }
   opt.on('--d', '--directory_name DATA_DIRECTORY') { |o| options[:directory] = o }

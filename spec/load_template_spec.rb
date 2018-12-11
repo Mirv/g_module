@@ -4,7 +4,7 @@ require 'json'
 describe ".load" do
   context "loaded template" do
     let (:template) { template = LoadTemplate.new(
-      first: "Candy", last: "Pace", template: "Default", 
+      firstName: "Candy", lastName: "Pace", template: "Default", 
       company: "The Prancing Pony", directory: "lib/data") }
     
     it "should have opener return successfully" do
@@ -29,6 +29,6 @@ end
 
 def a_template
   LoadTemplate.new(
-      first: "Candy", last: "Pace", template: "Default", 
+      firstName: "Candy", lastName: "Pace", template: "Default", 
       company: "The Prancing Pony", directory: "lib/data")
 end

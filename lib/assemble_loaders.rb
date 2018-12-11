@@ -49,7 +49,7 @@ class AssembleLoaders
     
     # Ensure no blank in hash
     obj.data.each do |x, y|
-      raise(ArgumentError, err_location(entry_msg)) if x.nil? || y.nil? || y==""
+      raise(ArgumentError, err_location(entry_msg)) if !y || y && y==""
     end
     
     return obj

@@ -4,7 +4,7 @@ require 'json'
 describe "#initialize" do
   let(:entry) { entry = json_body }
   let(:guest_reservation){ 
-    LoadGuest.new(first: 'Candy',last: 'Pace', directory: 'lib/data') }
+    LoadGuest.new(firstName: 'Candy',lastName: 'Pace', directory: 'lib/data') }
   
   context "guest lookup should load reservation" do
     it "should have roomNumber" do
@@ -48,7 +48,7 @@ describe ".load" do
 end
 
 def parsed_json
-  guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
+  guest = LoadGuest.new(firstName: "Candy",lastName: "Pace",dir: "data")
   file = guest.opener('lib/data/Guests.json')
   guest.process_json(file).first
 end
