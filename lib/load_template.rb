@@ -1,29 +1,20 @@
 load 'load_json.rb'
 
+# @data exposed in parent class
+
 class LoadTemplate < LoadJson
+  
   def initialize(**args)
-    @dir = args[:directory] || 'data'
-    @template = args[:template]
+    dir = args[:directory] || 'data'
+    @file_name = "#{dir}/Templates.json"
+    @template = args[:template] || "Default"
     @data = Hash.new
   end
   
   def execute_process
-    return unless file = opener("#{@dir}/Templates.json")
-    return unless record = pull_records(file)
-    return unless record = record_lookup(record) 
+    return unless file = opener(@file_name)
+    return unless record = process_json(file)
+    return unless record = record_lookup(record, template: @template) 
     @data.merge!({"template" => record['template']})
-  end
-  
-  def opener(file = 'data/Templates.json')
-    super
-  end
-  
-  def pull_records(source)
-    super
-  end
-  
-  def record_lookup(data, template = "Default")
-    record = data.find {|x| x["name"] == template} 
-    return record
   end
 end

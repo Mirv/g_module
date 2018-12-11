@@ -1,28 +1,20 @@
 load 'load_json.rb'
 
+# @data exposed in parent class
+
 class LoadCompany < LoadJson
-  attr_reader :data
 
   def initialize(**args)
-    @dir = args[:directory] || 'data'
+    dir = args[:directory] || 'data'
+    @file_name = "#{dir}/Company.json"
     @company = args[:company]
     @data = Hash.new
   end
   
   def execute_process
-    return unless file = opener("#{@dir}/Company.json")
-    return unless record = pull_records(file)
-    return unless record = record_lookup(record, @company) 
+    return unless file = opener(@file_name)
+    return unless record = process_json(file)
+    return unless record = record_lookup(record, company: @company) 
     @data = record
-  end
-  
-  def opener(directory = 'data/Company.json')
-    super
-  end
-
-  def record_lookup(data, company = "Hotel California")
-    # Might be multiple - TODO - adjust to allow if multiple hotels
-    record = data.find {|x| x["company"] == company} 
-    return record
   end
 end

@@ -50,7 +50,7 @@ end
 def parsed_json
   guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
   file = guest.opener('lib/data/Guests.json')
-  guest.pull_records(file).first
+  guest.process_json(file).first
 end
 
     
