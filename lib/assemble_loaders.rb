@@ -40,13 +40,14 @@ class AssembleLoaders
   
   def load_single(obj)
     # Loading files and error if not loaded
-    file_msg = err_location(
-        "Data File not loaded for #{obj.class.name} - ensure path & name were correct",2)
+    obj_name = obj.class.name
+    msg = "Data File not loaded #{obj_name} - ensure path & name were correct"
+    file_msg = err_location(msg, 2)
     raise(ArgumentError, file_msg) unless obj = obj.new(@names)
     obj.execute_process
-    # Check all entries in obj exposed data have values
-    entry_msg = "Entries missing in #{obj.class.name} file"
     
+    # Check all entries in obj exposed data have values
+    entry_msg = "Entries missing in #{obj_name} file"
     # Ensure no blank in hash
     obj.data.each do |x, y|
       raise(ArgumentError, err_location(entry_msg)) if !y || y && y==""
