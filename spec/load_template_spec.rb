@@ -26,9 +26,3 @@ describe ".load" do
     end
   end
 end
-
-def a_template
-  LoadTemplate.new(
-      first: "Candy", last: "Pace", template: "Default", 
-      company: "The Prancing Pony", directory: "lib/data")
-end

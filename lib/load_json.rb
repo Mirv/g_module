@@ -31,5 +31,4 @@ class LoadJson < LoadFile
       return record
     end
   end  
-  
 end  

@@ -17,8 +17,8 @@ describe ".pulling_json" do
       expect(json_file).to_not be_nil
     end
     
-    it "record_lookup should not be an error" do
-      expect{json_file}.to_not raise_error
+    it "record_lookup should not be an error with nil return" do
+      expect(json_file).to_not be_nil
     end
   end
 end
