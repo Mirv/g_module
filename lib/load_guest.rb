@@ -3,8 +3,7 @@ load 'load_json.rb'
 # Load in the guest info from file based on combined name
 
 class LoadGuest < LoadJson
-  attr_reader :data
-
+  
   def initialize(**args)
     dir = args[:directory] || 'data'
     @file_name = "#{dir}/Guests.json"
