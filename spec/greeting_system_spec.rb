@@ -31,17 +31,17 @@ describe "#intialization" do
   end
 end
 
-describe "#intialization" do
+# describe "#intialization" do
   
-  context "class object inputs" do
+#   context "class object inputs" do
   
-    let(:greeting) { valid_greeting }
+#     let(:greeting) { valid_greeting }
   
-    it "should"
-  end
-end
+#     it "should"
+#   end
+# end
   
 def valid_greeting
-  GreetingSystem.new(first: "Candy", last: "Pace", template: "t",
+  GreetingSystem.new(first: "Candy", last: "Pace", template: "Default",
     company: "c", directory: "lib/data")
 end

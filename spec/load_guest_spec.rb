@@ -2,8 +2,9 @@ require 'load_guest.rb'
 require 'json'
 
 describe "#initialize" do
-  let(:entry) { entry = json_body[1] }
-  let(:guest_reservation){ LoadGuest.new(first: 'Candy',last: 'Pace', directory: 'lib/data') }
+  let(:entry) { entry = json_body }
+  let(:guest_reservation){ 
+    LoadGuest.new(first: 'Candy',last: 'Pace', directory: 'lib/data') }
   
   context "guest lookup should load reservation" do
     it "should have roomNumber" do
@@ -19,9 +20,9 @@ describe "#initialize" do
 end
 
 describe ".load" do
-  # picking a random entry - should stop this static json at somepoint
-  let(:entry) { entry = parsed_json[1] }
-  let(:reserved) { reserved = parsed_json[1]['reservation'] }
+  # picking a random entry 
+  let(:entry) { entry = parsed_json }
+  let(:reserved) { reserved = parsed_json['reservation'] }
 
   context "Guest JSON file" do
     it "should have firstName" do
@@ -41,7 +42,7 @@ describe ".load" do
     end
     
     it "should load new object from file with lastName" do
-      expect(parsed_json.first).to have_key('lastName')
+      expect(parsed_json).to have_key('lastName')
     end
   end
 end
@@ -49,7 +50,7 @@ end
 def parsed_json
   guest = LoadGuest.new(first: "Candy",last: "Pace",dir: "data")
   file = guest.opener('lib/data/Guests.json')
-  guest.pull_records(file)
+  guest.pull_records(file).first
 end
 
     

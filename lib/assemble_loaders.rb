@@ -2,6 +2,7 @@ load 'cust_error_location.rb'
 load 'load_guest.rb'
 load 'load_company.rb'
 load 'load_template.rb'
+require 'byebug'
 
 ## AssembleLoaders
 #
@@ -19,9 +20,7 @@ class AssembleLoaders
   def initialize(**args)
     @names = args
     # @files = args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
-    # @files = ['LoadGuest']
-    # @files << 'LoadTest'
-    @files = args[:files] || ['LoadGuest']
+    @files = args[:files] || ['LoadGuest','LoadCompany']
     @data = Hash.new
   end
 
@@ -33,7 +32,7 @@ class AssembleLoaders
         @data.merge!(obj.data)
       rescue NameError => e
         # inject logfile error here
-        puts err_location("Issue locating class interface for #{x}")
+        # puts err_location("Issue locating class interface for #{x}", 4)
         raise(NameError)
       end
     end
@@ -42,7 +41,7 @@ class AssembleLoaders
   def load_single(obj)
     # Loading files and error if not loaded
     file_msg = err_location(
-        "Data File not loaded for #{obj.class.name} - ensure path & name were correct")
+        "Data File not loaded for #{obj.class.name} - ensure path & name were correct",2)
     raise(ArgumentError, file_msg) unless obj = obj.new(@names)
     obj.execute_process
     # Check all entries in obj exposed data have values

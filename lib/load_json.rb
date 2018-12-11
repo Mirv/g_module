@@ -8,9 +8,9 @@ class LoadJson < LoadFile
   def pull_records(source)
     begin
       value = JSON.parse(source)
-      # do whatever you do when not error
     rescue JSON::ParserError, TypeError => e
       # inject logger
+      puts "JSON ERROR BEING RESCUED"
       return nil
     end
     return value

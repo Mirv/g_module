@@ -1,3 +1,4 @@
+load 'cust_error_location.rb'
 load 'assemble_loaders.rb'
 
 class GreetingSystem
@@ -26,14 +27,6 @@ class GreetingSystem
     @data = loaders.data
   end
   
-  # dynamically finds the calling method name & file
-  def err_location(msg = "")
-    location = "#{caller_name} in #{__FILE__}"
-    file_error = "#{msg} in #{location}"
-  end
-  
-  def caller_name(retrieve_line = 1)
-    caller[retrieve_line][/`([^']*)'/, 1]
-  end
+
 end
 

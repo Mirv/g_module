@@ -1,9 +1,10 @@
 load 'load_json.rb'
 
 # Load in the guest info from file based on combined name
-# Outputs:  to attr_reader :data which is inherited from parent class
 
 class LoadGuest < LoadJson
+  attr_reader :data
+
   def initialize(**args)
     @dir = args[:directory] || 'data'
     @first = args[:first] 
@@ -18,10 +19,6 @@ class LoadGuest < LoadJson
   end
 
   def opener(directory ='data/Guests.json')
-    super
-  end
-
-  def pull_records(source)
     super
   end
 

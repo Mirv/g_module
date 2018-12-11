@@ -9,7 +9,7 @@ describe "process_loaders runs" do
 
     let(:good_assembler) { assembler(valid_inputs) }
     let(:bad_directory) { AssembleLoaders.new(first: "Candy", last: "Pace", 
-        template: "t",company: "c", directory: "asdf") }
+        template: "Default" ,company: "c", directory: "asdf") }
 
     it "should load reservation hash with key roomNumber" do
       good_assembler.process_loaders
@@ -26,7 +26,7 @@ describe "process_loaders runs" do
       expect(good_assembler.data['roomNumber']).to be > 0
     end
     
-    it "should have valid roomNumber" do
+    it "should have valid startTimestamp" do
       good_assembler.process_loaders
       expect(good_assembler.data['startTimestamp']).to be > 0
     end
@@ -37,7 +37,7 @@ describe "process_loaders runs" do
     end
     
     it "should error if the interface class does not exist" do
-      bad_interface = assembler(first: "Candy", last: "Pace", template: "t", 
+      bad_interface = assembler(first: "Candy", last: "Pace", template: "Default", 
         company: "c", directory: "lib/data", files: ['LoadGuest','LoadTest'])
       expect{bad_interface.process_loaders}.to raise_error(NameError)
     end
@@ -60,7 +60,10 @@ describe "process_loaders runs" do
 end
 
 def valid_inputs
-  {first: "Candy", last: "Pace", template: "t", company: "c", directory: "lib/data"}
+  {
+    first: "Candy", last: "Pace", template: "Default", 
+    company: "The Grand Budapest Hotel", directory: "lib/data"
+  }
 end
 
 def assembler(values)
