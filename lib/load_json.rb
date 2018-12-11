@@ -8,8 +8,8 @@ class LoadJson < LoadFile
     begin
       value = JSON.parse(source)
     rescue JSON::ParserError, TypeError => e
-      # inject logger
-      puts "JSON ERROR BEING RESCUED"
+      # TODO -- inject logger
+      # puts "JSON ERROR BEING RESCUED"
       return nil
     end
     return value
@@ -19,7 +19,6 @@ class LoadJson < LoadFile
   def record_lookup(data, **args)
     return if args.empty?
     record = nil  # assumes it doesn't pass
-    # arg_count = args.count #
     data.each do |entry|
       arg_check = true # all hashes must match to be valid, any neg subtracts
       args.each do |key, value|

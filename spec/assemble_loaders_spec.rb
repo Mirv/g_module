@@ -8,6 +8,12 @@ describe "process_loaders runs" do
     let(:bad_directory) { AssembleLoaders.new(firstName: "Candy", lastName: "Pace", 
         template: "Default" ,company: "c", directory: "asdf") }
 
+    it "should load data hash with key template" do
+      good_assembler.process_loaders
+      expect(good_assembler.data).to have_key("template")
+    end
+    
+
     it "should load reservation hash with key roomNumber" do
       good_assembler.process_loaders
       expect(good_assembler.data).to have_key("roomNumber")

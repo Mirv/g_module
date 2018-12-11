@@ -19,8 +19,8 @@ class AssembleLoaders
     
   def initialize(**args)
     @names = args
-    # @files = args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
-    @files = args[:files] || ['LoadGuest','LoadCompany']
+    @files = args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
+    # @files = args[:files] || ['LoadGuest','LoadCompany']
     @data = Hash.new
   end
 
@@ -52,7 +52,6 @@ class AssembleLoaders
     obj.data.each do |x, y|
       raise(ArgumentError, err_location(entry_msg)) if !y || y && y==""
     end
-    
     return obj
   end
   
