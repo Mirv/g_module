@@ -32,7 +32,7 @@ class AssembleLoaders
         obj = load_single(obj)
       rescue NameError => e
         # inject logfile error here
-        puts err_location("Issue locating class interface for #{x}", 2)
+        # puts err_location("Issue locating class interface for #{x}", 2)
         # raise(NameError)
       end
       @data.merge!(obj.data)
