@@ -15,13 +15,14 @@ describe ".load" do
       expect(template.data).to have_key("template")
     end
     
+    it "should be a string" do
+      template.execute_process
+      expect(template.data['template']).to be_a(Sring)
+    end  
+    
     it "should have record_lookup return hash with key template" do
       template.execute_process
       expect(template.data['template']).not_to be_empty
-    end
-    
-    it "should have all '{' followed '}'" do 
-      template.execute_process
     end
   end
 end
