@@ -13,6 +13,6 @@ class LoadFile < LoadData
       # puts "File not found --- In #{__FILE__} --- '#{file}'"
       return nil
     end
-    return file_contents
+    @data = file_contents
   end
 end

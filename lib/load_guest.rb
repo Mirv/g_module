@@ -5,10 +5,11 @@ load 'load_json.rb'
 class LoadGuest < LoadJson
   
   def initialize(**args)
-    dir = args[:directory] || 'data'
-    @file_name = "#{dir}/Guests.json"
-    @first = args[:firstName] 
-    @last = args[:lastName]
+    dir =         args[:directory] || 'data'
+    file_name =   "#{dir}/Guests.json"
+    @file_name =  args[:file_name] || file_name
+    @first =      args[:firstName] 
+    @last =       args[:lastName]
   end
 
   def execute_process
@@ -19,3 +20,4 @@ class LoadGuest < LoadJson
   end
 
 end
+# 

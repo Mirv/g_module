@@ -5,14 +5,14 @@ describe "process_loaders runs" do
   context "loads data" do
 
     let(:good_assembler) { assembler(valid_inputs) }
-    let(:bad_directory) { AssembleLoaders.new(firstName: "Candy", lastName: "Pace", 
-        template: "Default" ,company: "c", directory: "asdf") }
+    let(:bad_directory) { 
+      bad_loader = assembler(valid_inputs.merge!({files: ['LoadImaginary']}))
+    }
 
     it "should load data hash with key template" do
       good_assembler.process_loaders
       expect(good_assembler.data).to have_key("template")
     end
-    
 
     it "should load reservation hash with key roomNumber" do
       good_assembler.process_loaders
@@ -33,15 +33,9 @@ describe "process_loaders runs" do
       good_assembler.process_loaders
       expect(good_assembler.data['startTimestamp']).to be > 0
     end
-    
-    it "should have data hash empty if file doesn't load" do
-      # expect(AssembleLoaders.new(firstName: "Candy", lastName: "Pace", 
-      #   template: "t",company: "c", directory: "asdf").data).to be_empty
-    end
-    
+
     it "should error if the interface class does not exist" do
-      bad_interface = assembler(firstName: "Candy", lastName: "Pace", template: "Default", 
-        company: "c", directory: "lib/data", files: ['LoadGuest','LoadTest'])
+      
       expect{bad_interface.process_loaders}.to raise_error(NameError)
     end
   end
@@ -54,7 +48,7 @@ describe "process_loaders runs" do
     end
   
     it "should error if the data has empty hash values" do
-      obj = LoadGuest.new(firstName: "Candy",lastName: "Pace", directory: 'lib/data')
+      obj = LoadGuest.new(valid_inputs)
       obj.execute_process
       obj.data['roomNumber'] = ""
       expect{good_assembler.load_single}.to raise_error(ArgumentError)

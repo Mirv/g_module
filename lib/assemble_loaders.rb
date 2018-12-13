@@ -16,12 +16,13 @@ class AssembleLoaders
   include CustErrorLocation
   
   attr_reader :data
-    
+  
   def initialize(**args)
-    @names = args
-    @files = args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
-    # @files = args[:files] || ['LoadGuest','LoadCompany']
-    @data = Hash.new
+    @names =    args
+    @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
+    # @files =    args[:files] || ['LoadGuest', ]
+
+    @data =     Hash.new
   end
 
   def process_loaders
@@ -29,12 +30,12 @@ class AssembleLoaders
       begin
         obj = Object.const_get(x)
         obj = load_single(obj)
-        @data.merge!(obj.data)
       rescue NameError => e
         # inject logfile error here
-        # puts err_location("Issue locating class interface for #{x}", 4)
-        raise(NameError)
+        puts err_location("Issue locating class interface for #{x}", 2)
+        # raise(NameError)
       end
+      @data.merge!(obj.data)
     end
   end
   

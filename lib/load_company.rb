@@ -5,10 +5,10 @@ load 'load_json.rb'
 class LoadCompany < LoadJson
 
   def initialize(**args)
-    dir = args[:directory] || 'data'
-    @file_name = "#{dir}/Company.json"
-    @company = args[:company]
-    @data = Hash.new
+    dir =         args[:directory] || 'data'
+    @file_name =  "#{dir}/Company.json"
+    @company =    args[:company]
+    @data =       Hash.new
   end
   
   def execute_process

@@ -22,9 +22,10 @@ class LoadJson < LoadFile
     data.each do |entry|
       arg_check = true # all hashes must match to be valid, any neg subtracts
       args.each do |key, value|
+        # if any key doesn't skip to next entry in array of hashes
         unless entry[key] == value
           arg_checks = false 
-          next
+          next  # exit the loop 
         end
       end
       record = entry if arg_check
