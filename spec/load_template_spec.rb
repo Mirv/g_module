@@ -17,7 +17,7 @@ describe ".load" do
     
     it "should be a string" do
       template.execute_process
-      expect(template.data['template']).to be_a(Sring)
+      expect(template.data['template']).to be_a(String)
     end  
     
     it "should have record_lookup return hash with key template" do
