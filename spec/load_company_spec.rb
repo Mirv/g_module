@@ -12,27 +12,18 @@ describe "#initialize" do
       get_company.data
     }
       
-    it "should contain key for company in data when done" do
+    it "should contain the right keys" do
       expect(company).to have_key('company')
-    end
-    
-    it "should contain key for timezon in data when done" do
-      # company.execute_process
       expect(company).to have_key('timezone')
     end
-    
-    it "should contain value for company in data when done" do
-      # company.execute_process
+
+    it "should contain the right values" do
       expect(company['company']).to_not be_empty
+      expect(company['timezone']).to_not be_empty
     end
     
     it "should have valid startTimestamp" do
       expect(company['company']).to be_a(String)
-    end
-    
-    it "should contain key for timezon in data when done" do
-      # company.execute_process
-      expect(company['timezone']).to_not be_empty
     end
   end
 end
