@@ -20,8 +20,6 @@ class AssembleLoaders
   def initialize(**args)
     @names =    args
     @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
-    # @files =    args[:files] || ['LoadGuest', ]
-
     @data =     Hash.new
   end
 
@@ -31,7 +29,7 @@ class AssembleLoaders
         obj = Object.const_get(x)
         obj = load_single(obj)
       rescue NameError => e
-        # inject logfile error here
+        # TODO - inject logfile error here
         # puts err_location("Issue locating class interface for #{x}", 2)
         # raise(NameError)
       end
