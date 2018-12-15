@@ -13,6 +13,8 @@ describe "process_loaders runs" do
       expect(good_assembler.data).to have_key("template")
       expect(good_assembler.data).to have_key("roomNumber")
       expect(good_assembler.data).to have_key("startTimestamp")
+      expect(good_assembler.data).to have_key("company")
+      expect(good_assembler.data).to have_key("timezone")
     end
 
     it "should error if the interface class does not exist" do
