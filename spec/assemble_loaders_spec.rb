@@ -1,10 +1,11 @@
 load 'assemble_loaders.rb'
 
 describe "process_loaders runs" do
-  let(:good_assembler) { assembler(valid_inputs) } 
+  let(:good_assembler) { assembler(valid_inputs.dup) } 
+  
   context "loads data" do
     let(:bad_directory) { 
-      bad_loader = assembler(valid_inputs.merge!({files: ['LoadImaginary']}))
+      bad_loader = assembler(valid_inputs.dup.merge!({files: ['LoadImaginary']}))
     }
 
     it "should load data hash with keys" do
