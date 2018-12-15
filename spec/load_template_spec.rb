@@ -4,7 +4,7 @@ require 'json_requires'     # json setup & testing data
 
 describe ".load" do
   context "loaded template" do
-    let(:template_loader) { loader = LoadTemplate.new(
+    let(:template_loader) { LoadTemplate.new(
       first: "Candy", last: "Pace", template: "Default", 
       company: "Hotel California", directory: "lib/data")
     }
@@ -16,6 +16,9 @@ describe ".load" do
 
     it "should have record_lookup return hash with key template" do
       expect(template_test).to have_key(:template)
+      expect(template_test).to have_key(:deliminator)
+      expect(template_test[:deliminator]).to have_key('start')
+      expect(template_test[:deliminator]).to have_key('stop')
     end
     
     it "should be a string" do
@@ -24,6 +27,9 @@ describe ".load" do
     
     it "should have record_lookup return hash with key template" do
       expect(template_test[:template]).not_to be_empty
+      expect(template_test[:deliminator]).not_to be_empty
+      expect(template_test[:deliminator]['start']).not_to be_empty
+      expect(template_test[:deliminator]['stop']).not_to be_empty
     end
   end
 end

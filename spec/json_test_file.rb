@@ -2,15 +2,23 @@
 # ... thru LoadJson class's process_json
 
 def json_template_content
-  [{
+[ {
 		"id": 1,
 		"name": "Default",
-		"template": "{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us."
+		"template": "{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.",
+		"deliminator": {
+			"start": "{",
+			"stop": "}"
+		}
 	},
 	{
 		"id": 2,
 		"name": "Bond Style",
-		"template": "{timeGreeting} {lastName}, {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything, including a martini - please reach out to us."
+		"template": "{timeGreeting} {lastName}, {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything, including a martini - please reach out to us.",
+		"deliminator": {
+			"start": "{",
+			"stop": "}"
+		}
 	}]
 end
 
