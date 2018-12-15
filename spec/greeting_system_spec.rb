@@ -8,7 +8,7 @@ describe "#intialization" do
       expect(greeting).to be_truthy
     end
     
-    it "test should fail to make new object if first null" do
+    it "should fail to make new object if first null" do
       expect{ greet((valid_inputs.dup.merge!(firstName: ""))) 
       }.to raise_error(ArgumentError, "First Name was empty")
     end

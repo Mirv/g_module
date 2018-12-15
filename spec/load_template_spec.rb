@@ -15,15 +15,15 @@ describe ".load" do
     }
 
     it "should have record_lookup return hash with key template" do
-      expect(template_test).to have_key("template")
+      expect(template_test).to have_key(:template)
     end
     
     it "should be a string" do
-      expect(template_test['template']).to be_a(String)
+      expect(template_test[:template]).to be_a(String)
     end  
     
     it "should have record_lookup return hash with key template" do
-      expect(template_test['template']).not_to be_empty
+      expect(template_test[:template]).not_to be_empty
     end
   end
 end

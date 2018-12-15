@@ -5,7 +5,7 @@ describe "#initialize" do
   context "call to LoadCompany class" do
     let (:get_company) { LoadCompany.new(
       firstName: "Candy", lastName: "Pace", template: "Default", 
-      company: "The Prancing Pony", directory: "lib/data") }
+      company: "Hotel California", directory: "lib/data") }
       
     subject(:company) {
       get_company.execute_process

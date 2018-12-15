@@ -10,7 +10,8 @@ describe "process_loaders runs" do
 
     it "should load data hash with keys" do
       good_assembler.process_loaders
-      expect(good_assembler.data).to have_key("template")
+      # byebug
+      expect(good_assembler.data).to have_key(:template)
       expect(good_assembler.data).to have_key("roomNumber")
       expect(good_assembler.data).to have_key("startTimestamp")
       expect(good_assembler.data).to have_key("company")

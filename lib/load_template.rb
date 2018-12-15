@@ -17,7 +17,9 @@ class LoadTemplate < LoadJson
     return unless record = process_json(file)
     return unless record = record_lookup(record, template: @template) 
     @data = Hash.new
-    @data.merge!({"template" => record['template']})
+    # byebug
+    # @data.merge!({template: record['template']})
+    @data.merge!({:template => record['template']})
   end
 end
 
