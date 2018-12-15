@@ -26,7 +26,6 @@ describe "#initialize" do
       expect(reservation['roomNumber']).to be > 0
       expect(reservation['startTimestamp']).to be > 0
     end    
-
   end
 end
 

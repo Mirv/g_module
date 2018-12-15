@@ -9,10 +9,10 @@ class GreetingSystem
     
     # Explicit pre checks 
     # pre lookup checks - as "" as value in hash is not valid, incorrectly
-    raise ArgumentError, "First Name was empty"     if args[:firstName].nil? || args[:firstName].empty?
+    raise ArgumentError, "First Name was empty"     if args[:firstName].empty?
     raise ArgumentError, "Last Name was empty"      if args[:lastName].empty?
     raise ArgumentError, "Company Name was empty"   if args[:company].empty?
-    raise ArgumentError, "Template Name was empty"  if args[:template].nil? || args[:template].empty?
+    raise ArgumentError, "Template Name was empty"  if args[:template].empty?
     
     @names = args
     @data = Hash.new

@@ -17,18 +17,10 @@ describe "process_loaders runs" do
     it "should error if the interface class does not exist" do
       expect{bad_interface.process_loaders}.to raise_error(NameError)
     end
-  end
-  
-  context "load_single runs" do
-    it "should error if the file is not set properly" do
-      # Covered already in LoadFile tests
-    end
-  
-    it "should error if the data has empty hash values" do
-      obj = LoadGuest.new(valid_inputs)
-      obj.execute_process
-      obj.data['roomNumber'] = ""
-      expect{good_assembler.load_single}.to raise_error(ArgumentError)
+
+    it "should load class" do
+      obj = Object.const_get('LoadGuest')
+      expect(good_assembler.load_single(obj)).to_not be_nil
     end
   end
 end
