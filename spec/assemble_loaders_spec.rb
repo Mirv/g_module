@@ -3,6 +3,28 @@ load 'assemble_loaders.rb'
 describe "process_loaders runs" do
   let(:good_assembler) { assembler(valid_inputs.dup) } 
   
+  context "initialized" do
+    it "should fail to make new object if first null" do
+      expect{ assembler((valid_inputs.dup.merge!(firstName: ""))) 
+      }.to raise_error(ArgumentError, "First Name was empty")
+    end
+    
+    it "should fail to make new object if last null" do
+      expect{ assembler((valid_inputs.dup.merge!(lastName: ""))) 
+      }.to raise_error(ArgumentError, "Last Name was empty")
+    end
+
+    it "should fail to make new object if company null" do
+      expect{ assembler((valid_inputs.dup.merge!(company: "")))
+      }.to raise_error(ArgumentError, "Company Name was empty")
+    end
+
+    it "should fail to make new object if tempalte null" do
+      expect{ assembler((valid_inputs.dup.merge!(template: "")))
+      }.to raise_error(ArgumentError, "Template Name was empty")
+    end
+  end
+  
   context "loads data" do
     let(:bad_directory) { 
       bad_loader = assembler(valid_inputs.dup.merge!({files: ['LoadImaginary']}))

@@ -21,6 +21,7 @@ class AssembleLoaders
     @names =    args
     @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
     @data =     Hash.new
+    check_required_fields(@names)
   end
 
   def process_loaders
@@ -54,5 +55,13 @@ class AssembleLoaders
     return obj
   end
   
+  def check_required_fields(args)
+        # Explicit pre checks 
+    # pre lookup checks - as "" as value in hash is not valid, incorrectly
+    raise ArgumentError, "First Name was empty"     if args[:firstName].nil? || args[:firstName].empty?
+    raise ArgumentError, "Last Name was empty"      if args[:lastName].nil? || args[:lastName].empty?
+    raise ArgumentError, "Company Name was empty"   if args[:company].nil? || args[:company].empty?  
+    raise ArgumentError, "Template Name was empty"  if args[:template].nil? ||args[:template].empty?
+ end
 
 end
