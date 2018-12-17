@@ -1,4 +1,4 @@
-load 'load_json.rb'
+load 'loaders/load_json.rb'
 
 # @data exposed in parent class
 

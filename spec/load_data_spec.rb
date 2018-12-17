@@ -1,4 +1,4 @@
-require "load_data.rb"
+require "loaders/load_data.rb"
 
 describe ".load" do
   context "call to load_data class" do

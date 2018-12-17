@@ -1,4 +1,4 @@
-load 'load_data.rb'
+load 'loaders/load_data.rb'
 require 'json'
 
 class LoadFile < LoadData

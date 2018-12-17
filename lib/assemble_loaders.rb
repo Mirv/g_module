@@ -1,7 +1,7 @@
 load 'cust_error_location.rb'
-load 'load_guest.rb'
-load 'load_company.rb'
-load 'load_template.rb'
+load 'loaders/load_guest.rb'
+load 'loaders/load_company.rb'
+load 'loaders/load_template.rb'
 require 'byebug'
 
 ## AssembleLoaders

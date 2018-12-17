@@ -1,4 +1,4 @@
-require 'load_guest.rb'
+require 'loaders/load_guest.rb'
 require 'json'
 
 describe "#initialize" do

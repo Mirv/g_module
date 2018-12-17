@@ -1,5 +1,5 @@
 require 'spec_helper.rb'
-load 'lib/load_template.rb'
+load 'loaders/load_template.rb'
 require 'json_requires'     # json setup & testing data
 
 describe ".load" do

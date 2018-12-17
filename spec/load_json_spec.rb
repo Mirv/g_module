@@ -1,5 +1,5 @@
 require 'spec_helper.rb'
-require 'load_json.rb'      # file under test
+require 'loaders/load_json.rb'      # file under test
 require 'json_requires'     # json setup & testing data
 
 describe ".process_json" do

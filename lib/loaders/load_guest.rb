@@ -1,4 +1,4 @@
-load 'load_json.rb'
+load 'loaders/load_json.rb'
 
 # Load in the guest info from file based on combined name
 

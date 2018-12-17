@@ -1,5 +1,5 @@
 # require 'json'
-load 'load_company.rb'
+load 'loaders/load_company.rb'
 
 describe "#initialize" do
   context "call to LoadCompany class" do
