@@ -8,38 +8,6 @@ describe "initialized" do
   end
 end
 
-describe "returns errors when starting" do
-  let(:template) { templater(valid_template_inputs.dup) }
-  let!(:valid) { valid_template_inputs.dup }
-
-  it "should error if no raw_template key found" do
-    expect{ templater(valid.reject{ |v| v == :raw_template})
-    }.to raise_error(ArgumentError, "raw_template key was missing")
-  end
-  
-  it "should error if no raw_template value found" do
-    valid[:raw_template] = ""
-    expect{ templater(valid)
-    }.to raise_error(ArgumentError, "raw_template string was empty")
-  end
-  
-  it "should error if no deliminator key found" do
-    expect{ templater(valid.reject{ |v| v == :deliminator})
-    }.to raise_error(ArgumentError, "Deliminator hash was empty")
-  end
-  
-  it "should error if no start deliminator found" do
-    valid[:deliminator]['start'] = nil
-    expect{ templater(valid)
-    }.to raise_error(ArgumentError, "Deliminator start was empty")
-  end
-  
-  it "should error if no stop deliminator found" do
-    valid[:deliminator]['stop'] = nil
-    expect{ templater(valid)
-    }.to raise_error(ArgumentError, "Deliminator stop was empty")
-  end
-end
 
 # describe "finishes running" do
 #   let(:template) { templater(valid_template_inputs.dup) }
