@@ -19,7 +19,7 @@ class LoadTemplate < LoadJson
     @data = Hash.new
     # byebug
     # @data.merge!({template: record['template']})
-    @data.merge!({:template => record['template']})
+    @data.merge!({:raw_template => record['template']})
     @data.merge!({:deliminator => record['deliminator']})
   end
 end

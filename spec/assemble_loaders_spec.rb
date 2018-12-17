@@ -1,39 +1,36 @@
 load 'assemble_loaders.rb'
 
-describe "process_loaders runs" do
+describe "initialized" do
   let(:good_assembler) { assembler(valid_inputs.dup) } 
   
-  context "initialized" do
-    it "should fail to make new object if first null" do
-      expect{ assembler((valid_inputs.dup.merge!(firstName: ""))) 
-      }.to raise_error(ArgumentError, "First Name was empty")
-    end
-    
-    it "should fail to make new object if last null" do
-      expect{ assembler((valid_inputs.dup.merge!(lastName: ""))) 
-      }.to raise_error(ArgumentError, "Last Name was empty")
-    end
-
-    it "should fail to make new object if company null" do
-      expect{ assembler((valid_inputs.dup.merge!(company: "")))
-      }.to raise_error(ArgumentError, "Company Name was empty")
-    end
-
-    it "should fail to make new object if tempalte null" do
-      expect{ assembler((valid_inputs.dup.merge!(template: "")))
-      }.to raise_error(ArgumentError, "Template Name was empty")
-    end
+  it "should fail to make new object if first null" do
+    expect{ assembler((valid_inputs.dup.merge!(firstName: ""))) 
+    }.to raise_error(ArgumentError, "First Name was empty")
   end
   
+  it "should fail to make new object if last null" do
+    expect{ assembler((valid_inputs.dup.merge!(lastName: ""))) 
+    }.to raise_error(ArgumentError, "Last Name was empty")
+  end
+
+  it "should fail to make new object if company null" do
+    expect{ assembler((valid_inputs.dup.merge!(company: "")))
+    }.to raise_error(ArgumentError, "Company Name was empty")
+  end
+
+  it "should fail to make new object if tempalte null" do
+    expect{ assembler((valid_inputs.dup.merge!(template: "")))
+    }.to raise_error(ArgumentError, "Template Name was empty")
+  end
+end
+
+describe "post run" do
+  let(:good_assembler) { assembler(valid_inputs.dup) }
   context "loads data" do
-    let(:bad_directory) { 
-      bad_loader = assembler(valid_inputs.dup.merge!({files: ['LoadImaginary']}))
-    }
 
     it "should load data hash with keys" do
       good_assembler.process_loaders
-      # byebug
-      expect(good_assembler.data).to have_key(:template)
+      expect(good_assembler.data).to have_key(:raw_template)
       expect(good_assembler.data).to have_key("roomNumber")
       expect(good_assembler.data).to have_key("startTimestamp")
       expect(good_assembler.data).to have_key("company")

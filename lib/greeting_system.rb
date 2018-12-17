@@ -5,8 +5,6 @@ class GreetingSystem
   attr_reader :greeting_message, :names, :data
   
   def initialize(**args)
-    # generic non-explicit args list for flexibilty
-    
     @names = args
     @data = Hash.new
   end
