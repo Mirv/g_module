@@ -13,6 +13,7 @@ class GreetingSystem
   #
   # In:  @names hash
   # Out: hash exposed via data of user's specific data set
+  #
   def assemble_loaders
     loaders =   AssembleLoaders.new(@names)
     loaders.process_loaders

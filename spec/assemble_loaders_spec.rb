@@ -5,22 +5,22 @@ describe "initialized" do
   
   it "should fail to make new object if first null" do
     expect{ assembler((valid_inputs.dup.merge!(firstName: ""))) 
-    }.to raise_error(ArgumentError, "First Name was empty")
+    }.to raise_error(ArgumentError, "firstName was empty")
   end
   
   it "should fail to make new object if last null" do
     expect{ assembler((valid_inputs.dup.merge!(lastName: ""))) 
-    }.to raise_error(ArgumentError, "Last Name was empty")
+    }.to raise_error(ArgumentError, "lastName was empty")
   end
 
   it "should fail to make new object if company null" do
     expect{ assembler((valid_inputs.dup.merge!(company: "")))
-    }.to raise_error(ArgumentError, "Company Name was empty")
+    }.to raise_error(ArgumentError, "company was empty")
   end
 
   it "should fail to make new object if tempalte null" do
     expect{ assembler((valid_inputs.dup.merge!(template: "")))
-    }.to raise_error(ArgumentError, "Template Name was empty")
+    }.to raise_error(ArgumentError, "template was empty")
   end
 end
 

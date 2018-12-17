@@ -3,21 +3,20 @@
 class TemplateTool
   attr_reader :data    
   
-  # def initialize(**args)
   def initialize(args)
 
-    # byebug
     validate(args)
     
     # "test" unless @delims = args[:deliminator]
     
     @raw_template = args[:raw_template]
+    @template_variables = Hash.new
     @data = Hash.new
   end
   
   def read_template
     pull = @raw_template.scan(/\{(.*?)\}/).flatten.uniq
-    @data.merge!({template_variables: pull})
+    @template_variables.merge!({template_variables: pull})
   end
   
   def validate(args)

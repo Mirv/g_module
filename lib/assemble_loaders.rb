@@ -56,12 +56,12 @@ class AssembleLoaders
   end
   
   def check_required_fields(args)
-        # Explicit pre checks 
+    # Explicit pre checks 
     # pre lookup checks - as "" as value in hash is not valid, incorrectly
-    raise ArgumentError, "First Name was empty"     if args[:firstName].nil? || args[:firstName].empty?
-    raise ArgumentError, "Last Name was empty"      if args[:lastName].nil? || args[:lastName].empty?
-    raise ArgumentError, "Company Name was empty"   if args[:company].nil? || args[:company].empty?  
-    raise ArgumentError, "Template Name was empty"  if args[:template].nil? ||args[:template].empty?
+    raise ArgumentError, "firstName was empty" if args[:firstName].nil? || args[:firstName].empty?
+    raise ArgumentError, "lastName was empty"  if args[:lastName].nil? || args[:lastName].empty?
+    raise ArgumentError, "company was empty"   if args[:company].nil? || args[:company].empty?  
+    raise ArgumentError, "template was empty"  if args[:template].nil? ||args[:template].empty?
  end
 
 end
