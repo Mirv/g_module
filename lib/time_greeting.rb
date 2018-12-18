@@ -4,11 +4,24 @@ class TimeGreeting
   attr_reader :data    
   
   def initialize(args)
-    @raw_template = args[:raw_template]
+    validate(args)
+
+    @timezone = args["timezone"]
+    @startTimestamp = args["startTimestamp"]
+  end
+
+  def zone_off
+
   end
   
-  def read_template
-    pull = @raw_template.scan(/\{(.*?)\}/).flatten.uniq
-    @data = pull
+  def validate(args)
+    # startTimeStamp checks
+    raise ArgumentError, "startTimestamp key missing" unless args.key?("startTimestamp")
+    raise ArgumentError, "startTimestamp was empty" unless args["startTimestamp"] != ""
+    raise ArgumentError, "startTimestamp is not valid Fixnum" unless args["startTimestamp"].is_a? Fixnum
+    # timezone checks
+    raise ArgumentError, "timezone key missing" unless args.key?("timezone")
+    raise ArgumentError, "timezone was empty" unless args["timezone"] != ""
+    raise ArgumentError, "timezone is not valid String" unless args["timezone"].is_a? String
   end
 end

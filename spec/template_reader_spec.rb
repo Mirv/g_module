@@ -24,7 +24,6 @@ describe "template_readereader finishes" do
   end
 end
 
-
 describe "returns errors when starting" do
   let(:template) { template_reader(valid_template_inputs.dup) }
   let!(:valid) { valid_template_inputs.dup }
