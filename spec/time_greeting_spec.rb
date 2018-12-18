@@ -5,6 +5,7 @@ describe "initialized" do
 
   it "should have successfully initialized" do
     # byebug
+    puts "TZ: #{time_inputs.dup}"
     expect(greeting).to be_truthy
   end
 end
@@ -48,6 +49,10 @@ describe "raises errors on initialization" do
     expect{ time_greet(invalid)
     }.to raise_error(ArgumentError, "startTimestamp is not valid Fixnum")
   end
+  
+  it "should error if the startTimestamp is not within an hour of current time" do
+    expect{}.to be_within
+  end
 
   it "should error if no timezone key found" do
     expect{ time_greet(time_inputs.dup.reject{ |v| v == "timezone"})
@@ -74,6 +79,14 @@ describe "raises errors on initialization" do
     expect{ time_greet(invalid)
     }.to raise_error(ArgumentError, "timezone is not valid String")
   end
+  
+  # it "should error if timezone is not valid TimeZone" do
+  #   invalid = valid.dup
+  #   invalid["timezone"] = 'America/Minneapolis'
+  #   # byebug
+  #   expect{ time_greet(invalid)
+  #   }.to raise_error(ArgumentError, "timezone is not valid TimeZone")
+  # end  
 end
 
 def time_inputs
