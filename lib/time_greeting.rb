@@ -20,7 +20,7 @@ class TimeGreeting
     @zone = args["timezone"]
     @timestamp = args["startTimestamp"]
     @zone_name = time_zone 
-    @greetings = greeting_messages
+    @greetings = args[:greetings] ||greeting_messages
     init_validation(args)
   end
 
@@ -35,7 +35,7 @@ class TimeGreeting
 
   def assign_greeting(hour = 6)
     greetings = GreetingSelector.data_from_array_of_hashes(greeting_messages)
-    greetings.find(hour).message
+    greetings.find(time_with_zone).message
   end
 
   def time_with_zone
@@ -50,6 +50,8 @@ class TimeGreeting
     Timezone[@zone]
   end
   
+  # Due to the time stamps the JSON files held, I'm guessing your test files are 
+  # ... all from same date & the lookback protection would cause them to all fail
   def default_look_back
     two_years = 62899200
   end
@@ -89,7 +91,7 @@ class TimeGreeting
     # startTimeStamp checks
     raise ArgumentError, "startTimestamp key missing" unless args.key?("startTimestamp")
     raise ArgumentError, "startTimestamp was empty" unless @timestamp != ""
-    raise ArgumentError, "startTimestamp not valid Fixnum" unless @timestamp.is_a? Fixnum
+    raise ArgumentError, "startTimestamp not valid Integer" unless @timestamp.is_a? Integer
     
     # timezone checks
     raise ArgumentError, "timezone key missing" unless args.key?("timezone")
@@ -97,8 +99,8 @@ class TimeGreeting
     raise ArgumentError, "timezone is not valid String" unless @zone.is_a? String
     
     # optional - if they are set, then they need to be fixnum not strings
-    raise ArgumentError, "time_look_back not valid Fixnum" unless @look_back.is_a? Fixnum
-    raise ArgumentError, "time_look_ahead not valid Fixnum" unless @look_ahead.is_a? Fixnum
+    raise ArgumentError, "time_look_back not valid Integer" unless @look_back.is_a? Integer
+    raise ArgumentError, "time_look_ahead not valid Integer" unless @look_ahead.is_a? Integer
 
     # derived checks
     raise ArgumentError, "timezone is not a valid TimeZone" unless valid_zone?

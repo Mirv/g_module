@@ -25,10 +25,10 @@ describe "raises errors on initialization" do
     }.to raise_error(ArgumentError, "startTimestamp was empty")
   end
   
-  it "should error if startTimestamp is not valid Fixnum" do
+  it "should error if startTimestamp is not valid Integer" do
     valid["startTimestamp"] = "asdf"
     expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "startTimestamp not valid Fixnum")
+    }.to raise_error(ArgumentError, "startTimestamp not valid Integer")
   end
 
   it "should error if the startTimestamp is in the future" do
@@ -73,16 +73,16 @@ describe "raises errors on initialization" do
     }.to raise_error(ArgumentError, "timezone is not a valid TimeZone")
   end  
   
-  it "should error if time_look_back is not valid Fixnum" do
+  it "should error if time_look_back is not valid Integer" do
     valid[:time_look_back] = "asdf"
     expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "time_look_back not valid Fixnum")
+    }.to raise_error(ArgumentError, "time_look_back not valid Integer")
   end
   
-  it "should error if time_look_ahead is not valid Fixnum" do
+  it "should error if time_look_ahead is not valid Integer" do
     valid[:time_look_ahead] = "asdf"
     expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "time_look_ahead not valid Fixnum")
+    }.to raise_error(ArgumentError, "time_look_ahead not valid Integer")
   end
 end
 
