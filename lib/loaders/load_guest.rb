@@ -20,6 +20,4 @@ class LoadGuest < LoadJson
     return unless record = record_lookup(record, firstName: @first, lastName: @last) 
     @data = record['reservation']
   end
-
 end
-# 

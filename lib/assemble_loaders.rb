@@ -2,7 +2,7 @@ load 'cust_error_location.rb'
 load 'loaders/load_guest.rb'
 load 'loaders/load_company.rb'
 load 'loaders/load_template.rb'
-require 'byebug'
+load 'loaders/load_greeting.rb'
 
 ## AssembleLoaders
 #
@@ -19,7 +19,7 @@ class AssembleLoaders
   
   def initialize(**args)
     @names =    args
-    @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany']
+    @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany', 'LoadGreeting']
     @data =     Hash.new
     check_required_fields(@names)
   end

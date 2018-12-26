@@ -1,4 +1,3 @@
-
 class Greeting
   attr_reader :message
   

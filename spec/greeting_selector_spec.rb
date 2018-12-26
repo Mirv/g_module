@@ -12,7 +12,6 @@ describe "#initialize GreetingSelector" do
     }
     
     it "should return message if valid inputs and in range" do
-      # byebug
       expect(greeting_hash.find(5).message).to include("Good Morning")
     end
     
