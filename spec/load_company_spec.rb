@@ -1,4 +1,3 @@
-# require 'json'
 load 'loaders/load_company.rb'
 
 describe "#initialize" do

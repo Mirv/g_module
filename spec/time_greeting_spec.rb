@@ -4,27 +4,10 @@ describe "initialized" do
   let(:greeting) { time_greet(time_inputs.dup) }
 
   it "should have successfully initialized" do
-    # byebug
-    puts "TZ: #{time_inputs.dup}"
     expect(greeting).to be_truthy
   end
 end
 
-describe "template_readereader finishes" do
-  # let(:greeting) { time_greet(time_inputs.dup) }
-  # let(:result) {     
-  #   template.read_template
-  #   template.data
-  # }
-
-  # it "should add a hash of variables found to data hash" do
-  #   expect(result.count).to be > 0
-  # end
-  
-  # it "should add non-nil values to data hash" do
-  #   expect(result.first).to_not be_nil
-  # end
-end
 
 
 describe "raises errors on initialization" do
@@ -32,61 +15,75 @@ describe "raises errors on initialization" do
   let!(:valid) { time_inputs.dup }
 
   it "should error if no startTimestamp key found" do
-    expect{ time_greet(time_inputs.dup.reject{ |v| v == "startTimestamp"})
+    expect{ time_greet(valid.reject{ |v| v == "startTimestamp"})
     }.to raise_error(ArgumentError, "startTimestamp key missing")
   end
   
   it "should error if no startTimestamp value found" do
-    invalid = valid.dup
-    invalid["startTimestamp"] = ""
-    expect{ time_greet(invalid)
+    valid["startTimestamp"] = ""
+    expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "startTimestamp was empty")
   end
   
   it "should error if startTimestamp is not valid Fixnum" do
-    invalid = valid.dup
-    invalid["startTimestamp"] = "asdf"
-    expect{ time_greet(invalid)
-    }.to raise_error(ArgumentError, "startTimestamp is not valid Fixnum")
+    valid["startTimestamp"] = "asdf"
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "startTimestamp not valid Fixnum")
+  end
+
+  it "should error if the startTimestamp is in the future" do
+    valid["startTimestamp"] = Time.now.to_i + 1344123412234
+    expect{time_greet(valid)
+    }.to raise_error(ArgumentError, "startTimestamp is in the future")
   end
   
-  it "should error if the startTimestamp is not within an hour of current time" do
-    expect{}.to be_within
+  it "should error if the startTimestamp is too long ago" do
+    three_years = 94348800
+    valid["startTimestamp"] = (Time.now.to_i - three_years)
+    expect{time_greet(valid)
+    }.to raise_error(ArgumentError, "Message age is too old")
   end
 
   it "should error if no timezone key found" do
-    expect{ time_greet(time_inputs.dup.reject{ |v| v == "timezone"})
+    expect{ time_greet(valid.reject{ |v| v == "timezone"})
     }.to raise_error(ArgumentError, "timezone key missing")
   end
   
   it "should error if no timezone value found" do
-    invalid = valid.dup
-    invalid["timezone"] = ""
-    expect{ time_greet(invalid)
+    valid["timezone"] = ""
+    expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone was empty")
   end
   
   it "should error if timezone is not valid String" do
-    invalid = valid.dup
-    invalid["timezone"] = 1234
-    expect{ time_greet(invalid)
+    valid["timezone"] = 1234
+    expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone is not valid String")
   end
   
   it "should error if timezone is not valid String" do
-    invalid = valid.dup
-    invalid["timezone"] = 1234
-    expect{ time_greet(invalid)
+    valid["timezone"] = 1234
+    expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone is not valid String")
   end
   
-  # it "should error if timezone is not valid TimeZone" do
-  #   invalid = valid.dup
-  #   invalid["timezone"] = 'America/Minneapolis'
-  #   # byebug
-  #   expect{ time_greet(invalid)
-  #   }.to raise_error(ArgumentError, "timezone is not valid TimeZone")
-  # end  
+  it "should error if timezone is not valid TimeZone" do
+    valid["timezone"] = 'America/Minneapolis'
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "timezone is not a valid TimeZone")
+  end  
+  
+  it "should error if time_look_back is not valid Fixnum" do
+    valid[:time_look_back] = "asdf"
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "time_look_back not valid Fixnum")
+  end
+  
+  it "should error if time_look_ahead is not valid Fixnum" do
+    valid[:time_look_ahead] = "asdf"
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "time_look_ahead not valid Fixnum")
+  end
 end
 
 def time_inputs

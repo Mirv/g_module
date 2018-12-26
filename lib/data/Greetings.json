@@ -1,0 +1,17 @@
+[
+  {
+		"message": "Good Morning",
+		"start": 0,
+		"stop": 10
+	},
+	{
+		"message": "Good Day",
+		"start": 10,
+		"stop": 18
+	},
+	{
+		"message": "Good Evening",
+		"start": 18,
+		"stop": 24
+	}
+]
