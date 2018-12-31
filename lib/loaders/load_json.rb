@@ -6,7 +6,8 @@ class LoadJson < LoadFile
   
   def process_json(source)
     begin
-      value = JSON.parse(source)
+    # byebug
+      value = JSON.parse(source, { symbolize_names: true })
     rescue JSON::ParserError, TypeError => e
       # TODO -- inject logger
       # puts "JSON ERROR BEING RESCUED"

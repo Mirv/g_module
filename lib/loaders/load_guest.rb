@@ -10,6 +10,7 @@ class LoadGuest < LoadJson
     @file_name =  args[:file_name] || file_name
     @first =      args[:firstName] 
     @last =       args[:lastName]
+    @data =       Hash.new
   end
 
   # Current - exits if process finds a nil, otherwise merges good result
@@ -18,6 +19,6 @@ class LoadGuest < LoadJson
     return unless file = opener(@file_name)
     return unless record = process_json(file)
     return unless record = record_lookup(record, firstName: @first, lastName: @last) 
-    @data = record['reservation']
+    @data = record[:reservation]
   end
 end

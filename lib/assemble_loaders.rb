@@ -19,7 +19,12 @@ class AssembleLoaders
   
   def initialize(**args)
     @names =    args
-    @files =    args[:files] || ['LoadGuest', 'LoadTemplate', 'LoadCompany', 'LoadGreeting']
+    @files =    args[:files] || [
+      'LoadGuest', 
+      'LoadTemplate', 
+      'LoadCompany',
+      'LoadGreeting'
+      ]
     @data =     Hash.new
     check_required_fields(@names)
   end

@@ -18,7 +18,7 @@ describe "template_readereader finishes" do
   it "should add a hash of variables found to data hash" do
     expect(result.count).to be > 0
   end
-  
+
   it "should add non-nil values to data hash" do
     expect(result.first).to_not be_nil
   end
@@ -45,22 +45,29 @@ describe "returns errors when starting" do
   end
   
   it "should error if no start deliminator found" do
-    valid[:deliminator]['start'] = nil
+    valid[:deliminator][:start] = nil
     expect{ template_reader(valid)
     }.to raise_error(ArgumentError, "Deliminator start was empty")
   end
   
   it "should error if no stop deliminator found" do
-    valid[:deliminator]['stop'] = nil
+    valid[:deliminator][:stop] = nil
     expect{ template_reader(valid)
     }.to raise_error(ArgumentError, "Deliminator stop was empty")
+  end
+
+  it "should raise error if no placeholders found" do
+    invalid_raw = valid_template_inputs.dup
+    invalid_raw[:raw_template]  =  "blah" 
+    expect{template_reader(invalid_raw).read_template
+    }.to raise_error(ArgumentError, "No placeholders found in template")
   end
 end
 
 def valid_template_inputs
   {
     :raw_template=>"{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
-    :deliminator=>{"start"=>"{", "stop"=>"}"}, 
+    :deliminator=>{start: "{", stop: "}"}, 
   }
 end
 

@@ -15,60 +15,71 @@ describe "raises errors on initialization" do
   let!(:valid) { time_inputs.dup }
 
   it "should error if no startTimestamp key found" do
-    expect{ time_greet(valid.reject{ |v| v == "startTimestamp"})
+    expect{ time_greet(valid.reject{ |v| v == :startTimestamp})
     }.to raise_error(ArgumentError, "startTimestamp key missing")
   end
   
   it "should error if no startTimestamp value found" do
-    valid["startTimestamp"] = ""
+    valid[:startTimestamp] = ""
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "startTimestamp was empty")
   end
   
   it "should error if startTimestamp is not valid Integer" do
-    valid["startTimestamp"] = "asdf"
+    valid[:startTimestamp] = "asdf"
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "startTimestamp not valid Integer")
   end
 
   it "should error if the startTimestamp is in the future" do
-    valid["startTimestamp"] = Time.now.to_i + 1344123412234
+    valid[:startTimestamp] = Time.now.to_i + 1344123412234
     expect{time_greet(valid)
     }.to raise_error(ArgumentError, "startTimestamp is in the future")
   end
   
   it "should error if the startTimestamp is too long ago" do
     three_years = 94348800
-    valid["startTimestamp"] = (Time.now.to_i - three_years)
+    valid[:startTimestamp] = (Time.now.to_i - three_years)
     expect{time_greet(valid)
     }.to raise_error(ArgumentError, "Message age is too old")
   end
 
   it "should error if no timezone key found" do
-    expect{ time_greet(valid.reject{ |v| v == "timezone"})
+    expect{ time_greet(valid.reject{ |v| v == :timezone})
     }.to raise_error(ArgumentError, "timezone key missing")
   end
   
+  it "should error if no greetings key found" do
+    expect{ time_greet(valid.reject{ |v| v == :greetings})
+    }.to raise_error(ArgumentError, "greetings key missing")
+  end
+  
+  it "should error if no greetings value found" do
+    valid[:greetings] = ""
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "greetings was empty")
+  end
+  
   it "should error if no timezone value found" do
-    valid["timezone"] = ""
+    valid[:timezone] = ""
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone was empty")
   end
   
   it "should error if timezone is not valid String" do
-    valid["timezone"] = 1234
+    valid[:timezone] = 1234
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone is not valid String")
   end
   
   it "should error if timezone is not valid String" do
-    valid["timezone"] = 1234
+    valid[:timezone] = 1234
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone is not valid String")
   end
   
   it "should error if timezone is not valid TimeZone" do
-    valid["timezone"] = 'America/Minneapolis'
+    valid[:timezone] = 'America/Minneapolis'
     expect{ time_greet(valid)
     }.to raise_error(ArgumentError, "timezone is not a valid TimeZone")
   end  
@@ -88,8 +99,13 @@ end
 
 def time_inputs
   {
-    "startTimestamp" => 1486654792,
-    "timezone" => "US/Central"
+    :startTimestamp => 1486654792,
+    :timezone => "US/Central",
+    :greetings => [
+      {"message"=>"Good Morning", "start"=>0, "stop"=>8}, 
+      {"message"=>"Good Day", "start"=>10, "stop"=>18}, 
+      {"message"=>"Good Evening", "start"=>18, "stop"=>24}
+    ]
   }
 end
 

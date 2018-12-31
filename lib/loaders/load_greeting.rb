@@ -28,9 +28,9 @@ class LoadGreeting < LoadJson
     hold = Array.new
     records.each do |r| 
       hold << {
-        message: r['message'], 
-        start: r['start'], 
-        stop: r['stop']
+        message: r[:message], 
+        start: r[:start], 
+        stop: r[:stop]
       }
     end
     hold

@@ -10,6 +10,7 @@ class LoadTemplate < LoadJson
     @file_name =      args[:file_name] || file_name 
     @template =       args[:template] || "Default"
     @loader_params =  args
+    
   end
   
   # Current - exits if process finds a nil, otherwise merges good result
@@ -18,11 +19,10 @@ class LoadTemplate < LoadJson
     return unless file = opener(@file_name)
     return unless record = process_json(file)
     return unless record = record_lookup(record, template: @template) 
+
     @data = Hash.new
-    # byebug
-    # @data.merge!({template: record['template']})
-    @data.merge!({:raw_template => record['template']})
-    @data.merge!({:deliminator => record['deliminator']})
+    @data.merge!({raw_template: record[:template]})
+    @data.merge!({deliminator: record[:deliminator]})
   end
 end
 

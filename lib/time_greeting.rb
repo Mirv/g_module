@@ -15,27 +15,20 @@ class TimeGreeting
   attr_reader :data    
   
   def initialize(args)
-    @look_back = args[:time_look_back] || default_look_back 
-    @look_ahead = args[:time_look_ahead] || default_look_ahead 
-    @zone = args["timezone"]
-    @timestamp = args["startTimestamp"]
-    @zone_name = time_zone 
-    @greetings = args[:greetings] ||greeting_messages
+    @look_back =    args[:time_look_back] || default_look_back 
+    @look_ahead =   args[:time_look_ahead] || default_look_ahead 
+    @zone =         args[:timezone]
+    @timestamp =    args[:startTimestamp]
+    @zone_name =    time_zone 
+    @greetings =    args[:greetings] 
     init_validation(args)
   end
 
-  # TODO - move this to another file and add error checks for bad data when loaded
-  def greeting_messages
-    greeting_messages = [
-      {message: "Good Morning", start: 0, stop: 10},
-      {message: "Good Day", start: 10, stop: 16},
-      {message: "Good Evening", start: 16, stop: 24}
-    ]
-  end
-
   def assign_greeting(hour = 6)
-    greetings = GreetingSelector.data_from_array_of_hashes(greeting_messages)
-    greetings.find(time_with_zone).message
+    hash_of_greetings = LoadGreeting.new
+    greetings = GreetingSelector.data_from_array_of_hashes(hash_of_greetings)
+    greeting_message = greetings.find(time_with_zone).message
+    @data = greeting_message || "Greetings!" 
   end
 
   def time_with_zone
@@ -89,12 +82,15 @@ class TimeGreeting
 
   def init_validation(args)
     # startTimeStamp checks
-    raise ArgumentError, "startTimestamp key missing" unless args.key?("startTimestamp")
+    raise ArgumentError, "startTimestamp key missing" unless args.key?(:startTimestamp)
     raise ArgumentError, "startTimestamp was empty" unless @timestamp != ""
     raise ArgumentError, "startTimestamp not valid Integer" unless @timestamp.is_a? Integer
     
+    raise ArgumentError, "greetings key missing" unless args.key?(:greetings)
+    raise ArgumentError, "greetings was empty" unless @greetings != ""
+    
     # timezone checks
-    raise ArgumentError, "timezone key missing" unless args.key?("timezone")
+    raise ArgumentError, "timezone key missing" unless args.key?(:timezone)
     raise ArgumentError, "timezone was empty" unless @zone != ""
     raise ArgumentError, "timezone is not valid String" unless @zone.is_a? String
     
