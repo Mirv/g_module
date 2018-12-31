@@ -5,7 +5,8 @@ class TemplateTool
   
   def initialize(args)
     @parameters = args
-    @template_variables = matched?(retrieve_placeholders(args))
+    @template_variables = retrieve_placeholders(args)
+    # @time_greeting = retrieve_time_greeting
     @data = Hash.new
   end
 
@@ -13,17 +14,14 @@ class TemplateTool
     args[:placeholders] || TemplateReader.new(args).read_template
   end
   
-  # returns hash of all the placeholders or raises error
-  def matched?(hash)
-    hash.each do |v|
+  # returns hash of all the placeholders in @template_variables or raises error
+  def matched?
+    @template_variables.each do |v|
       raise(KeyError) unless @parameters.fetch(v)
     end
   end
 
-  def humanized_time
-    # Turn time serial into time
-    # Stick it thru utc adjustment based on timezone
-    # Time.at(tt)
-    # utc_offset
+  def retrieve_time_greeting
+    TimeGreeting.new(@parameters)
   end
 end

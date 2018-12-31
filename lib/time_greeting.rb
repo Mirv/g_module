@@ -4,8 +4,8 @@ require 'timezone'
 
 ## TimeGreeting
 #
-# In:     timezone of hotel, client reservation start time
-# Out:    Time specific greeting 
+# In:     timezone of hotel, unix timestamp of client reservation start time
+# Out:    Time specific daycycle greeting based on greeting json file
 # Opt: :time_look_back to allow older messages to be sent
 # Opt: :time_look_ahead to allow messages to be sent if reservation ready early
 #
@@ -19,14 +19,14 @@ class TimeGreeting
     @look_ahead =   args[:time_look_ahead] || default_look_ahead 
     @zone =         args[:timezone]
     @timestamp =    args[:startTimestamp]
-    @zone_name =    time_zone 
+    @zone_name =    Timezone[@zone] 
     @greetings =    args[:greetings] 
     init_validation(args)
   end
 
   def assign_greeting(hour = 6)
-    hash_of_greetings = LoadGreeting.new
-    greetings = GreetingSelector.data_from_array_of_hashes(hash_of_greetings)
+    greetings = LoadGreeting.new.execute_process
+    greetings = GreetingSelector.data_from_array_of_hashes(greetings[:greetings])
     greeting_message = greetings.find(time_with_zone).message
     @data = greeting_message || "Greetings!" 
   end
@@ -38,11 +38,14 @@ class TimeGreeting
   def current_time
     Time.now  
   end
-  
-  def time_zone
-    Timezone[@zone]
+
+  #  Used custom gem to check all the timezones, transfer validated Abbreviation
+  #  ... to the standard library time to get off set value
+  #
+  def timezone_offset
+    @zone_offset ||= Time.zone_offset(@zone_name.abbr(Time.now))
   end
-  
+
   # Due to the time stamps the JSON files held, I'm guessing your test files are 
   # ... all from same date & the lookback protection would cause them to all fail
   def default_look_back
@@ -51,13 +54,6 @@ class TimeGreeting
   
   def default_look_ahead
     two_hours = 7200
-  end
-
-  #  Used custom gem to check all the timezones, transfer validated Abbreviation
-  #  ... to the standard library time to get off set value
-  #
-  def timezone_offset
-    @zone_offset ||= Time.zone_offset(@zone_name.abbr(Time.now))
   end
   
   ### Validations and checks section ###
@@ -86,8 +82,8 @@ class TimeGreeting
     raise ArgumentError, "startTimestamp was empty" unless @timestamp != ""
     raise ArgumentError, "startTimestamp not valid Integer" unless @timestamp.is_a? Integer
     
-    raise ArgumentError, "greetings key missing" unless args.key?(:greetings)
-    raise ArgumentError, "greetings was empty" unless @greetings != ""
+    # raise ArgumentError, "greetings key missing" unless args.key?(:greetings)
+    # raise ArgumentError, "greetings was empty" unless @greetings != ""
     
     # timezone checks
     raise ArgumentError, "timezone key missing" unless args.key?(:timezone)

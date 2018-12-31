@@ -49,16 +49,16 @@ describe "raises errors on initialization" do
     }.to raise_error(ArgumentError, "timezone key missing")
   end
   
-  it "should error if no greetings key found" do
-    expect{ time_greet(valid.reject{ |v| v == :greetings})
-    }.to raise_error(ArgumentError, "greetings key missing")
-  end
+  # it "should error if no greetings key found" do
+  #   expect{ time_greet(valid.reject{ |v| v == :greetings})
+  #   }.to raise_error(ArgumentError, "greetings key missing")
+  # end
   
-  it "should error if no greetings value found" do
-    valid[:greetings] = ""
-    expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "greetings was empty")
-  end
+  # it "should error if no greetings value found" do
+  #   valid[:greetings] = ""
+  #   expect{ time_greet(valid)
+  #   }.to raise_error(ArgumentError, "greetings was empty")
+  # end
   
   it "should error if no timezone value found" do
     valid[:timezone] = ""
