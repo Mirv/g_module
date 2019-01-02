@@ -1,17 +1,18 @@
 # require 'cust_error_location'
+load 'greeters/greeting_selector.rb'
 require 'time'
 require 'timezone'
 
-## TimeGreeting
+## TimeInHours
 #
 # In:     timezone of hotel, unix timestamp of client reservation start time
-# Out:    Time specific daycycle greeting based on greeting json file
+# Out:    Time in hours
 # Opt: :time_look_back to allow older messages to be sent
 # Opt: :time_look_ahead to allow messages to be sent if reservation ready early
 #
 # Assumes all times in UTC on computer system side
 #
-class TimeGreeting
+class TimeInHours
   attr_reader :data    
   
   def initialize(args)
@@ -20,18 +21,10 @@ class TimeGreeting
     @zone =         args[:timezone]
     @timestamp =    args[:startTimestamp]
     @zone_name =    Timezone[@zone] 
-    @greetings =    args[:greetings] 
     init_validation(args)
   end
 
-  def assign_greeting(hour = 6)
-    greetings = LoadGreeting.new.execute_process
-    greetings = GreetingSelector.data_from_array_of_hashes(greetings[:greetings])
-    greeting_message = greetings.find(time_with_zone).message
-    @data = greeting_message || "Greetings!" 
-  end
-
-  def time_with_zone
+  def time_in_hours
     @time ||= Time.at(@timestamp + timezone_offset).hour
   end
 
@@ -41,7 +34,6 @@ class TimeGreeting
 
   #  Used custom gem to check all the timezones, transfer validated Abbreviation
   #  ... to the standard library time to get off set value
-  #
   def timezone_offset
     @zone_offset ||= Time.zone_offset(@zone_name.abbr(Time.now))
   end
@@ -55,8 +47,6 @@ class TimeGreeting
   def default_look_ahead
     two_hours = 7200
   end
-  
-  ### Validations and checks section ###
   
   # prevent old messages from replaying
   # Manipulate via :time_look_back in hash when initlializing in case of outtage
@@ -81,10 +71,7 @@ class TimeGreeting
     raise ArgumentError, "startTimestamp key missing" unless args.key?(:startTimestamp)
     raise ArgumentError, "startTimestamp was empty" unless @timestamp != ""
     raise ArgumentError, "startTimestamp not valid Integer" unless @timestamp.is_a? Integer
-    
-    # raise ArgumentError, "greetings key missing" unless args.key?(:greetings)
-    # raise ArgumentError, "greetings was empty" unless @greetings != ""
-    
+
     # timezone checks
     raise ArgumentError, "timezone key missing" unless args.key?(:timezone)
     raise ArgumentError, "timezone was empty" unless @zone != ""

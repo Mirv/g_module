@@ -1,3 +1,5 @@
+load 'greeters/greeting.rb'
+
 class GreetingSelector
   attr_reader :greetings
   def self.data_from_array_of_hashes(a)

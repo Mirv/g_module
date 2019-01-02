@@ -1,4 +1,5 @@
 # require 'cust_error_location'
+load 'greeters/time_to_greeting.rb'
 
 class TemplateTool
   attr_reader :data    
@@ -6,7 +7,7 @@ class TemplateTool
   def initialize(args)
     @parameters = args
     @template_variables = retrieve_placeholders(args)
-    # @time_greeting = retrieve_time_greeting
+    @greetings = retrieve_time(args)
     @data = Hash.new
   end
 
@@ -21,7 +22,7 @@ class TemplateTool
     end
   end
 
-  def retrieve_time_greeting
-    TimeGreeting.new(@parameters)
-  end
+
+
+
 end

@@ -1,4 +1,4 @@
-load 'time_greeting.rb'
+load 'greeters/time_in_hours.rb'
 
 describe "initialized" do
   let(:greeting) { time_greet(time_inputs.dup) }
@@ -7,8 +7,6 @@ describe "initialized" do
     expect(greeting).to be_truthy
   end
 end
-
-
 
 describe "raises errors on initialization" do
   let(:template) { time_greet(time_inputs.dup.flatten) }
@@ -48,18 +46,7 @@ describe "raises errors on initialization" do
     expect{ time_greet(valid.reject{ |v| v == :timezone})
     }.to raise_error(ArgumentError, "timezone key missing")
   end
-  
-  # it "should error if no greetings key found" do
-  #   expect{ time_greet(valid.reject{ |v| v == :greetings})
-  #   }.to raise_error(ArgumentError, "greetings key missing")
-  # end
-  
-  # it "should error if no greetings value found" do
-  #   valid[:greetings] = ""
-  #   expect{ time_greet(valid)
-  #   }.to raise_error(ArgumentError, "greetings was empty")
-  # end
-  
+
   it "should error if no timezone value found" do
     valid[:timezone] = ""
     expect{ time_greet(valid)
@@ -101,14 +88,10 @@ def time_inputs
   {
     :startTimestamp => 1486654792,
     :timezone => "US/Central",
-    :greetings => [
-      {"message"=>"Good Morning", "start"=>0, "stop"=>8}, 
-      {"message"=>"Good Day", "start"=>10, "stop"=>18}, 
-      {"message"=>"Good Evening", "start"=>18, "stop"=>24}
-    ]
+
   }
 end
 
 def time_greet(values)
-  TimeGreeting.new(values)
+  TimeInHours.new(values)
 end

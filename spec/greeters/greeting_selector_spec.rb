@@ -1,4 +1,4 @@
-load 'greeting_selector.rb'
+load 'greeters/greeting_selector.rb'
 
 describe "#initialize GreetingSelector" do
   context "call to class" do
