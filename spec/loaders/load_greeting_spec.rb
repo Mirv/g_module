@@ -10,7 +10,6 @@ describe "#initialize" do
     }
       
     it "should contain the keys in data var" do
-      expect(greeting).to have_key(:greetings)
       greet = greeting[:greetings].first
       expect(greet).to have_key(:message)
       expect(greet).to have_key(:start)
@@ -19,11 +18,10 @@ describe "#initialize" do
     
     it "should have record_lookup return hash with non empty" do
       greet = greeting[:greetings].first
-      expect(greet).not_to be_empty
-      expect(greet).not_to be_empty
-      expect(greet).not_to be_empty
+      expect(greet[:message]).not_to be_nil
+      expect(greet[:start]).not_to be_nil
+      expect(greet[:stop]).not_to be_nil
     end
-
   end
 end
   

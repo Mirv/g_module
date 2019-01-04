@@ -9,7 +9,6 @@ class TemplateReader
   attr_reader :data    
   
   def initialize(args)
-    # byebug
     validate(args)
     @raw_template = args[:raw_template]
     @start =        args[:deliminator][:start]

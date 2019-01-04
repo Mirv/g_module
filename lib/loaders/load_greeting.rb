@@ -4,6 +4,7 @@ require 'byebug'
 ## LoadGreating
 #
 # In:   nothing
+# Opt:  :directory to find the Greetings.json file
 # out:  array of hashes to use for greeting message
 #
 class LoadGreeting < LoadJson
@@ -11,8 +12,7 @@ class LoadGreeting < LoadJson
   
   def initialize(**args)
     dir =         args[:directory] || 'data'
-    file_name =   "#{dir}/Greetings.json"
-    @file_name =  args[:file_name] || file_name
+    @file_name =  "#{dir}/Greetings.json"
     @data =       Hash.new
   end
 
@@ -36,3 +36,4 @@ class LoadGreeting < LoadJson
     hold
   end
 end
+

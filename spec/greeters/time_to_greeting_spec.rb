@@ -18,7 +18,7 @@ describe "TimeToGreeting initialized" do
   
   context "without error" do
     it "should not be default message if valid messages & time" do
-      expect(time2greeting(inputs.dup)).not_to eq("Greetings")
+      expect(valid).not_to eq("Greetings")
     end
   end
   
@@ -26,7 +26,7 @@ describe "TimeToGreeting initialized" do
     it "should default message if hours or greeting are not valid" do
       t2g = time2greeting(inputs)
       allow(t2g).to receive(:valid?).and_return(false)
-      expect(t2g.process).to eq("Greetings")
+      expect(t2g.execute_process).to eq("Greetings")
     end
   end
 end

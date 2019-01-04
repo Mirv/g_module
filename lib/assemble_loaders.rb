@@ -52,7 +52,7 @@ class AssembleLoaders
     obj.execute_process
     
     # Check all entries in obj exposed data have values
-    entry_msg = "Entries missing in #{obj_name} file"
+    entry_msg = "Entries missing in #{obj} file"
     # Ensure no blank in hash
     obj.data.each do |x, y|
       raise(ArgumentError, err_location(entry_msg)) if !y || y && y==""
