@@ -43,7 +43,7 @@ describe "Assigner" do
       
       # template data
       raw_template: "{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
-      deliminator: {start: "{", stop: "}" }, 
+      deliminator: Deliminators.new('{','}'), 
       
       # company data
       id: 1, 
