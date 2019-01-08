@@ -20,6 +20,6 @@ Installation
 Usage 
 - Run `ruby master.rb -h` to list options
 - Required ...
-    `--f` or `--first_name` 
-    `--l` or `--last_name`
-    `--c` or `--company_name`
+    - `--f` or `--first_name` 
+    - `--l` or `--last_name`
+    - `--c` or `--company_name`
