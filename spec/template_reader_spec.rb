@@ -44,18 +44,6 @@ describe "returns errors when starting" do
     }.to raise_error(ArgumentError, "Deliminator hash was empty")
   end
   
-  it "should error if no start deliminator found" do
-    valid[:deliminator][:start] = nil
-    expect{ template_reader(valid)
-    }.to raise_error(ArgumentError, "Deliminator start was empty")
-  end
-  
-  it "should error if no stop deliminator found" do
-    valid[:deliminator][:stop] = nil
-    expect{ template_reader(valid)
-    }.to raise_error(ArgumentError, "Deliminator stop was empty")
-  end
-
   it "should raise error if no placeholders found" do
     invalid_raw = valid_template_inputs.dup
     invalid_raw[:raw_template]  =  "blah" 
@@ -67,7 +55,7 @@ end
 def valid_template_inputs
   {
     :raw_template=>"{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
-    :deliminator=>{start: "{", stop: "}"}, 
+    :deliminator=> Deliminators.new('{','}')
   }
 end
 

@@ -10,4 +10,11 @@ module CustErrorLocation
   def caller_name(retrieve_line = 1)
     caller[retrieve_line][/`([^']*)'/, 1]
   end
+
+  # Needs to have type as class/module
+  def type_error(value, type)
+    raise(ArgumentError, "NIL") unless value
+    value.is_a? type
+  end
 end
+

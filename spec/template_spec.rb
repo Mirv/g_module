@@ -11,16 +11,9 @@ describe "template initialized" do
     it "should retrieve a non-default greeting" do
       expect(template.retrieve_greeting(inputs.dup)).to_not eq("Greetings")
     end
+
   end
   
-  context "given there are issues" do
-    it "should error if any placeholders have no replacement in template" do
-      bad = inputs.dup
-      bad[:placeholders] = {missing: "Will not be found"}
-      expect{ templater(bad).matched? }.to raise_error(KeyError)
-    end
-  end
-
   let(:inputs){
     {
       # mandatory input
@@ -36,7 +29,7 @@ describe "template initialized" do
       
       # template data
       raw_template: "{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
-      deliminator: {start: "{", stop: "}" }, 
+      deliminator: Deliminators.new('{','}'), 
       
       # company data
       id: 1, 
