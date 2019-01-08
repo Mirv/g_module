@@ -1,53 +1,51 @@
 
 class TemplateAssigner
+  attr_accessor :data
+  
   def initialize(holders, args)
     @holders = holders
-    @deliminator = args.delete(:deliminator)
-    @raw = args.delete(:raw_template)
+    assign_deliminators(args.delete(:deliminator))
+    @template = args.delete(:raw_template)
     @parameters = args
+    
   end
-
-def match_placeholder_to_data2
-    # Note:  string hash keys on here to make make next part easier
-    # TODO:  remove next two lines when finalize
-    # puts @holders.map!{ |k| { k => @parameters.fetch(k.to_sym) }  }
-    # {"timeGreeting"=>"Sometime"}
-    # byebug
-    data = @holders.map{|x| x= [x,@parameters.fetch(x.to_sym)]} 
-    # @holders.map!{ |k| {k  @parameters.fetch(k.to_sym)  }
-    # @holders.map!{ |k| { k => @parameters.fetch(k) }  }
-    @parameters = nil
-    data
+  
+  def assign_deliminators(deliminator)
+    @start = deliminator.start
+    @stop = deliminator.stop
   end
 
   def match_placeholder_to_data
-    # Note:  string hash keys on here to make make next part easier
-    # TODO:  remove next two lines when finalize
-    # puts @holders.map!{ |k| { k => @parameters.fetch(k.to_sym) }  }
-    # {"timeGreeting"=>"Sometime"}
-    # byebug
     data = @holders.map{|x| x= [x,@parameters.fetch(x.to_sym)]} 
-    # @holders.map!{ |k| {k  @parameters.fetch(k.to_sym)  }
-    # @holders.map!{ |k| { k => @parameters.fetch(k) }  }
-    @parameters = nil
-    data
+  end
+   
+  def fill_out_template_placeholders
+    match_placeholder_to_data.each do |x,y| 
+      sub_in(x.to_s, y.to_s)
+    end
+    @data = @template
   end
   
-  def fill_out_template_placeholders
+  def sub_in(placeholder, replacement)
+    placeholder = @start+placeholder+@stop
+    @template.gsub!(placeholder, replacement)
+  end
+  
+  
+  def fill_out_template_placeholders2
     start = @deliminator.start
     stop = @deliminator.stop
-    # puts start+@holders.first+stop
-    data = match_placeholder_to_data
-    byebug
-    msg = @holders.each{|x| }
-    blah = @holders.map{ |k| puts "#{k.first}"; @raw.gsub!("#{start}#{k}#{stop}", @holders) }
-    blah = @holders.map{ |k| @raw.gsub }
+    temp_data = match_placeholder_to_data
+    results = @template
+    temp_data.each do |x,y| 
+      replacement = y.to_s
+      placeholder = start+x.to_s+stop
+      results.gsub!(placeholder, replacement) 
+    end
+    return results
   end
   
-  def fill(x)
+  
 
-    placeholder = "#{}x.first.first.to_s#{}"
-    @raw.gsub(placeholder, x.first.second)
-  end
-  
+
 end
