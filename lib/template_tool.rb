@@ -8,10 +8,10 @@ class TemplateTool
   attr_reader :data    
   
   def initialize(args)
-    @parameters = args
-    @parameters.merge!({timeGreeting: retrieve_greeting(args)})
-    @holders = retrieve_placeholders(args)
-    @data = Hash.new
+    @parameters =   args
+    @parameters.merge!(retrieve_greeting(args))
+    @holders =      retrieve_placeholders(args)
+    @data =         Hash.new
   end
 
   def retrieve_placeholders(args)
@@ -19,7 +19,7 @@ class TemplateTool
   end
   
   def retrieve_greeting(args)
-    TimeToGreeting.new(args).execute_process
+    {timeGreeting: TimeToGreeting.new(args).execute_process}
   end
   
   # returns hash of all the placeholders in @template_variables or raises error

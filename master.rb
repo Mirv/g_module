@@ -13,14 +13,19 @@ OptionParser.new do |opt|
   opt.on('--d', '--directory_name DATA_DIRECTORY') { |o| options[:directory] = o }
 end.parse!
 
+
+raise OptionParser::MissingArgument, "First name is required" if options[:firstName].nil?
+raise OptionParser::MissingArgument, "Last name is required" if options[:lastName].nil?
+raise OptionParser::MissingArgument, "Company name is required" if options[:company].nil?
+
 puts options
 
 # Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
   # setup our dependencies
   # Dir["*.rb"].map{|x| puts load x}
-  target_file = 'load_guest.rb'
-  puts "Loading ... '#{target_file}' -- loaded successfully: #{load 'load_guest.rb'}"
+  target_file = 'main.rb'
+  puts "Loading ... '#{target_file}' -- loaded successfully: #{load target_file}"
 end
 
 puts "Exciting Greeting Script.  Goodbye!"
