@@ -20,9 +20,9 @@ class TimeInHours
     @look_ahead =   args[:time_look_ahead]  || default_look_ahead 
     zone =         args[:timezone]
     @timestamp =    args[:startTimestamp]
-    init_validation(args)
+    input_validation(args)
     @zone_name =    TimeZoneNames.new(zone).abbreviation
-    post_init_validation(args)
+    computed_values_validation(args)
   end
 
   def time_in_hours
@@ -62,7 +62,7 @@ class TimeInHours
     @timestamp.to_i + timezone_offset > current_time.to_i + @look_ahead
   end
 
-  def init_validation(args)
+  def input_validation(args)
     # startTimeStamp checks
     raise ArgumentError, "startTimestamp key missing" unless @timestamp
     raise ArgumentError, "startTimestamp was empty" unless @timestamp != ""
@@ -82,7 +82,7 @@ class TimeInHours
       "time_look_ahead not valid Integer" unless @look_ahead.is_a? Integer
   end
   
-  def post_init_validation(args)
+  def computed_values_validation(args)
     # derived checks
     raise ArgumentError, "Message age is too old" if message_expired? 
     raise ArgumentError, "startTimestamp is in the future" if future_reservation?
