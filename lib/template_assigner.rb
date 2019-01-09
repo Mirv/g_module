@@ -30,22 +30,4 @@ class TemplateAssigner
     placeholder = @start+placeholder+@stop
     @template.gsub!(placeholder, replacement)
   end
-  
-  
-  def fill_out_template_placeholders2
-    start = @deliminator.start
-    stop = @deliminator.stop
-    temp_data = match_placeholder_to_data
-    results = @template
-    temp_data.each do |x,y| 
-      replacement = y.to_s
-      placeholder = start+x.to_s+stop
-      results.gsub!(placeholder, replacement) 
-    end
-    return results
-  end
-  
-  
-
-
 end

@@ -10,8 +10,8 @@ class TemplateTool
   def initialize(args)
     @parameters =   args
     @parameters.merge!(retrieve_greeting(args))
-    @holders =      retrieve_placeholders(args)
-    @data =         Hash.new
+    holders =       retrieve_placeholders(args)
+    @data =         template_assigner(holders, args)
   end
 
   def retrieve_placeholders(args)
@@ -23,7 +23,7 @@ class TemplateTool
   end
   
   # returns hash of all the placeholders in @template_variables or raises error
-  def template_assigner
-    TemplateAssigner.new(@holders, @parameters)
+  def template_assigner(holders, args)
+    TemplateAssigner.new(holders, args).data
   end
 end

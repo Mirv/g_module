@@ -10,9 +10,16 @@ load 'loaders/load_greeting.rb'
 class TimeToGreeting
   def initialize(args)
     @parameters = args
-    @default_greetings = args[:default_greetings]
-    @hours = TimeInHours.new(args).time_in_hours  
-    @greetings = @default_greetings || greetings_file_load
+    default_greetings = args[:default_greetings]
+    @hours = retrieve_hours(args)
+    @greetings = default_greetings || greetings_file_load
+  end
+  
+  def retrieve_hours(args)
+    hours_args = Hash.new
+    hours_args.merge!(timezone: args.delete(:timezone))
+    hours_args.merge!(startTimestamp: args.delete(:startTimestamp))
+    TimeInHours.new(hours_args).time_in_hours  
   end
 
   def greetings_file_load
