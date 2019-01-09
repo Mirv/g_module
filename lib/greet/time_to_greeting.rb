@@ -1,4 +1,4 @@
-load 'greeters/time_in_hours.rb'
+load 'greet/time_in_hours.rb'
 load 'loaders/load_greeting.rb'
 
 ## TimeToGreeting

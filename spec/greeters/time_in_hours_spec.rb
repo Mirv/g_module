@@ -1,4 +1,4 @@
-load 'greeters/time_in_hours.rb'
+load 'greet/time_in_hours.rb'
 
 describe "initialized" do
   let(:greeting) { time_greet(time_inputs.dup) }
@@ -47,30 +47,6 @@ describe "raises errors on initialization" do
     }.to raise_error(ArgumentError, "timezone key missing")
   end
 
-  it "should error if no timezone value found" do
-    valid[:timezone] = ""
-    expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "timezone was empty")
-  end
-  
-  it "should error if timezone is not valid String" do
-    valid[:timezone] = 1234
-    expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "timezone is not valid String")
-  end
-  
-  it "should error if timezone is not valid String" do
-    valid[:timezone] = 1234
-    expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "timezone is not valid String")
-  end
-  
-  it "should error if timezone is not valid TimeZone" do
-    valid[:timezone] = 'America/Minneapolis'
-    expect{ time_greet(valid)
-    }.to raise_error(ArgumentError, "timezone is not a valid TimeZone")
-  end  
-  
   it "should error if time_look_back is not valid Integer" do
     valid[:time_look_back] = "asdf"
     expect{ time_greet(valid)
@@ -88,7 +64,6 @@ def time_inputs
   {
     :startTimestamp => 1486654792,
     :timezone => "US/Central",
-
   }
 end
 

@@ -1,4 +1,4 @@
-# load 'greeters/time_greeting.rb'
+load 'greet/time_greeting.rb'
 
 class GreetingSelector
   attr_reader :greetings

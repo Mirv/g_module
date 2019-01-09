@@ -1,5 +1,5 @@
 # require 'cust_error_location'
-load 'greeters/time_to_greeting.rb'
+load 'greet/time_to_greeting.rb'
 load 'template_reader.rb'
 load 'template_assigner.rb'
 load 'deliminators.rb'

@@ -1,4 +1,4 @@
-load 'greeters/time_range.rb'
+load 'greet/time_range.rb'
 
 class Greeting
   attr_reader :message

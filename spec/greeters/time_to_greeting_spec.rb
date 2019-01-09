@@ -1,4 +1,4 @@
-load 'greeters/time_to_greeting.rb'
+load 'greet/time_to_greeting.rb'
 
 describe "TimeToGreeting initialized" do
   let(:valid) { 

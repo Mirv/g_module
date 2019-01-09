@@ -1,4 +1,4 @@
-load 'greeters/time_range.rb'
+load 'greet/time_range.rb'
 
 describe "#initialize TimeRange" do
   context "call to class" do

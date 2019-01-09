@@ -1,4 +1,4 @@
-load 'greeters/time_greeting.rb'
+load 'greet/time_greeting.rb'
 
 describe "#initialize Greeting" do
   context "call to class" do
