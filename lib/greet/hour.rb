@@ -1,9 +1,8 @@
-# require 'cust_error_location'
-load 'greet/time_greeting_selector.rb'
-load 'greet/time_zone_names.rb'
+# require_relative 'cust_error_location'
+require_relative 'zone_name.rb'
 require 'time'
 
-## TimeInHours
+## Hour
 #
 # In:     timezone of hotel, unix timestamp of client reservation start time
 # Out:    Time in hours
@@ -12,7 +11,7 @@ require 'time'
 #
 # Assumes all times in UTC on computer system side
 #
-class TimeInHours
+class Hour
   attr_reader :data    
   
   def initialize(args)
@@ -21,7 +20,7 @@ class TimeInHours
     zone =         args[:timezone]
     @timestamp =    args[:startTimestamp]
     input_validation(args)
-    @zone_name =    TimeZoneNames.new(zone).abbreviation
+    @zone_name =    ZoneName.new(zone).abbreviation
     computed_values_validation(args)
   end
 

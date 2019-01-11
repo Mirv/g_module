@@ -1,8 +1,8 @@
 load 'lib/loaders/load_greeting.rb'
 
 describe "#initialize" do
-  context "call to LoadGreeting class" do
-    let (:get_greeting) { LoadGreeting.new(directory: "lib/data") }
+  context "call to LoadMessage class" do
+    let (:get_greeting) { LoadMessage.new(directory: "lib/data") }
       
     subject(:greeting) {
       get_greeting.execute_process

@@ -1,7 +1,7 @@
 load 'assemble_loaders.rb'
 load 'template_tool.rb'
 
-class GreetingSystem
+class MessageSystem
   attr_reader :greeting_message, :names, :data
   
   def initialize(**args)

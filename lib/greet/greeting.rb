@@ -1,13 +1,13 @@
-load 'greet/time_in_hours.rb'
+require_relative 'hour.rb'
 load 'loaders/load_greeting.rb'
 
-## TimeToGreeting
+## TimeToMessage
 #
 # In:   user input ...timezone, startTimeStamp.  Loaded via file: greetings
 # Opt:  directory to find the files
-# Out:  Greetings if nothing found otherwise a greeting based on the time
+# Out:  Messages if nothing found otherwise a greeting based on the time
 #
-class TimeToGreeting
+class TimeToMessage
   def initialize(args)
     @parameters = args
     default_greetings = args[:default_greetings]
@@ -19,11 +19,11 @@ class TimeToGreeting
     hours_args = Hash.new
     hours_args.merge!(timezone: args.delete(:timezone))
     hours_args.merge!(startTimestamp: args.delete(:startTimestamp))
-    TimeInHours.new(hours_args).time_in_hours  
+    Hour.new(hours_args).time_in_hours  
   end
 
   def greetings_file_load
-    LoadGreeting.new(@parameters).execute_process
+    LoadMessage.new(@parameters).execute_process
   end
 
   def valid?
@@ -31,8 +31,8 @@ class TimeToGreeting
   end
   
   def execute_process
-    return "Greetings" unless valid?
-    greetings = GreetingSelector.data_from_array_of_hashes(@greetings[:greetings]) 
+    return "Messages" unless valid?
+    greetings = Selector.data_from_array_of_hashes(@greetings[:greetings]) 
     greeting_message = greetings.find(@hours).message
   end
 end

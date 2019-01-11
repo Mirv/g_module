@@ -1,4 +1,4 @@
-load 'greet/time_in_hours.rb'
+load 'greet/hour.rb'
 
 describe "initialized" do
   let(:greeting) { time_greet(time_inputs.dup) }
@@ -68,5 +68,5 @@ def time_inputs
 end
 
 def time_greet(values)
-  TimeInHours.new(values)
+  Hour.new(values)
 end

@@ -3,7 +3,6 @@ require 'byebug'
 class Greeter
   # Dir[File.join('greet','*.rb')].sort.each{ |file_name| a = (file_name); puts a } 
   # Dir.chdir('greet')
-  byebug
   files = Dir[File.join('*.rb')].sort
   # files.each{ |file_name| file_name; puts file_name; load file_name unless defined?file_name }
   # files.each{ |file_name| load file_name.split('/').second unless defined? file_name }
@@ -21,11 +20,11 @@ end
 
 # load 'greet/greeting.rb'
 # module Greeter
-    # include Greeting
-    # include Greeting
+    # include Message
+    # include Message
     # include Selector
     # include Hours
-    # include TimeRange
-    # include TimeToGreeting
+    # include Range
+    # include Message
     # include TimeZoneNames
 # end

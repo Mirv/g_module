@@ -5,7 +5,7 @@ require 'timezone'
 # In:   timezone name
 # Out:  local_offset for UTC
 #
-class TimeZoneNames
+class ZoneName
   attr_reader :abbreviation
   
   def initialize(timezone)

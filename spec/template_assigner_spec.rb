@@ -42,7 +42,7 @@ describe "Assigner" do
       endTimestamp: 1486852373, 
       
       # template data
-      raw_template: "{timeGreeting} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
+      raw_template: "{timeMessage} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
       deliminator: Deliminators.new('{','}'), 
       
       # company data
@@ -52,12 +52,12 @@ describe "Assigner" do
       timezone: "US/Pacific",
       
       # derived and passed in up the chain
-      timeGreeting: "Good Morning"
+      timeMessage: "Good Morning"
     }
   }
   
   let(:holders){
-    ["timeGreeting", "firstName", "lastName", "roomNumber", "company", "city"]
+    ["timeMessage", "firstName", "lastName", "roomNumber", "company", "city"]
   }
 end
 

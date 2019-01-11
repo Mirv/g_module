@@ -1,8 +1,8 @@
-load 'greet/time_range.rb'
+load 'greet/range.rb'
 
-describe "#initialize TimeRange" do
+describe "#initialize Range" do
   context "call to class" do
-    let (:time_range) { TimeRange.new(0, 24) }
+    let (:time_range) { Range.new(0, 24) }
     
     it "should return true if valid range" do
       expect(time_range.validated?).to be_truthy

@@ -1,4 +1,4 @@
-load 'greet/time_zone_names.rb'
+load 'greet/zone_name.rb'
 
 describe "initialized" do
   let(:timezone){ TimeZoneNames.new("US/Central") }

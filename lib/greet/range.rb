@@ -1,9 +1,9 @@
-## TimeRange 
+## Range 
 #
 # In:   2 integers of hours between 0 & 24
 # Out:  in_range returns true if it finds another param between the values of range
 #
-class TimeRange
+class Range
 
   def initialize(start, stop)
     @max_hours = 24

@@ -23,7 +23,7 @@ class AssembleLoaders
       'LoadGuest', 
       'LoadTemplate', 
       'LoadCompany',
-      'LoadGreeting'
+      'LoadMessage'
       ]
     @data =     Hash.new
     check_required_fields(@names)

@@ -1,5 +1,5 @@
 # require 'cust_error_location'
-load 'greet/time_to_greeting.rb'
+load 'greet/greeting.rb'
 load 'template_reader.rb'
 load 'template_assigner.rb'
 load 'deliminators.rb'
@@ -19,7 +19,7 @@ class TemplateTool
   end
   
   def retrieve_greeting(args)
-    {timeGreeting: TimeToGreeting.new(args).execute_process}
+    {timeMessage: Message.new(args).execute_process}
   end
   
   # returns hash of all the placeholders in @template_variables or raises error

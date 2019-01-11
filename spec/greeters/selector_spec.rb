@@ -1,6 +1,6 @@
-load 'greet/time_greeting_selector.rb'
+load 'greet/selector.rb'
 
-describe "#initialize GreetingSelector" do
+describe "#initialize MessageSelector" do
   context "call to class" do
     let (:greeting_hash) {
       msgs = [
@@ -8,7 +8,7 @@ describe "#initialize GreetingSelector" do
           {message: "Good Day", start: 10, stop: 16}, 
           {message: "Good Evening", start: 16, stop: 24}
         ]
-      GreetingSelector.data_from_array_of_hashes(msgs)
+      MessageSelector.data_from_array_of_hashes(msgs)
     }
     
     it "should return message if valid inputs and in range" do

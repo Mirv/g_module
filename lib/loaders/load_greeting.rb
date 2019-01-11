@@ -4,15 +4,15 @@ require 'byebug'
 ## LoadGreating
 #
 # In:   nothing
-# Opt:  :directory to find the Greetings.json file
+# Opt:  :directory to find the Messages.json file
 # out:  array of hashes to use for greeting message
 #
-class LoadGreeting < LoadJson
+class LoadMessage < LoadJson
   attr_reader :data
   
   def initialize(**args)
     dir =         args[:directory] || 'data'
-    @file_name =  "#{dir}/Greetings.json"
+    @file_name =  "#{dir}/Messages.json"
     @data =       Hash.new
   end
 

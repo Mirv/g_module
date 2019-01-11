@@ -1,9 +1,10 @@
-load 'greet/time_greeting.rb'
+# load 'greet/time_greeting.rb'
+require_relative 'greeting'
 
-class GreetingSelector
+class Selector
   attr_reader :greetings
   def self.data_from_array_of_hashes(a)
-    new(a.map { |h| Greeting.data_from_hash(h) })
+    new(a.map { |h| Message.data_from_hash(h) })
   end
 
   def initialize(greetings)
@@ -20,6 +21,6 @@ class GreetingSelector
   private
   
   def default_greeting
-    Greeting.new("Greetings", TimeRange.new(0, 24))
+    Message.new("Messages", Range.new(0, 24))
   end
 end
