@@ -2,7 +2,7 @@ load 'cust_error_location.rb'
 load 'loaders/load_guest.rb'
 load 'loaders/load_company.rb'
 load 'loaders/load_template.rb'
-load 'loaders/load_greeting.rb'
+load 'loaders/load_message.rb'
 
 ## AssembleLoaders
 #

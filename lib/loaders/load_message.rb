@@ -12,7 +12,7 @@ class LoadMessage < LoadJson
   
   def initialize(**args)
     dir =         args[:directory] || 'data'
-    @file_name =  "#{dir}/Messages.json"
+    @file_name =  "#{dir}/Greetings.json"
     @data =       Hash.new
   end
 

@@ -1,7 +1,7 @@
 load 'greet/zone_name.rb'
 
 describe "initialized" do
-  let(:timezone){ TimeZoneNames.new("US/Central") }
+  let(:timezone){ ZoneName.new("US/Central") }
   
   context "worked" do
     it "should be truthy" do
@@ -15,17 +15,17 @@ describe "initialized" do
   
   context "fails" do
     it "raises error if timezone not string" do
-      expect{TimeZoneNames.new("")}.
+      expect{ZoneName.new("")}.
       to raise_error(ArgumentError, "timezone was empty")
     end
     
     it "raises error if timezone not string" do
-      expect{TimeZoneNames.new(13)}.
+      expect{ZoneName.new(13)}.
       to raise_error(ArgumentError, "timezone is not valid String")
     end
     
     it "raises error if timezone given isn't real timezone" do
-      expect{TimeZoneNames.new("3")}.
+      expect{ZoneName.new("3")}.
       to raise_error(ArgumentError, "Non-valid TimeZone")
     end
 

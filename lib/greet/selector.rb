@@ -1,5 +1,5 @@
 # load 'greet/time_greeting.rb'
-require_relative 'greeting'
+require_relative 'message'
 
 class Selector
   attr_reader :greetings
@@ -21,6 +21,6 @@ class Selector
   private
   
   def default_greeting
-    Message.new("Messages", Range.new(0, 24))
+    Message.new("Greetings", Range.new(0, 24))
   end
 end

@@ -17,11 +17,15 @@ class Hour
   def initialize(args)
     @look_back =    args[:time_look_back]   || default_look_back 
     @look_ahead =   args[:time_look_ahead]  || default_look_ahead 
-    zone =         args[:timezone]
+    zone =          args[:timezone]
     @timestamp =    args[:startTimestamp]
     input_validation(args)
-    @zone_name =    ZoneName.new(zone).abbreviation
+    @zone_name =    get_zone_name(zone)
     computed_values_validation(args)
+  end
+
+  def get_zone_name(zone)
+    ZoneName.new(zone).abbreviation
   end
 
   def time_in_hours

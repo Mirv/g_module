@@ -8,7 +8,7 @@ describe "#initialize MessageSelector" do
           {message: "Good Day", start: 10, stop: 16}, 
           {message: "Good Evening", start: 16, stop: 24}
         ]
-      MessageSelector.data_from_array_of_hashes(msgs)
+      Selector.data_from_array_of_hashes(msgs)
     }
     
     it "should return message if valid inputs and in range" do

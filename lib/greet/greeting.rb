@@ -1,5 +1,6 @@
 require_relative 'hour.rb'
-load 'loaders/load_greeting.rb'
+require_relative 'selector.rb'
+load 'loaders/load_message.rb'
 
 ## TimeToMessage
 #
@@ -7,7 +8,7 @@ load 'loaders/load_greeting.rb'
 # Opt:  directory to find the files
 # Out:  Messages if nothing found otherwise a greeting based on the time
 #
-class TimeToMessage
+class Greeting
   def initialize(args)
     @parameters = args
     default_greetings = args[:default_greetings]
@@ -31,7 +32,7 @@ class TimeToMessage
   end
   
   def execute_process
-    return "Messages" unless valid?
+    return "Greetings" unless valid?
     greetings = Selector.data_from_array_of_hashes(@greetings[:greetings]) 
     greeting_message = greetings.find(@hours).message
   end

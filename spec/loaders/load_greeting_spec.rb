@@ -1,4 +1,4 @@
-load 'lib/loaders/load_greeting.rb'
+load 'lib/loaders/load_message.rb'
 
 describe "#initialize" do
   context "call to LoadMessage class" do
