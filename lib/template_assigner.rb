@@ -1,6 +1,6 @@
 
 class TemplateAssigner
-  attr_accessor :data
+  attr_accessor :result
   
   def initialize(holders, args)
     @holders = holders
@@ -23,7 +23,7 @@ class TemplateAssigner
     match_placeholder_to_data.each do |x,y| 
       sub_in(x.to_s, y.to_s)
     end
-    @data = @template
+    @result = @template
   end
   
   def sub_in(placeholder, replacement)

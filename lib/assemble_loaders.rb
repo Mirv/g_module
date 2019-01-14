@@ -15,7 +15,7 @@ load 'loaders/load_message.rb'
 class AssembleLoaders
   include CustErrorLocation
   
-  attr_reader :data
+  attr_reader :result
   
   def initialize(**args)
     @names =    args
@@ -25,7 +25,7 @@ class AssembleLoaders
                 'LoadCompany',
                 'LoadMessage'
       ]
-  @data =       Hash.new
+  @result =       Hash.new
     check_required_fields(@names)
   end
 
@@ -39,7 +39,8 @@ class AssembleLoaders
         # puts err_location("Issue locating class interface for #{x}", 2)
         # raise(NameError)
       end
-      @data.merge!(obj.data)
+      puts obj.inspect
+      @result.merge!(obj.result)
     end
   end
   
@@ -54,7 +55,7 @@ class AssembleLoaders
     # Check all entries in obj exposed data have values
     entry_msg = "Entries missing in #{obj} file"
     # Ensure no blank in hash
-    obj.data.each do |x, y|
+    obj.result.each do |x, y|
       raise(ArgumentError, err_location(entry_msg)) if !y || y && y==""
     end
     return obj

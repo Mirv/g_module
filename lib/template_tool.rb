@@ -5,13 +5,13 @@ load 'template_assigner.rb'
 load 'deliminators.rb'
 
 class TemplateTool
-  attr_reader :data    
+  attr_reader :result    
   
   def initialize(args)
     @parameters =   args
     @parameters.merge!(retrieve_greeting(args))
     holders =       retrieve_placeholders(args)
-    @data =         template_assigner(holders, args)
+    @result =       template_assigner(holders, args)
   end
 
   def retrieve_placeholders(args)
@@ -19,12 +19,11 @@ class TemplateTool
   end
   
   def retrieve_greeting(args)
-    # {Message: Message.new(args).execute_process}
     {Greeting: Greeting.new(args).execute_process}
   end
   
   # returns hash of all the placeholders in @template_variables or raises error
   def template_assigner(holders, args)
-    TemplateAssigner.new(holders, args).data
+    TemplateAssigner.new(holders, args).result
   end
 end

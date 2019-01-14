@@ -6,7 +6,7 @@
 # Out:  array of unique variable names found within deliminators
 #
 class TemplateReader
-  attr_reader :data    
+  attr_reader :result    
   
   def initialize(args)
     validate(args)
@@ -18,7 +18,7 @@ class TemplateReader
   def read_template
     pull = @raw_template.scan(/#{@start}(.*?)#{@stop}/).flatten.uniq
     raise ArgumentError, "No placeholders found in template" if pull.empty?
-    return @data = pull
+    return @result = pull
   end
   
   def validate(args)

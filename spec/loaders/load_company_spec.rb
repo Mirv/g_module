@@ -8,7 +8,7 @@ describe "#initialize" do
       
     subject(:company) {
       get_company.execute_process
-      get_company.data
+      get_company.result
     }
       
     it "should contain the right keys" do

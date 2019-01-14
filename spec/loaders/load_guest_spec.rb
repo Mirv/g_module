@@ -6,7 +6,7 @@ describe "#initialize" do
   }
   subject(:reservation) {
     guest.execute_process
-    guest.data
+    guest.result
   }
 
   context "guest lookup should load reservation having keys" do

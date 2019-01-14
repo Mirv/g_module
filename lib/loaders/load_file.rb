@@ -2,7 +2,7 @@ load 'loaders/load_data.rb'
 require 'json'
 
 class LoadFile < LoadData
-  attr_reader :data
+  attr_reader :result
 
   def opener(file)
     begin
@@ -13,6 +13,6 @@ class LoadFile < LoadData
       # puts "File not found --- In #{__FILE__} --- '#{file}'"
       return nil
     end
-    @data = file_contents
+    @result = file_contents
   end
 end

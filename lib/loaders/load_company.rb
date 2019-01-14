@@ -1,6 +1,6 @@
 load 'loaders/load_json.rb'
 
-# @data exposed in parent class
+# @result exposed in parent class
 
 class LoadCompany < LoadJson
 
@@ -8,7 +8,7 @@ class LoadCompany < LoadJson
     dir =         args[:directory] || 'data'
     @file_name =  "#{dir}/Company.json"
     @company =    args[:company]
-    @data =       Hash.new
+    @result =       Hash.new
   end
   
   # Current - exits if process finds a nil, otherwise merges good result
@@ -17,6 +17,6 @@ class LoadCompany < LoadJson
     return unless file = opener(@file_name)
     return unless record = process_json(file)
     return unless record = record_lookup(record, company: @company) 
-    @data = record
+    @result = record
   end
 end

@@ -12,7 +12,7 @@ describe "template_readereader finishes" do
   let(:template) { template_reader(valid_template_inputs.dup) }
   let(:result) {     
     template.read_template
-    template.data
+    template.result
   }
 
   it "should add a hash of variables found to data hash" do

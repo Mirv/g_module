@@ -6,7 +6,7 @@ describe "#initialize" do
       
     subject(:greeting) {
       get_greeting.execute_process
-      get_greeting.data
+      get_greeting.result
     }
       
     it "should contain the keys in data var" do

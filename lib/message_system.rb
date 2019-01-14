@@ -1,12 +1,12 @@
-load 'assemble_loaders.rb'
-load 'template_tool.rb'
+require_relative 'assemble_loaders.rb'
+require_relative 'template_tool.rb'
 
 class MessageSystem
-  attr_reader :greeting_message, :names, :data
+  attr_reader :greeting_message, :names, :result
   
   def initialize(**args)
     @names =    args
-    @data =     Hash.new
+    @result =     Hash.new
   end
 
   ## assemble_loaders
@@ -17,7 +17,7 @@ class MessageSystem
   def assemble_loaders
     loaders = AssembleLoaders.new(@names)
     loaders.process_loaders
-    @names.merge!(loaders.data)
+    @names.merge!(loaders.result)
   end
   
   ## processor_tempalte

@@ -11,7 +11,7 @@ describe ".load" do
     
     let (:template_test) { 
       template_loader.execute_process
-      template_loader.data
+      template_loader.result
     }
 
     it "should have record_lookup return hash with key template" do

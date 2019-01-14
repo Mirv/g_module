@@ -12,7 +12,7 @@ require 'time'
 # Assumes all times in UTC on computer system side
 #
 class Hour
-  attr_reader :data    
+  attr_reader :result    
   
   def initialize(args)
     @look_back =    args[:time_look_back]   || default_look_back 
