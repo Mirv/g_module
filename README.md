@@ -23,3 +23,7 @@ Usage
     - `--f` or `--first_name` 
     - `--l` or `--last_name`
     - `--c` or `--company_name`
+
+Notes
+- Sub folders use a ruby file with name of folder to load required files & ...
+-   ... `require_relative` to call for test purposes
