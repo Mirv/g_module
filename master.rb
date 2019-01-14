@@ -18,14 +18,15 @@ raise OptionParser::MissingArgument, "First name is required" if options[:firstN
 raise OptionParser::MissingArgument, "Last name is required" if options[:lastName].nil?
 raise OptionParser::MissingArgument, "Company name is required" if options[:company].nil?
 
-puts options
+puts "Opt parsing -- #{options}"
 
 # Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
-  # setup our dependencies
-  # Dir["*.rb"].map{|x| puts load x}
   target_file = 'main.rb'
   puts "Loading ... '#{target_file}' -- loaded successfully: #{load target_file}"
 end
+
+greeting = nil
+MessageSystem.new(options).assemble_loaders unless greeting
 
 puts "Exciting Greeting Script.  Goodbye!"

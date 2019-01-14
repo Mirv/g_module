@@ -19,17 +19,16 @@ module DirectoryLoader
       new(files).execute_dir(directory)
     end
     
-    def self.load_cur_dir(directory)
+    def self.load_cur_dir
       files = Dir["*.rb"] 
-      new(files).execute_dir(directory)
+      new(files).execute_dir
     end
     
     def initialize(files)
       @files = files
-      puts "init #{@files}"
     end
     
-    def execute_dir(directory)
+    def execute_dir(directory = "")
       add_to_path(directory)
       drop_extension
       dir_load
@@ -40,13 +39,12 @@ module DirectoryLoader
     end
       
     def add_to_path(directory)
-      puts dir_to_add = File.join(Dir.pwd, directory)
+      dir_to_add = File.join(Dir.pwd, directory)
       $: << dir_to_add
-      puts $:
     end
 
     def dir_load
-      @files.each{|f| require f}
+      @files.each{|f| require f }
     end
   end
 end

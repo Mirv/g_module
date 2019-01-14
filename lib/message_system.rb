@@ -17,7 +17,6 @@ class MessageSystem
   def assemble_loaders
     loaders = AssembleLoaders.new(@names)
     loaders.process_loaders
-    byebug
     @names.merge!(loaders.data)
   end
   

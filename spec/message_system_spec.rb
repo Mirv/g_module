@@ -1,11 +1,19 @@
-load 'greeting_system.rb'
+load 'message_system.rb'
 
 describe "#intialization" do
   context "class object inputs" do
-    let(:greeting) { MessageSystem.new(valid_inputs.dup) }
+    let(:greeting) { greet(valid_inputs.dup) }
 
     it "should have successfully initialized" do
       expect(greeting).to be_truthy
+    end
+    
+    it "should have keys" do
+      greeting.assemble_loaders
+      puts greeting.inspect
+      expect(greeting.names).to have_key(:raw_template)
+      expect(greeting.names).to have_key(:raw_template)
+      expect(greeting.names).to have_key(:raw_template)
     end
   end
 end

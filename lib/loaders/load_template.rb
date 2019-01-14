@@ -3,6 +3,7 @@ load 'loaders/load_json.rb'
 # @data exposed in parent class
 
 class LoadTemplate < LoadJson
+  attr_reader :data
   
   def initialize(**args)
     dir =             args[:directory] || 'data'
@@ -10,6 +11,7 @@ class LoadTemplate < LoadJson
     @file_name =      args[:file_name] || file_name 
     @template =       args[:template] || "Default"
     @loader_params =  args
+    @data =       Hash.new
     
   end
   
@@ -19,8 +21,8 @@ class LoadTemplate < LoadJson
     return unless file = opener(@file_name)
     return unless record = process_json(file)
     return unless record = record_lookup(record, template: @template) 
+    @data = {}
 
-    @data = Hash.new
     @data.merge!({raw_template: record[:template]})
     @data.merge!({deliminator: record[:deliminator]})
   end

@@ -18,12 +18,12 @@ Installation
 - Run `bundle install` to install support gems 
 
 Usage 
-- Run `ruby master.rb -h` to list options
+- Run `ruby master.rb -h` to list options from parent directory of 'lib' file
 - Required ...
     - `--f` or `--first_name` 
     - `--l` or `--last_name`
     - `--c` or `--company_name`
 
 Notes
-- Sub folders use a ruby file with name of folder to load required files & ...
+- Sub folders use `directory_loader` file to load required files & ...
 -   ... `require_relative` to call for test purposes
