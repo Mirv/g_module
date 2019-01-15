@@ -20,9 +20,10 @@ class LoadTemplate < LoadJson
   def execute_process
     return unless file = opener(@file_name)
     return unless record = process_json(file)
-    return unless record = record_lookup(record, template: @template) 
-    @result = {}
 
+    return unless record = record_lookup(record, name: @template) 
+    @result = {}
+    
     @result.merge!({raw_template: record[:template]})
     @result.merge!({deliminator: record[:deliminator]})
   end

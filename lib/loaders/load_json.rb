@@ -62,35 +62,29 @@ class LoadJson < LoadFile
   end  
 
   # Array of hashes - Single or multiple variable match to match a record
-  def record_lookup(record_to_check, **args)
+  def record_lookup(records_to_check, **args)
+    byebug
     return if args.empty?   # no need to execute if empty
     record = nil            # assumes it doesn't pass
     
     # Begin test of each entry in array
-    record_to_check.each do |entry|
-      # arg_check = true # all hashes must match to be valid, any neg subtracts
-      
+    records_to_check.each do |entry|
       # Begin testing each conditional against an entry
-      args.each do |key, value|
-        # if record failed to match any conditions, skip to checking next record
-        # ... in the array of records
-        test_conditions_match(entry, key, value)
-      end
+      args.each {|k, v|puts record = entry if test_condition(entry, k, v) }
 
-      record = entry # if arg_check
-      puts record
+      # record = entry # if arg_check
       return record
     end
   end  
   
-  def test_conditions_match(entry, key, value)
-    arg_check = true
+  def test_condition(entry, key, value)
+    arg_checks = true
     
     # if any keys don't match goto next entry in array of records
     unless entry[key] == value
-      arg_checks = false 
-      return  # exit the loop 
+      return false  # exit the loop 
     end
+    puts "Test: k: #{key} v: #{value}"
     return arg_checks
   end
   

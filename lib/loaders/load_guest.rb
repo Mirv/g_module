@@ -10,7 +10,7 @@ class LoadGuest < LoadJson
     @file_name =  args[:file_name] || file_name
     @first =      args[:firstName] 
     @last =       args[:lastName]
-    @result =       Hash.new
+    @result =     Hash.new
   end
 
   # Current - exits if process finds a nil, otherwise merges good result

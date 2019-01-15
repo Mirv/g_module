@@ -39,7 +39,7 @@ class AssembleLoaders
         # puts err_location("Issue locating class interface for #{x}", 2)
         # raise(NameError)
       end
-      puts obj.inspect
+      # puts obj.inspect
       @result.merge!(obj.result)
     end
   end

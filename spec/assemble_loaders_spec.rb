@@ -50,7 +50,7 @@ end
 
 def valid_inputs
   {
-    firstName: "Candy", lastName: "Pace", template: "Default", 
+    firstName: "Morgan", lastName: "Porter", template: "Default", 
     company: "The Grand Budapest Hotel", directory: "lib/data"
   }
 end
