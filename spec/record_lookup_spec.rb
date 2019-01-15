@@ -40,14 +40,14 @@ describe "record lookup data integrity" do
       expect(customer_lookup).to_not be_nil
     end
 
-          
     it "should find customer match based on single criteria" do
     end
     
     it "should find customer match based on multiple criteria" do
-      customer_lookup = LoadGuest.new(double_criteria.merge!({directory: "lib/data"})).execute_process
-      # byebug
-      expect(customer_lookup).to_not be_nil
+      inputs = double_criteria.merge!({directory: "lib/data"})
+      customer_lookup = LoadGuest.new(inputs)
+      customer_lookup.execute_process
+      expect(customer_lookup.result).to_not be_nil
     end
   end
   

@@ -12,6 +12,10 @@ describe ".load" do
       template_loader.execute_process
       template_loader.result
     }
+    
+    let (:template_value){
+      "{timeMessage} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us."
+    }
 
     it "should have record_lookup return hash with key template" do
       expect(template_test).to have_key(:raw_template)
@@ -20,8 +24,9 @@ describe ".load" do
       expect(template_test[:deliminator]).to have_key(:stop)
     end
     
-    it "should be a string" do
+    it "should be a the valid string return" do
       expect(template_test[:raw_template]).to be_a(String)
+      expect(template_test[:raw_template]).to eq(template_value)
     end  
     
     it "should have record_lookup return hash with non empty" do

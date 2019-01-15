@@ -18,7 +18,9 @@ describe "#initialize" do
 
     it "roomNumber & startTimestamp integers" do
       expect(reservation[:roomNumber]).to be_a(Integer)
+      expect(reservation[:roomNumber]).to eq(529)
       expect(reservation[:startTimestamp]).to be_a(Integer)
+      expect(reservation[:startTimestamp]).to eq(1486654792)
     end  
     
     it "roomNumber & startTimestamp should have lengths over one" do

@@ -18,7 +18,9 @@ describe "#initialize" do
 
     it "should contain the right values" do
       expect(company[:company]).to_not be_empty
+      expect(company[:company]).to eq("Hotel California")
       expect(company[:timezone]).to_not be_empty
+      expect(company[:timezone]).to eq("US/Pacific")
     end
     
     it "should have valid startTimestamp" do

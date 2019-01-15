@@ -16,29 +16,13 @@ class LoadJson < LoadFile
     return value
   end
 
-  # Note:  key name must match json key name to match data
-  def record_lookup0(record_to_check, **args)
-    return if args.empty?
-    record = nil  # assumes it doesn't pass
-    record_to_check.each do |entry|
-      args.each do |key, value|
-        # if any key doesn't skip to next entry in array of hashes
-        unless entry[key] == value
-          arg_checks = false 
-          next  # exit the loop 
-        end
-      end
-      record = entry 
-      return record
-    end
-  end  
-
-  # Array of hashes - Single or multiple variable match to match a record
+  ## Array of hashes - Single or multiple variable match to match a record
   #  In:  
   #     records_to_check as array holding hashes of all the records to search
   #     args as hash of keys & values that are required for a record to be matched
   #  Out:
   #     first record matching all required fields from args
+  #
   def record_lookup(records_to_check, **args)
     return if args.empty?   # no need to execute if empty
     # cycling all possible matches 
