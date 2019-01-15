@@ -1,6 +1,6 @@
 load 'loaders/load_file.rb'
 require 'json'
-
+require 'byebug'
 class LoadJson < LoadFile
   attr_reader :result
   
@@ -33,61 +33,23 @@ class LoadJson < LoadFile
     end
   end  
 
-  def record_lookup2(record_to_check, **args)
-    return nil unless args.all? {|k, v| entry[k] == v}
-    record_to_check
-  end
-
-  def record_lookup4(record_to_check, **args)
-    return if args.empty?
-    record_to_check.each do |entry|
-      args.each do |key, value|
-        # if any key doesn't skip to next entry in array of hashes
-        return nil unless entry[key] == value
-      end
-      record = entry
-    end
-  end
-  
-  # Default
-  def record_lookup5(record_to_check, **args)
-    return if args.empty?
-    record = nil  # assumes it doesn't pass
-    record_to_check.each do |entry|
-      arg_check = true
-      arg_check = args.any? { |k, v| entry[k] == v }
-      record = entry if arg_check
-      return record
-    end
-  end  
-
   # Array of hashes - Single or multiple variable match to match a record
+  #  In:  
+  #     records_to_check as array holding hashes of all the records to search
+  #     args as hash of keys & values that are required for a record to be matched
+  #  Out:
+  #     first record matching all required fields from args
   def record_lookup(records_to_check, **args)
-    byebug
     return if args.empty?   # no need to execute if empty
-    record = nil            # assumes it doesn't pass
-    
-    # Begin test of each entry in array
+    # cycling all possible matches 
     records_to_check.each do |entry|
-      # Begin testing each conditional against an entry
-      args.each {|k, v|puts record = entry if test_condition(entry, k, v) }
-
-      # record = entry # if arg_check
-      return record
+      # An entry needs to pass all checks held in args to be valid
+      record = args.all? {|k, v| entry[k] == v ? true : false}
+      # if we find it matches all checks - we can just return the value found
+      # TODO - do we want to get multiple if they exist and let caller pick one?
+      return entry if record 
     end
   end  
-  
-  def test_condition(entry, key, value)
-    arg_checks = true
-    
-    # if any keys don't match goto next entry in array of records
-    unless entry[key] == value
-      return false  # exit the loop 
-    end
-    puts "Test: k: #{key} v: #{value}"
-    return arg_checks
-  end
-  
 end  
 
 

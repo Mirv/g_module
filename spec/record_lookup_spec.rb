@@ -1,5 +1,7 @@
-load 'loaders/load_guest'
+load 'loaders/load_guest.rb'
+load 'loaders/load_company.rb'
 
+require 'byebug'
 # Pseudo code
 
 # loop thru array of all customers till found or out of customers
@@ -32,12 +34,19 @@ describe "record lookup data integrity" do
     
     let(:single_criteria){{"lastName": "Porter"}}
     let(:double_criteria){{"firstName": "Morgan",   "lastName": "Porter"}}
-      
+    
+    it "should load an object for double lookup" do
+      customer_lookup = LoadGuest.new(double_criteria)
+      expect(customer_lookup).to_not be_nil
+    end
+
+          
     it "should find customer match based on single criteria" do
     end
     
     it "should find customer match based on multiple criteria" do
-      customer_lookup = LoadGuest.new(double_criteria).execute_process
+      customer_lookup = LoadGuest.new(double_criteria.merge!({directory: "lib/data"})).execute_process
+      # byebug
       expect(customer_lookup).to_not be_nil
     end
   end
