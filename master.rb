@@ -1,7 +1,7 @@
 # For the purposes of the script, we execute inside the lib dir
 
 require 'optparse'
-require_relative 'lib/directory_loader' 
+require_relative 'lib/directories' 
 
 puts "Entering Greeting Script successfully ..."
 
@@ -23,7 +23,7 @@ puts "Opt parsing -- #{options}"
 
 # Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
-  DirectoryLoader::Require.load_cur_dir
+  Directories::Requirer.require_current_directory
   puts greeting = nil
   puts options
   puts MessageSystem.new(options).assemble_loaders unless greeting

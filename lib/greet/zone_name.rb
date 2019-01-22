@@ -6,7 +6,6 @@ require 'timezone'
 # Out:  local_offset for UTC
 #
 module Greet
-  
   class ZoneName
     attr_reader :abbreviation
     
