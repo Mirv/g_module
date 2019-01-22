@@ -68,5 +68,5 @@ def time_inputs
 end
 
 def time_greet(values)
-  Hour.new(values)
+  Greet::Hour.new(values)
 end

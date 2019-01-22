@@ -32,5 +32,5 @@ describe "Message initialized" do
 end
 
 def time2greeting(values)
-  Greeting.new(values)
+  Greet::Greeting.new(values)
 end

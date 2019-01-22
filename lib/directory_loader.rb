@@ -14,6 +14,10 @@ require 'byebug'
 # Notes:  Call via 'load_dir' or 'load_cur_dir'
 #
 module DirectoryLoader
+  # puts Require
+  # puts self.Require
+  # class self.Require
+  
   class Require
     def self.load_dir(directory)
       # files = Dir.chdir(directory){Dir["*.rb"] }
@@ -24,14 +28,14 @@ module DirectoryLoader
       new.execute_dir
     end
     
-    def initialize(files = "", directory ="")
+    def initialize(directory = "", files = "")
       @directory = directory
       @path = File.join(Dir.pwd, @directory)
       @file_names = list_directory_contents
     end
     
     def list_directory_contents
-      @file_names = Dir[File.join(@path,"*.rb")]
+      Dir[File.join(@path, "*.rb")]
     end
     
     def send_files
@@ -39,7 +43,6 @@ module DirectoryLoader
     end
     
     def execute_dir
-      # byebug
       add_to_path
       drop_extension
       dir_load
@@ -66,13 +69,6 @@ module DirectoryLoader
     def snake_to_camel(file)
       file.split('_').collect(&:capitalize).join
     end
-    
-    # # class File
-    #   def initialize()
-    #     # files = Dir.chdir('greet'){Dir["*.rb"] }
-    #   end
-      
-    # end
   end
 end
-DirectoryLoader::Require.load_cur_dir
+DirectoryLoader::Require.load_dir('greet')

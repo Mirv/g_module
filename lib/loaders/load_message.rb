@@ -1,7 +1,7 @@
 load 'loaders/load_json.rb'
 require 'byebug'
 
-## LoadGreating
+## LoadMessage
 #
 # In:   nothing
 # Opt:  :directory to find the Messages.json file

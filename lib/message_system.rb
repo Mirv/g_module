@@ -20,7 +20,7 @@ class MessageSystem
     @names.merge!(loaders.result)
   end
   
-  ## processor_tempalte
+  ## call_templater
   #
   # In:   @names hash with raw template & all the assemble_loader data for message
   # Out:  message to be sent

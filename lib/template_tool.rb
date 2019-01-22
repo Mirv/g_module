@@ -19,7 +19,7 @@ class TemplateTool
   end
   
   def retrieve_greeting(args)
-    {Greeting: Greeting.new(args).execute_process}
+    {Greeting: Greet::Greeting.new(args).execute_process}
   end
   
   # returns hash of all the placeholders in @template_variables or raises error

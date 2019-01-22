@@ -7,7 +7,6 @@ class TemplateAssigner
     assign_deliminators(args.delete(:deliminator))
     @template = args.delete(:raw_template)
     @parameters = args
-    
   end
   
   def assign_deliminators(deliminator)
