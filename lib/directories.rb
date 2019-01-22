@@ -1,11 +1,14 @@
 require 'byebug'
-# Call with loader ...
-# ... DirectoryLoader::Require.load_dir('greet')
 
 ## DirectoryLeader (module) - namespacing
 #
+# Call with loader ...
+# ... Directories::Requirer.require_current_directory
+# ... Directories::Requirer.require_directory('greet')
 
-## Require (class)
+module Directories
+
+## Requirer (class)
 #
 # In:   directory to require
 # Out:  
@@ -13,27 +16,6 @@ require 'byebug'
 #
 # Notes:  Call via 'load_dir' or 'load_cur_dir'
 #
-module Directories
-  class FileHelpers
-    def self.drop_extension(file)
-      file.split('.').first
-    end
-    
-    def self.drop_path(path)
-      path.split('/').last 
-    end
-    
-    def self.snake_to_camel(file)
-      file.split('_').collect(&:capitalize).join
-    end
-    
-    def self.file_loaded?(file)
-      file_only = drop_path(file)  
-      file_as_class = snake_to_camel(file_only)
-      Directories.const_defined? file_as_class.to_s
-    end
-  end
-  
   class Requirer
     def self.require_directory(directory)
       new(directory).execute_directory
@@ -70,6 +52,26 @@ module Directories
 
     def require_directory
       @file_names.map{|f| "#{require f} -- #{f}" unless @helper.file_loaded? f}
+    end
+  end
+  
+  class FileHelpers
+    def self.drop_extension(file)
+      file.split('.').first
+    end
+    
+    def self.drop_path(path)
+      path.split('/').last 
+    end
+    
+    def self.snake_to_camel(file)
+      file.split('_').collect(&:capitalize).join
+    end
+    
+    def self.file_loaded?(file)
+      file_only = drop_path(file)  
+      file_as_class = snake_to_camel(file_only)
+      Directories.const_defined? file_as_class.to_s
     end
   end
 end
