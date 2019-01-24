@@ -1,4 +1,4 @@
-# greeting_module
+# g_module
 
 Template for greeting messages
 
