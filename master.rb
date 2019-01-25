@@ -1,7 +1,7 @@
 # For the purposes of the script, we execute inside the lib dir
 
 require 'optparse'
-require_relative 'lib/directories' 
+require_relative 'lib/file_directories' 
 
 puts "Entering Greeting Script successfully ..."
 
@@ -14,10 +14,10 @@ OptionParser.new do |opt|
   opt.on('--d', '--directory_name DATA_DIRECTORY') { |o| options[:directory] = o }
 end.parse!
 
-
 raise OptionParser::MissingArgument, "First name is required" if options[:firstName].nil?
 raise OptionParser::MissingArgument, "Last name is required" if options[:lastName].nil?
 raise OptionParser::MissingArgument, "Company name is required" if options[:company].nil?
+raise OptionParser::MissingArgument, "Template name is required" if options[:template].nil?
 
 puts "Opt parsing -- #{options}"
 
