@@ -3,7 +3,7 @@
 
 class Replacer
   # extends FileHelpers
-  includes Searcher
+  # includes ::Searcher
   def initialize(directory, ignore = "", log_changes = false)
     @log_changes = log_changes
     @directory = directory
@@ -46,43 +46,29 @@ class Searcher
   # '' is search current dir
   def initialize(matches, directory = "", exclude_dirs = "", types = "", recursive = true)
     @matches = matches
-    @directory = directory
-    @types = joiner(include_file_types(types) || "")
-    @exclude_dirs = joiner(excluder(exclude_dirs))
+    @directory = directory.strip
+    @types = optionize(types, "--include=*.") || ""
+    @exclude_dirs = optionize(exclude_dirs, "exclude-dir").strip || ""
     @recursive = recursive
   end
   
   def run_matches
     if @recursive
-      search = "grep -R #{@matches} #{@exclude_dirs.strip} #{@directory.strip}".strip
+      # search = "grep -R #{@matches} #{@exclude_dirs} #{@directory}".strip
+      search = ["grep", "-R", @matches, @exclude_dirs, @directory].join(" ")
+
       system(search)
     end
   end
-  
-  # Requires parts of version 2
-  # def include_file_types(target)
-  #   splitter(target).map!{|t| "--include=*.#{t}" }
-  # end
-  
+
   def optionize(a_string = "foo, bar", x="exclude-dir")
+    return "" unless a_string
     a_string.prepend(', ')  # otherwise last option in a_string is unchanged
     a_string.gsub(', ', " --#{x}=") << " "  # add space so not touching others
   end
-  
-  # Version 2
-  # def excluder(target)
-  #   splitter(target).map!{|t| "--exclude-dir=#{t}" }
-  # end
 
-  # def splitter(target)
-  #   target.split(', ')
-  # end
-  
-  # def joiner(target)
-  #   target.join(" ")
-  # end
 end
-Searcher.new("require_relative").run_matches
+Searcher.new("require_relative", "", "foo, bar").run_matches
 # puts Searcher.new('').files
 # puts Searcher.new('').count
 # puts Searcher.new('').relevant("load")
