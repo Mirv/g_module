@@ -1,4 +1,6 @@
 require 'optparse'
+require 'shellwords'
+
 ##  Use:
 #    Searcher.new("require_relative", "", "foo, bar").run_matches
 #
@@ -18,29 +20,28 @@ class Searcher
   
   # '' is search current dir
   def initialize(matches, directory = "*", exclude_dirs = "", types = "", recursive_off = false)
-    @matches =      matches
-    @directory =    directory.strip
-    @types =        joiner(include_file_types(types)).strip || ""
-    @exclude_dirs = joiner(excluder(exclude_dirs)).strip    || ""
+    @matches =      matches.shellescape
+    @directory =    directory.strip.shellescape
+    @types =        include_file_types(types) || ""
+    @exclude_dirs = excluder(exclude_dirs)    || ""
     @recursive =    recursive_off
     @matched =      run_matches
   end
   
   def run_matches
-    # Note - recursive  not included as it's a key turned on or off
-    basics_params = ["grep", "'#{@matches}'", @types, @exclude_dirs, @directory]
-    # TODO - hangs without good path? YAGNI? ... no -R is only real diff
-    basics_params << "-R" unless @recursive_off  # if flag present they don't want
+    basics_params = ["grep", "'#{@matches}'", @types, @exclude_dirs].flatten 
+    puts basics_params << "-R" unless @recursive_off  # if flag don't Recursive
     search = basics_params.join(" ")
-    system(*search)
+    puts system(*search)
   end
   
+  # array of cmdline dirs to skip with the tag for grep added
   def excluder(target)
-    splitter(target).map!{|t| "--exclude-dir=#{t}" }
+    splitter(target).map!{|t| "--exclude-dir=#{t}".shellescape }
   end
 
   def include_file_types(target)
-    splitter(target).map!{|t| "--include=*.#{t}" }
+    splitter(target).map!{|t| "--include=*.#{t}".shellescape }
   end
 
   # maybe have this test ', ' exists and fail over to ',' if not?
@@ -48,9 +49,9 @@ class Searcher
     target.split(', ')
   end
 
-  def joiner(target)
-    target.join(" ")
-  end
+  # def joiner(target)
+  #   target.join(" ")
+  # end
   
   def self.get_options
     puts "Entering Search Script successfully ..."
