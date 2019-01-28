@@ -3,8 +3,8 @@ require 'shellwords'
 
 ##  Use:
 #    Searcher.new("require_relative", "", "foo, bar").run_matches
+#    grep uses switches in optparse via get_options
 #
-
 class Searcher
   attr_reader :matched
 
@@ -49,10 +49,6 @@ class Searcher
     target.split(', ')
   end
 
-  # def joiner(target)
-  #   target.join(" ")
-  # end
-  
   def self.get_options
     puts "Entering Search Script successfully ..."
     options = {}
