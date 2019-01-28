@@ -10,7 +10,7 @@ class Searcher
     matches =         options[:matchString]   || ""
     directory =       options[:pathName]      || ""
     exclude_dirs =    options[:excludedDir]   || ".c9, .git, proofs" 
-   fileTypes =        options[:fileTypes]     || "rb"
+    fileTypes =        options[:fileTypes]    || "rb"
     recursive_off =   options[:recursive_off] || false
 
     new(matches, directory, exclude_dirs, fileTypes, recursive_off)
@@ -18,26 +18,20 @@ class Searcher
   
   # '' is search current dir
   def initialize(matches, directory = "*", exclude_dirs = "", types = "", recursive_off = false)
-    @matches = matches
-    @directory = directory.strip
-    @types = joiner(include_file_types(types)) || ""
-    @exclude_dirs = joiner(excluder(exclude_dirs)) || ""
-    @recursive = recursive_off
-    @matched = run_matches
-    puts self.inspect
+    @matches =      matches
+    @directory =    directory.strip
+    @types =        joiner(include_file_types(types)).strip || ""
+    @exclude_dirs = joiner(excluder(exclude_dirs)).strip    || ""
+    @recursive =    recursive_off
+    @matched =      run_matches
   end
   
   def run_matches
-    # Note - recursive  not included
+    # Note - recursive  not included as it's a key turned on or off
     basics_params = ["grep", "'#{@matches}'", @types, @exclude_dirs, @directory]
-    if @recursive_off
-      # TODO - hangs without good path? YAGNI? ... no -R is only real diff
-      search = basics_params.join(" ")
-    else
-      basics_params << "-R"
-      search = basics_params.join(" ")
-    end
-    puts search
+    # TODO - hangs without good path? YAGNI? ... no -R is only real diff
+    basics_params << "-R" unless @recursive_off  # if flag present they don't want
+    search = basics_params.join(" ")
     system(*search)
   end
   
