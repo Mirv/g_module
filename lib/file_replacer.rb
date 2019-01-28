@@ -9,11 +9,9 @@ class Replacer
     @directory = directory
     @ignore = ignore
   end
-  
 
-  
   def dry_run(target = "")
-
+    Searcher::
     puts p
   end
   
@@ -21,27 +19,11 @@ class Replacer
   end
 end
 
+##  Use:
+#    Searcher.new("require_relative", "", "foo, bar").run_matches
+#
 class Searcher
-  # attr_reader :files
-  # def initialize(directory)
-  #   @files = get_file_list(define_path(directory))
-  # end
-  
-  # def define_path(directory)
-  #   rbfiles = File.join("**", directory, "*.rb")
-  # end
-  
-  # def get_file_list(target_string)
-  #   Dir.glob(target_string)
-  # end
-  
-  # def count
-  #   puts files.count
-  # end
-  
-  # def relevant(string)
-  #   @files.grep(string)
-  # end
+  attr_reader :matched
   
   # '' is search current dir
   def initialize(matches, directory = "", exclude_dirs = "", types = "", recursive = true)
@@ -50,14 +32,13 @@ class Searcher
     @types = optionize(types, "--include=*.") || ""
     @exclude_dirs = optionize(exclude_dirs, "exclude-dir").strip || ""
     @recursive = recursive
+    @matched = run_matches
   end
   
   def run_matches
     if @recursive
-      # search = "grep -R #{@matches} #{@exclude_dirs} #{@directory}".strip
       search = ["grep", "-R", @matches, @exclude_dirs, @directory].join(" ")
-
-      system(search)
+      system(*search)
     end
   end
 
@@ -68,7 +49,7 @@ class Searcher
   end
 
 end
-Searcher.new("require_relative", "", "foo, bar").run_matches
+
 # puts Searcher.new('').files
 # puts Searcher.new('').count
 # puts Searcher.new('').relevant("load")
