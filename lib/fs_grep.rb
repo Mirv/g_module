@@ -58,9 +58,9 @@ class Searcher
     OptionParser.new do |opt|
       opt.on('--m', '--match_string MATCH_STRING') { |o| options[:matchString] = o }
       opt.on('--p', '--path_name START_PATH_NAME') { |o| options[:pathName] = o }
-      opt.on('--exc_d', '--excluded_dir EXCLUDED_DIR_LIST') { |o| options[:excludedDir] = o }
-      opt.on('--inc_f', '--include_types FILE_TYPES_INCLUDED') { |o| options[:fileTypes] = o }
-      opt.on('--r_off', '--recursive_off') { |o| options[:recursive_off] = o }
+      opt.on('--e', '--excluded_dir EXCLUDED_DIR_LIST') { |o| options[:excludedDir] = o }
+      opt.on('--i', '--include_types FILE_TYPES_INCLUDED') { |o| options[:fileTypes] = o }
+      opt.on('--r', '--recursive_off BOOLEAN_TYPE') { |o| options[:recursive_off] = o }
     end.parse!
   
     raise OptionParser::MissingArgument, "matchString is required" if options[:matchString].nil?
