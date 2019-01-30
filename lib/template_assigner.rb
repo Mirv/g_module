@@ -1,4 +1,4 @@
-
+require 'byebug'
 class TemplateAssigner
   attr_accessor :result
   
@@ -9,24 +9,23 @@ class TemplateAssigner
     @parameters = args
   end
   
+  def process
+    fill_holders
+    fill_out_template_with_placeholders
+  end
+  
   def assign_deliminators(deliminator)
     @start = deliminator.start
     @stop = deliminator.stop
   end
 
-  def match_placeholder_to_data
-    data = @holders.map{|x| x= [x,@parameters.fetch(x.to_sym)]} 
+  def fill_holders
+    @holders.map{|x| x= [x, @parameters.fetch(x.to_sym)]} 
   end
-   
-  def fill_out_template_placeholders
-    match_placeholder_to_data.each do |x,y| 
-      sub_in(x.to_s, y.to_s)
-    end
+
+  def fill_out_template_with_placeholders
+    fill_holders.map { |x,y| @template.gsub!(@start + x.to_s + @stop, y.to_s) }
     @result = @template
   end
   
-  def sub_in(placeholder, replacement)
-    placeholder = @start+placeholder+@stop
-    @template.gsub!(placeholder, replacement)
-  end
 end

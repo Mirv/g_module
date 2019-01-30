@@ -19,14 +19,15 @@ raise OptionParser::MissingArgument, "Last name is required" if options[:lastNam
 raise OptionParser::MissingArgument, "Company name is required" if options[:company].nil?
 raise OptionParser::MissingArgument, "Template name is required" if options[:template].nil?
 
-puts "Opt parsing -- #{options}"
+# puts "Opt parsing -- #{options}"
 
 # Doing this as temp dir change allows to keep lib / test dirs
 Dir.chdir('lib') do
   Directories::Requirer.require_current_directory
   puts greeting = nil
-  puts options
-  puts MessageSystem.new(options).assemble_loaders unless greeting
+  # puts "Options received #{options}"
+  message = MessageSystem.new(options).result
+  puts "Message Data loaded #{message}" if message
   
 end
 

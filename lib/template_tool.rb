@@ -8,22 +8,24 @@ class TemplateTool
   attr_reader :result    
   
   def initialize(args)
-    @parameters =   args
-    @parameters.merge!(retrieve_greeting(args))
-    holders =       retrieve_placeholders(args)
-    @result =       template_assigner(holders, args)
+    # byebug
+    args.merge!(retrieve_greeting(args))
+    place_data = {raw_template: args[:raw_template] }
+    place_data.merge!({ deliminator: args[:deliminator]})
+    holders = retrieve_placeholders(place_data)
+    @result = template_assigner(holders, args)
   end
 
   def retrieve_placeholders(args)
-    args[:placeholders] || TemplateReader.new(args).read_template
+    TemplateReader.new(args).read_template
   end
   
   def retrieve_greeting(args)
-    {Greeting: Greet::Greeting.new(args).execute_process}
+    {timeMessage: Greet::Greeting.new(args).execute_process}
   end
   
   # returns hash of all the placeholders in @template_variables or raises error
   def template_assigner(holders, args)
-    TemplateAssigner.new(holders, args).result
+    TemplateAssigner.new(holders, args).process
   end
 end

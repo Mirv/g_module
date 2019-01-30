@@ -4,7 +4,7 @@ require_relative 'greet/greeting'
 # module Greet
 #   # DirectoryLoader::Require.load_dir('greet')
 #   class GreetCustom < Greeting
-#     puts self
+#     self
 #   end
   
 # end

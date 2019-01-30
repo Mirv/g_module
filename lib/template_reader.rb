@@ -13,6 +13,8 @@ class TemplateReader
     @raw_template = args[:raw_template]
     @start =        args[:deliminator].start
     @stop =         args[:deliminator].stop
+    # @start = args.dig(:deliminator, :start)
+    # @stop = args.dig(:deliminator, :stop)
   end
   
   def read_template

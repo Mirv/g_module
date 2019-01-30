@@ -1,6 +1,5 @@
 require 'byebug'
 require_relative 'file_helpers'
-# load  '~/ack'
 
 ## DirectoryLeader (module) - namespacing
 #
@@ -60,7 +59,7 @@ module Directories
 
     def require_directory
       @file_names.map do |f| 
-        puts "#{require f} -- #{f}" unless file_loaded? f, Directories
+        "#{require f} -- #{f}" unless file_loaded? f, Directories
       end
     end
     

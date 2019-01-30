@@ -5,8 +5,9 @@ class MessageSystem
   attr_reader :greeting_message, :names, :result
   
   def initialize(**args)
-    @names =    args
-    @result =     Hash.new
+    @names = args
+    assemble_loaders
+    @result = call_templater(@names)
   end
 
   ## assemble_loaders
@@ -25,8 +26,8 @@ class MessageSystem
   # In:   @names hash with raw template & all the assemble_loader data for message
   # Out:  message to be sent
   #
-  def call_templater 
-    
+  def call_templater(args)
+    TemplateTool.new(args).result
   end
 end
 

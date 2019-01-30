@@ -10,7 +10,7 @@ class LoadJson < LoadFile
       value = JSON.parse(source, { symbolize_names: true })
     rescue JSON::ParserError, TypeError => e
       # TODO -- inject logger
-      # puts "JSON ERROR BEING RESCUED"
+      #  "JSON ERROR BEING RESCUED"
       return nil
     end
     return value

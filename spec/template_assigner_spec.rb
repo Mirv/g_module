@@ -2,7 +2,7 @@ load 'template_assigner.rb'
 
 describe "Assigner" do 
   let(:assigner){
-    TemplateAssigner.new(holders, inputs)
+    TemplateAssigner.new(holders, inputs).process
   }
   
   context "loads successfully" do
@@ -11,19 +11,21 @@ describe "Assigner" do
     end
     
     it "should load hashes to be parsed to template" do
-      expect{assigner.match_placeholder_to_data}.to_not raise_error 
+      expect{assigner}.to_not raise_error 
     end
     
-    # it "should generate a message" do
-    #   msg = "Good Morning Candy Pace"
-    #   expect(assigner.fill_placeholders).to eq(msg)
-    # end
+    it "should generate a message" do
+      msg = "Good Morning Candy Pace. Room number 529 is now available for " \
+      "your use at Hotel California in Santa Barbara.  If you require " \
+      "anything please reach out to us."
+      expect(assigner).to eq(msg)
+    end
   end
   
   context "given there are issues" do
     it "should error if any placeholders have no replacement in template" do
       holders << "Willnotbefound"
-      expect{ TemplateAssigner.new(holders, inputs).match_placeholder_to_data 
+      expect{ TemplateAssigner.new(holders, inputs).process 
       }.to raise_error(KeyError)
     end
   end
