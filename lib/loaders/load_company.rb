@@ -1,8 +1,10 @@
-load 'loaders/load_json.rb'
+require 'loaders/load_json'
+require 'match_utilities'
 
 # @result exposed in parent class
 
 class LoadCompany < LoadJson
+  include MatchUtilities
 
   def initialize(**args)
     dir =         args[:directory] || 'data'

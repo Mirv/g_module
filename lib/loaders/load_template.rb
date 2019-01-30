@@ -1,8 +1,8 @@
-load 'loaders/load_json.rb'
-require 'byebug'
-# @result exposed in parent class
+require 'loaders/load_json'
 
 class LoadTemplate < LoadJson
+  include MatchUtilities
+
   attr_reader :result
   
   def initialize(**args)
@@ -12,7 +12,6 @@ class LoadTemplate < LoadJson
     @template =       args[:template] || "Default"
     @loader_params =  args
     @result =       Hash.new
-    
   end
   
   # Current - exits if process finds a nil, otherwise merges good result
@@ -21,7 +20,6 @@ class LoadTemplate < LoadJson
     return unless file = opener(@file_name)
     return unless record = process_json(file)
     return unless record = record_lookup(record, name: @template) 
-
     @result = {}
 
     deliminator = Deliminators.new(

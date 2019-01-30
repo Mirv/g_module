@@ -16,15 +16,5 @@ describe ".process_json" do
     it "process successful should not be nil" do
       expect(json_template).to_not be_nil
     end
-    
-    it "record_lookup should not be an error on single variable matches" do
-      expect(json.record_lookup(
-        json_template, {company: "The Grand Budapest Hotel"})).to_not be_nil    
-    end
-    
-    it "record_lookup should not be an error on multi variable matches" do
-      expect(json.record_lookup(
-        json_guest, {firstName: "Candy", lastName: "Pace"})).to_not be_nil
-    end
   end
 end

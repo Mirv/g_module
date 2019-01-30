@@ -1,5 +1,6 @@
-load 'loaders/load_guest.rb'
-load 'loaders/load_company.rb'
+require 'match_utilities'
+# load 'loaders/load_guest.rb'
+# load 'loaders/load_company.rb'
 
 require 'byebug'
 # Pseudo code
@@ -22,8 +23,6 @@ require 'byebug'
 #   return false if check fails
 #   return true
 
-
-
 describe "record lookup data integrity" do
   context "given maches" do
     let(:customers){ 
@@ -33,7 +32,7 @@ describe "record lookup data integrity" do
     }
     
     let(:single_criteria){{"lastName": "Porter"}}
-    let(:double_criteria){{"firstName": "Morgan",   "lastName": "Porter"}}
+    let(:double_criteria){{"firstName": "Morgan", "lastName": "Porter"}}
     
     it "should load an object for double lookup" do
       customer_lookup = LoadGuest.new(double_criteria)
@@ -52,6 +51,7 @@ describe "record lookup data integrity" do
       customer_lookup.execute_process
       expect(customer_lookup.result).to_not be_nil
     end
+
   end
   
   context "given no matches" do

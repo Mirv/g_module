@@ -1,8 +1,10 @@
-load 'loaders/load_json.rb'
+require 'loaders/load_json'
+require 'match_utilities'
 
 # Load in the guest info from file based on combined name
 
 class LoadGuest < LoadJson
+  include MatchUtilities
   
   def initialize(**args)
     dir =         args[:directory] || 'data'

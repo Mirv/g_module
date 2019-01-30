@@ -1,5 +1,4 @@
-load 'loaders/load_json.rb'
-require 'byebug'
+require 'loaders/load_json'
 
 ## LoadMessage
 #
@@ -8,6 +7,8 @@ require 'byebug'
 # out:  array of hashes to use for greeting message
 #
 class LoadMessage < LoadJson
+  include MatchUtilities
+
   attr_reader :result
   
   def initialize(**args)
@@ -26,11 +27,11 @@ class LoadMessage < LoadJson
   
   def records_to_hash_with_symbols(records)
     hold = Array.new
-    records.each do |r| 
+    records.each do |record| 
       hold << {
-        message: r[:message], 
-        start: r[:start], 
-        stop: r[:stop]
+        message: record[:message], 
+        start: record[:start], 
+        stop: record[:stop]
       }
     end
     hold
