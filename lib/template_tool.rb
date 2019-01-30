@@ -8,7 +8,6 @@ class TemplateTool
   attr_reader :result    
   
   def initialize(args)
-    # byebug
     args.merge!(retrieve_greeting(args))
     place_data = {raw_template: args[:raw_template] }
     place_data.merge!({ deliminator: args[:deliminator]})

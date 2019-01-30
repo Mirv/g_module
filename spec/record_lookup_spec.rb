@@ -45,6 +45,9 @@ describe "record lookup data integrity" do
     
     it "should find customer match based on multiple criteria" do
       inputs = double_criteria.merge!({directory: "lib/data"})
+      #
+      ## TODO - needs to be stubbed or such?
+      #
       customer_lookup = LoadGuest.new(inputs)
       customer_lookup.execute_process
       expect(customer_lookup.result).to_not be_nil
