@@ -1,6 +1,8 @@
 require 'match_utilities'
-# load 'loaders/load_guest.rb'
+require 'logging'
 # load 'loaders/load_company.rb'
+
+include MatchUtilities
 
 require 'byebug'
 # Pseudo code
@@ -24,35 +26,38 @@ require 'byebug'
 #   return true
 
 describe "record lookup data integrity" do
-  context "given maches" do
+
+
+  context "testing search method" do
+    let(:single_criteria){{"lastName": "Porter"}}
+    let(:multiple_criteria){{"firstName": "Morgan", "lastName": "Porter"}}
     let(:customers){ 
       [{"firstName": "Candy",   "lastName": "Pace"},
       {"firstName": "Morgan",   "lastName": "Porter"},
       {"firstName": "Bridgett", "lastName": "Richard"}]
     }
     
-    let(:single_criteria){{"lastName": "Porter"}}
-    let(:double_criteria){{"firstName": "Morgan", "lastName": "Porter"}}
-    
-    it "should load an object for double lookup" do
-      customer_lookup = LoadGuest.new(double_criteria)
-      expect(customer_lookup).to_not be_nil
+    it "should match criteria without error" do
+      expect{record_lookup(customers, multiple_criteria)}.to_not raise_error
     end
 
-    it "should find customer match based on single criteria" do
+    it "should match without being nil" do
+      match = record_lookup(customers, multiple_criteria)
+      expect(match).to_not be_nil
     end
     
-    it "should find customer match based on multiple criteria" do
-      inputs = double_criteria.merge!({directory: "lib/data"})
-      #
-      ## TODO - needs to be stubbed or such?
-      #
-      customer_lookup = LoadGuest.new(inputs)
-      customer_lookup.execute_process
-      expect(customer_lookup.result).to_not be_nil
+    it "should match multiple criteria in same record" do
+      matches = record_lookup(customers, multiple_criteria)
+      expect(matches.fetch(:firstName)).to eq('Morgan')
+      expect(matches.fetch(:lastName)).to eq('Porter')
     end
-
+    
+    it "should match single criteria in same record" do
+      match = record_lookup(customers, single_criteria)
+      expect(match).to_not be_nil
+    end
   end
+
   
   context "given no matches" do
     it "should fail on single criteria" do
