@@ -1,5 +1,21 @@
+; !.gitignore #unignore .gitignore
+
 *.gem
 *.rbc
+*.byebug_history
+
+#  Rule 1 - ignore files without extensions
+*       # ignore everything
+!*/     # add in directories again 
+; !*.*    # re-add all files with extensions
+
+# Rule 2 - igore all file types not listed
+*.*
+!*/*.rb
+!*/*.json
+!*/*.yaml
+!.gitignore #unignore .gitignore
+
 /.config
 /coverage/
 /InstalledFiles
@@ -39,9 +55,7 @@ build-iPhoneSimulator/
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
-/lib/proofs/
-/lib/proofs
-lib/proofs
+proofs/
 
 # for a library or gem, you might want to ignore these files since the code is
 # intended to run in multiple environments; otherwise, check them in:

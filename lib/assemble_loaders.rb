@@ -1,8 +1,9 @@
-load 'cust_error_location.rb'
-load 'loaders/load_guest.rb'
-load 'loaders/load_company.rb'
-load 'loaders/load_template.rb'
-load 'loaders/load_message.rb'
+require 'cust_error_location'
+require 'loaders/load_guest'
+require 'loaders/load_company'
+require 'loaders/load_template'
+require 'loaders/load_message'
+require 'logging'
 
 ## AssembleLoaders
 #
@@ -14,6 +15,7 @@ load 'loaders/load_message.rb'
 #
 class AssembleLoaders
   include CustErrorLocation
+  include Logging
   
   attr_reader :result
   
@@ -35,9 +37,9 @@ class AssembleLoaders
         obj = Object.const_get(x)
         obj = load_single(obj)
       rescue NameError => e
-        # TODO - inject logfile error here
-        #  err_location("Issue locating class interface for #{x}", 2)
-        # raise(NameError)
+        Logging::LogIt(err_location("Issue with class interface for #{x}", 2))
+        Logging::LogIt(caller_locations.first)
+        raise(NameError)
       end
       @result.merge!(obj.result)
     end

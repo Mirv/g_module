@@ -1,4 +1,6 @@
-require 'loaders/load_json'
+# require 'loaders/load_json'
+require 'match_utilities'
+require_relative 'load_json'
 
 ## LoadMessage
 #
@@ -17,7 +19,6 @@ class LoadMessage < LoadJson
     @result =       Hash.new
   end
 
-  # TODO - execute process could be annonymized by adding a target hash key ...
   def execute_process
     return unless file = opener(@file_name)
     return unless records = process_json(file)
