@@ -10,11 +10,15 @@ describe ".process_json" do
 
   context 'process should get file handle' do
     it "should capture error and return nil if not json or string" do
-      # expect{bad_json}.to raise_error  
+      expect{json}.to_not raise_error  
     end
     
     it "process successful should not be nil" do
       expect(json_template).to_not be_nil
+    end
+    
+    it "it should error if JSON not made" do
+      expect{bad_json}.to raise_error JSON::ParserError
     end
   end
 end
