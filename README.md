@@ -21,11 +21,11 @@ Usage
 - Run `ruby master.rb -h` to list options from parent directory of 'lib' file
 
 Usage: master [options]
-  --f, --first_name FIRST_NAME
-  --l, --last_name LAST_NAME
-  --c, --company_name COMPANY_NAME
-  --t, --template_name TEMPLATE_NAME
-  --d, --directory_name DATA_DIRECTORY
+--f, --first_name FIRST_NAME
+--l, --last_name LAST_NAME
+--c, --company_name COMPANY_NAME
+--t, --template_name TEMPLATE_NAME
+--d, --directory_name DATA_DIRECTORY
 
 Notes
 - Sub folders use `directory_loader` file to load required files & ...
