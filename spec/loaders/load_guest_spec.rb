@@ -1,5 +1,5 @@
 require 'loaders/load_guest.rb'
-require 'byebug'
+
 describe "#initialize" do
   let(:guest) { 
     LoadGuest.new(firstName: 'Candy', lastName: 'Pace', directory: 'lib/data') 

@@ -1,4 +1,3 @@
-require 'byebug'
 require_relative 'file_helpers'
 
 ## DirectoryLeader (module) - namespacing

@@ -1,6 +1,5 @@
-# load 'greet/time_range.rb'
-require 'byebug'
 require_relative 'range.rb'
+
 module Greet
   class Message
     attr_reader :message
