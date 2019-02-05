@@ -11,7 +11,8 @@ class LoadFile < LoadData
     rescue LoadError, Errno::ENOENT
       Logging::LogIt("File not found")
       Logging::LogIt(caller_locations.first)
-      raise Error, "File opening error - see logfile in directory of execution."
+      msg = "File opening error - see logfile in directory of execution."
+      raise Errno::ENOENT, msg
     end
     @result = file_contents
   end

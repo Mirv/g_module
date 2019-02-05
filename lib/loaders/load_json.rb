@@ -10,7 +10,8 @@ class LoadJson < LoadFile
     rescue JSON::ParserError, TypeError
       Logging::LogIt("Issue with JSON parsing in...")
       Logging::LogIt(caller_locations.first)
-      raise error, "JSON error - See Log file in directory of execution." 
+      msg = "JSON error - See Log file in directory of execution." 
+      raise JSON::ParserError, msg
     end
     return value
   end

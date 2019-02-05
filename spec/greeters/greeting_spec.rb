@@ -2,7 +2,7 @@ load 'greet/greeting.rb'
 
 describe "Message initialized" do
   let(:valid) { 
-    t = inputs.dup.merge({default_greeting: messages})
+    t = inputs.dup.merge({default_greetings: messages})
     time2greeting(t) 
   }
   
@@ -24,9 +24,10 @@ describe "Message initialized" do
   
   context "given errors" do
     it "should default message if hours or greeting are not valid" do
-      t2g = time2greeting(inputs)
-      allow(t2g).to receive(:valid?).and_return(false)
-      expect(t2g.execute_process).to eq("Greetings")
+      # defaults = inputs.dup.merge!({default_greetings: messages})
+      # t2g = time2greeting(defaults)
+      allow(valid).to receive(:valid?).and_return(false)
+      expect(valid.execute_process).to eq("Greetings")
     end
   end
 end

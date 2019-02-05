@@ -48,8 +48,8 @@ describe "record lookup data integrity" do
     
     it "should match multiple criteria in same record" do
       matches = record_lookup(customers, multiple_criteria)
-      expect(matches.fetch(:firstName)).to eq('Morgan')
-      expect(matches.fetch(:lastName)).to eq('Porter')
+      values = matches.fetch_values(:firstName, :lastName)
+      expect(values).to eq(%w{Morgan Porter})
     end
     
     it "should match single criteria in same record" do
