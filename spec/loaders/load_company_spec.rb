@@ -1,4 +1,4 @@
-load 'loaders/load_company.rb'
+require 'loaders/load_company'
 
 describe "#initialize" do
   context "call to LoadCompany class" do

@@ -1,5 +1,5 @@
 require 'spec_helper.rb'
-load 'loaders/load_template.rb'
+require 'loaders/load_template'
 
 describe ".load" do
   context "loaded template" do
