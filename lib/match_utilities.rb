@@ -7,7 +7,7 @@ module MatchUtilities
   #  Out:
   #     first record matching all required fields from args
   #  Note:
-  #     current search return behavior is greedy - TODO - allow both modes?
+  #     current search return behavior is lazy - TODO - allow both modes?
   #
   def record_lookup(records_to_check, **args)
     return if args.empty?   # no need to execute if empty
