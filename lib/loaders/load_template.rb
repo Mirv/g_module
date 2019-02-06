@@ -1,4 +1,5 @@
-require 'loaders/load_json'
+require_relative 'load_json'
+require_relative '../match_utilities'
 
 class LoadTemplate < LoadJson
   include MatchUtilities
@@ -16,9 +17,8 @@ class LoadTemplate < LoadJson
   
   # Current - exits if process finds a nil, otherwise merges good result
   def execute_process
-    return unless file = opener(@file_name)
-    return unless record = process_json(file)
-    return unless record = record_lookup(record, name: @template) 
+    return unless records = retrieve_json
+    return unless record = record_lookup(records, name: @template) 
     @result = {}
 
     deliminator = Deliminators.new(

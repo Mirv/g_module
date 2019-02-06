@@ -10,7 +10,7 @@ module MatchUtilities
   #     current search return behavior is greedy - TODO - allow both modes?
   #
   def record_lookup(records_to_check, **args)
-    return if args.empty?   # no need to execute if empty
+    return "Failed" if args.empty?   # no need to execute if empty
     # cycling all possible matches 
     records_to_check.each do |entry|
       # An entry needs to pass all checks held in args to be valid

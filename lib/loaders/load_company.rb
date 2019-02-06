@@ -15,9 +15,8 @@ class LoadCompany < LoadJson
   
   # Current - exits if process finds a nil, otherwise merges good result
   def execute_process
-    return unless file = opener(@file_name)
-    return unless record = process_json(file)
-    return unless record = record_lookup(record, company: @company) 
+    return unless records = retrieve_json
+    return unless record = record_lookup(records, company: @company) 
     @result = record
   end
 end

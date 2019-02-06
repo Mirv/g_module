@@ -43,8 +43,9 @@ describe "raises errors on initialization" do
   end
 
   it "should error if no timezone key found" do
-    expect{ time_greet(valid.reject{ |v| v == :timezone})
-    }.to raise_error(ArgumentError, "timezone key missing")
+    error = ArgumentError.new("timezone missing")
+    expect{ time_greet(valid.reject{ |v| v == :timezone}).to_s
+    }.to raise_error(error.to_s)
   end
 
   it "should error if time_look_back is not valid Integer" do

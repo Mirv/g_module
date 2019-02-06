@@ -20,8 +20,7 @@ class LoadMessage < LoadJson
   end
 
   def execute_process
-    return unless file = opener(@file_name)
-    return unless records = process_json(file)
+    return unless records = retrieve_json
     return unless records = records_to_hash_with_symbols(records)
     @result = {greetings: records}
   end
