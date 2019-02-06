@@ -1,23 +1,17 @@
 require 'match_utilities'
 require 'logging'
 require 'loaders/load_template'
-# load 'loaders/load_company.rb'
+require_relative 'record_lookup_files'  # test data independent of the class
 
 include MatchUtilities
 
 describe "record lookup data integrity" do
 
   context "testing search method" do
-    let(:single_criteria){{"lastName": "Porter"}}
-    let(:multiple_criteria){{"firstName": "Morgan", "lastName": "Porter"}}
-    let(:customers){ 
-      [{"firstName": "Candy",   "lastName": "Pace"},
-      {"firstName": "Morgan",   "lastName": "Porter"},
-      {"firstName": "Bridgett", "lastName": "Richard"}]
-    }
-    let(:templates){
-      t = LoadTemplate.new({directory: "lib/data"}).retrieve_json
-    }
+    let(:single_criteria){ {"lastName": "Porter"} }
+    let(:multiple_criteria){ {"firstName": "Morgan", "lastName": "Porter"} }
+    let(:customers){ guest_holder }
+    let(:templates){ template_holder }
     
     it "should match criteria without error" do
       expect{record_lookup(customers, multiple_criteria)}.to_not raise_error

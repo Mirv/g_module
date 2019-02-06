@@ -19,6 +19,7 @@ class TemplateTool
     TemplateReader.new(args).read_template
   end
   
+  # Keep in mind Module::Class doesn't auto expand in ruby versus rails
   def retrieve_greeting(args)
     {timeMessage: Greet::Greeting.new(args).execute_process}
   end

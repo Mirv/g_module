@@ -70,5 +70,4 @@ class AssembleLoaders
     raise ArgumentError, "company was empty"   if args[:company].nil? || args[:company].empty?  
     raise ArgumentError, "template was empty"  if args[:template].nil? ||args[:template].empty?
  end
-
 end
