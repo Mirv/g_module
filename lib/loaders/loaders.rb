@@ -13,9 +13,6 @@ class Loaders < LoadData
   include JsonParser
   include MatchUtilities
 
-  
-  attr_reader :result
-
   def retrieve_json
     file = opener(@file_name)  # from file loader class
     process_json(file)
