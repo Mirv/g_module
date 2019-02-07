@@ -24,3 +24,29 @@
       raise ArgumentError, "Message age is too old" if message_expired? 
       raise ArgumentError, "startTimestamp is in the future" if future_reservation?
     end
+    
+    
+      it "should error if the startTimestamp is in the future" do
+    valid[:startTimestamp] = Time.now.to_i + 1344123412234
+    expect{time_greet(valid)
+    }.to raise_error(ArgumentError, "startTimestamp is in the future")
+  end
+  
+  it "should error if the startTimestamp is too long ago" do
+    three_years = 94348800
+    valid[:startTimestamp] = (Time.now.to_i - three_years)
+    expect{time_greet(valid)
+    }.to raise_error(ArgumentError, "Message age is too old")
+  end
+  
+    it "should error if time_look_back is not valid Integer" do
+    valid[:time_look_back] = "asdf"
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "time_look_back not valid Integer")
+  end
+  
+  it "should error if time_look_ahead is not valid Integer" do
+    valid[:time_look_ahead] = "asdf"
+    expect{ time_greet(valid)
+    }.to raise_error(ArgumentError, "time_look_ahead not valid Integer")
+  end

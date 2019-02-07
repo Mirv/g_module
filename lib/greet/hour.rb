@@ -20,7 +20,6 @@ module Greet
       @timestamp =    args[:startTimestamp]
       input_validation(args)
       @zone_offset =    Greet::ZoneName.new(args[:timezone]).timezone_offset
-      computed_values_validation(args)
     end
 
     def time_in_hours
