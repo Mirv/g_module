@@ -12,8 +12,7 @@ require 'time'
 #
 module Greet
   class Hour
-    attr_reader :result    
-    
+
     def initialize(args)
       @look_back =    args[:time_look_back]   || default_look_back 
       @look_ahead =   args[:time_look_ahead]  || default_look_ahead 
@@ -39,7 +38,6 @@ module Greet
     def default_look_ahead
       two_hours = 7200
     end
-    
 
     def input_validation(args)
       # startTimeStamp checks
