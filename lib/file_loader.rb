@@ -1,9 +1,4 @@
-require_relative 'load_data'
-require_relative '../logging'
-
-class LoadFile < LoadData
-  attr_reader :result
-
+module FileLoader
   def opener(file)
     begin
       file = File.open(file)

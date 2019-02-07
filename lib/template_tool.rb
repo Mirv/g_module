@@ -1,9 +1,17 @@
 # require 'cust_error_location'
-load 'greet/greeting.rb'
-load 'template_reader.rb'
-load 'template_assigner.rb'
-load 'deliminators.rb'
+require 'greet/greeting'
+require 'template_reader'
+require 'template_assigner'
+require 'deliminators'
 
+## TemplateTool
+#
+# In:   several hashes for greeting, 
+#       raw template to process, 
+#       delimitors to parse template
+#
+# Out:  calls to reading & filling in template with values inputted 
+#
 class TemplateTool
   attr_reader :result    
   

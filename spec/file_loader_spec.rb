@@ -1,4 +1,4 @@
-require 'loaders/load_file.rb'
+require 'file_loader'
 
 describe ".load" do
   context "call to LoadFile class" do 

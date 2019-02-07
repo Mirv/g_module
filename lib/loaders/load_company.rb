@@ -1,9 +1,6 @@
-require 'loaders/load_json'
-require 'match_utilities'
+require_relative 'loaders'
 
-# @result exposed in parent class
-
-class LoadCompany < LoadJson
+class LoadCompany < Loaders
   include MatchUtilities
 
   def initialize(**args)

@@ -1,9 +1,7 @@
-require_relative 'load_file'
 require 'json'
 
-class LoadJson < LoadFile
-  attr_reader :result
-  
+module JsonParser
+  # Wraps rescue to ensure uniform error handling
   def process_json(source)
     begin
       value = JSON.parse(source, { symbolize_names: true })
@@ -15,13 +13,4 @@ class LoadJson < LoadFile
     end
     return value
   end
-  
-  def retrieve_json
-    file = opener(@file_name)  # from file loader class
-    process_json(file)
-  end
-end  
-
-
-
-
+end

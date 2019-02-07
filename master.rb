@@ -1,5 +1,4 @@
 # For the purposes of the script, we execute inside the lib dir
-
 require 'optparse'
 require_relative 'lib/file_directories' 
 

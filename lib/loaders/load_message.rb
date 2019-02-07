@@ -1,6 +1,5 @@
-# require 'loaders/load_json'
 require 'match_utilities'
-require_relative 'load_json'
+require_relative 'loaders'
 
 ## LoadMessage
 #
@@ -8,7 +7,7 @@ require_relative 'load_json'
 # Opt:  :directory to find the Messages.json file
 # out:  array of hashes to use for greeting message
 #
-class LoadMessage < LoadJson
+class LoadMessage < Loaders
   include MatchUtilities
 
   attr_reader :result

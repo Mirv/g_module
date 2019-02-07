@@ -1,8 +1,9 @@
-require_relative 'load_json'
 require_relative '../match_utilities'
+require_relative 'loaders'
 
-class LoadTemplate < LoadJson
+class LoadTemplate < Loaders
   include MatchUtilities
+  include FileLoader
 
   attr_reader :result
   

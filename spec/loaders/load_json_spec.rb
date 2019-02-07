@@ -1,16 +1,19 @@
 require 'spec_helper.rb'
-require 'loaders/load_json.rb'      # file under test
+require 'loaders/loaders'
 require 'json_requires'     # json setup & testing data
 
+include JsonParser
+
 describe ".process_json" do
-  let(:json) { jsons = LoadJson.new }
-  let(:bad_json) { bad_json = json.process_json(nil) }
-  let(:json_template) { json.process_json(json_template_content.to_json) }
-  let(:json_guest) { json.process_json(json_guest_content.to_json) }
+  # let(:json) { jsons = LoadJson.new }
+  # let(:bad_json) { bad_json = json.process_json(nil) }
+  let(:bad_json) { bad_json = process_json(nil) }
+  let(:json_template) { process_json(json_template_content.to_json) }
+  let(:json_guest) { process_json(json_guest_content.to_json) }
 
   context 'process should get file handle' do
     it "should capture error and return nil if not json or string" do
-      expect{json}.to_not raise_error  
+      expect{json_guest}.to_not raise_error  
     end
     
     it "process successful should not be nil" do

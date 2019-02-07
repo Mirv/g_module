@@ -1,9 +1,9 @@
-require 'loaders/load_json'
+require_relative 'loaders'
 require 'match_utilities'
 
 # Load in the guest info from file based on combined name
 
-class LoadGuest < LoadJson
+class LoadGuest < Loaders
   include MatchUtilities
   
   def initialize(**args)
