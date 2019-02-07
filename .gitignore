@@ -10,7 +10,6 @@
 ; !*.*    # re-add all files with extensions
 
 # Rule 2 - igore all file types not listed
-*.*
 !*/*.rb
 !*/*.json
 !*/*.yaml

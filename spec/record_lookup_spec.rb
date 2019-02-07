@@ -40,4 +40,3 @@ describe "record lookup data integrity" do
     end
   end
 end
-
