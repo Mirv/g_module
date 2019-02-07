@@ -12,7 +12,7 @@ class Loaders < LoadData
   include FileLoader
   include JsonParser
   include MatchUtilities
-
+  
   def retrieve_json
     file = opener(@file_name)  # from file loader class
     process_json(file)

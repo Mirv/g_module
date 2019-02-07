@@ -7,7 +7,6 @@ require_relative 'loaders'
 # out:  array of hashes to use for greeting message
 #
 class LoadMessage < Loaders
-  include MatchUtilities
 
   attr_reader :result
   

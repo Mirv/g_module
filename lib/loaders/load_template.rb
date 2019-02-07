@@ -1,9 +1,6 @@
-require_relative '../match_utilities'
 require_relative 'loaders'
 
 class LoadTemplate < Loaders
-  include MatchUtilities
-  include FileLoader
 
   attr_reader :result
   

@@ -34,8 +34,10 @@ class AssembleLoaders
   def process_loaders
     @files.each do |x|
       begin
+      puts x
         obj = Object.const_get(x)
         obj = load_single(obj)
+        puts x
       rescue NameError => e
         Logging::LogIt(err_location("Issue with class interface for #{x}", 2))
         Logging::LogIt(caller_locations.first)

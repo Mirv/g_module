@@ -1,10 +1,11 @@
 require_relative 'loaders'
-require 'match_utilities'
 
 # Load in the guest info from file based on combined name
 
 class LoadGuest < Loaders
   include MatchUtilities
+  
+  attr_reader :result
   
   def initialize(**args)
     dir =         args[:directory] || 'data'
@@ -20,6 +21,7 @@ class LoadGuest < Loaders
   def execute_process
     return unless records = retrieve_json
     return unless record = record_lookup(records, firstName: @first, lastName: @last) 
+    puts record
     @result = record[:reservation]
   end
 end

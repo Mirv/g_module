@@ -27,7 +27,5 @@ Usage: master [options]
 - `--t, --template_name TEMPLATE_NAME`
 - `--d, --directory_name DATA_DIRECTORY`
 
-Notes
-- Sub folders use `directory_loader` file to load required files & ...
-  ... `require_relative` to call for test purposes
-- Case study - https://digi.lib.ttu.ee/i/file.php?DLID=3452&t=1
+Notes & explainations
+- https://github.com/Mirv/g_module/wiki

@@ -1,7 +1,8 @@
 require_relative 'loaders'
 
 class LoadCompany < Loaders
-  include MatchUtilities
+
+  attr_reader :result
 
   def initialize(**args)
     dir =         args[:directory] || 'data'

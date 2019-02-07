@@ -14,8 +14,6 @@ module Greet
   class Hour
 
     def initialize(args)
-      @look_back =    args[:time_look_back]   || default_look_back 
-      @look_ahead =   args[:time_look_ahead]  || default_look_ahead 
       @timestamp =    args[:startTimestamp]
       input_validation(args)
       @zone_offset =    Greet::ZoneName.new(args[:timezone]).timezone_offset
@@ -27,16 +25,6 @@ module Greet
   
     def current_time
       Time.now  
-    end
-
-    # Due to the time stamps the JSON files held, I'm guessing your test files are 
-    # ... all from same date & the lookback protection would cause them to all fail
-    def default_look_back
-      two_years = 62899200
-    end
-    
-    def default_look_ahead
-      two_hours = 7200
     end
 
     def input_validation(args)
