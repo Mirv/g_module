@@ -1,4 +1,4 @@
-load 'greet/hour.rb'
+require 'greet/hour.rb'
 
 describe "initialized" do
   let(:greeting) { time_greet(time_inputs.dup) }

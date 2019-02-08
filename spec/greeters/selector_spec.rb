@@ -1,4 +1,4 @@
-load 'greet/selector.rb'
+require 'greet/selector.rb'
 
 describe "#initialize MessageSelector" do
   context "call to class" do

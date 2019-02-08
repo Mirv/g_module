@@ -1,4 +1,4 @@
-load 'greet/range.rb'
+require 'greet/range.rb'
 
 describe "#initialize Range" do
   context "call to class" do

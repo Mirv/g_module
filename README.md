@@ -9,7 +9,7 @@ If matches are found ...
 1) It uses your specific template or the default template
 2) It grabs a list of placeholders
 3) It attempts to locate each placeholder's value & compute a time based greeting
-4) Template assigner will substitute each value
+4) It will substitute each value into the template, checking none are blank
 
 Installation
 - Run `git clone https://github.com/mirv/Mirv/g_module` to get library

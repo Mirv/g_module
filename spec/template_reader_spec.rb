@@ -1,4 +1,4 @@
-load 'template_reader.rb'
+require 'template_reader.rb'
 
 describe "initialized" do
   let(:template) { template_reader(valid_template_inputs.dup) }

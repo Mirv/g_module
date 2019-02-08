@@ -1,4 +1,5 @@
-load 'template_assigner.rb'
+require 'template_assigner.rb'
+require 'test_constants.rb'
 
 describe "Assigner" do 
   let(:assigner){
@@ -28,6 +29,12 @@ describe "Assigner" do
       expect{ TemplateAssigner.new(holders, inputs).process 
       }.to raise_error(KeyError)
     end
+    
+    it "should error if { or } are found in results" do
+      inputs[:raw_template] = inputs[:raw_template] << "{"
+      bad = TemplateAssigner.new(holders,inputs ).process
+      expect{bad}.to raise_error ArgumentError, "A delimitor has been found. Possible placeholder issue"
+    end
   end
   
   let(:inputs){
@@ -44,7 +51,7 @@ describe "Assigner" do
       endTimestamp: 1486852373, 
       
       # template data
-      raw_template: "{timeMessage} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
+      raw_template: raw_template_const, 
       deliminator: Deliminators.new('{','}'), 
       
       # company data

@@ -21,7 +21,6 @@ class LoadGuest < Loaders
   def execute_process
     return unless records = retrieve_json
     return unless record = record_lookup(records, firstName: @first, lastName: @last) 
-    puts record
     @result = record[:reservation]
   end
 end

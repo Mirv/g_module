@@ -1,4 +1,4 @@
-load 'greet/message.rb'
+require 'greet/message.rb'
 
 describe "#initialize Message" do
   context "call to class" do

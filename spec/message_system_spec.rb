@@ -1,4 +1,4 @@
-load 'message_system.rb'
+require 'message_system.rb'
 
 describe "#intialization" do
   context "class object inputs" do
