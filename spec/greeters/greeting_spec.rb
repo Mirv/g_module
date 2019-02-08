@@ -1,4 +1,4 @@
-load 'greet/greeting.rb'
+require 'greet/greeting.rb'
 
 describe "Message initialized" do
   let(:valid) { 

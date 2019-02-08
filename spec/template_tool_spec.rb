@@ -52,7 +52,7 @@ describe "template initialized" do
   
   let(:placeholders){
     {
-      raw_template: "{timeMessage} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
+      raw_template: raw_template_const, 
       deliminator: Deliminators.new('{','}')
     }
   }
