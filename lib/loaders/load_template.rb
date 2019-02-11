@@ -1,4 +1,5 @@
 require_relative 'loaders'
+require 'loaders/deliminators'
 
 class LoadTemplate < Loaders
 

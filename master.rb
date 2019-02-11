@@ -26,7 +26,7 @@ Dir.chdir('lib') do
   puts greeting = nil
   # puts "Options received #{options}"
   message = MessageSystem.new(options).result
-  puts "Message Data loaded #{message}" if message
+  puts "Message Data loaded ... \n#{message}" if message
   
 end
 

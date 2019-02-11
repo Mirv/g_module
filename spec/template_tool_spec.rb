@@ -1,6 +1,5 @@
 require 'template_tool.rb'
-require 'test_constants.rb'
-
+require 'spec_helpers/test_constants.rb'
 
 describe "template initialized" do
   let(:template) { templater(inputs.dup) }

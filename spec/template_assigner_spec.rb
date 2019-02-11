@@ -1,9 +1,17 @@
 require 'template_assigner.rb'
-require 'test_constants.rb'
+require 'spec_helpers/test_constants.rb'
 
 describe "Assigner" do 
   let(:assigner){
     TemplateAssigner.new(holders, inputs).process
+  }
+    
+  let(:inputs){
+    template_assigner_constant
+  }
+  
+  let(:holders){
+    ["timeMessage", "firstName", "lastName", "roomNumber", "company", "city"]
   }
   
   context "loads successfully" do
@@ -16,10 +24,7 @@ describe "Assigner" do
     end
     
     it "should generate a message" do
-      msg = "Good Morning Candy Pace. Room number 529 is now available for " \
-      "your use at Hotel California in Santa Barbara.  If you require " \
-      "anything please reach out to us."
-      expect(assigner).to eq(msg)
+      expect(assigner).to eq(template_assigner_should_gen_message)
     end
   end
   
@@ -32,41 +37,9 @@ describe "Assigner" do
     
     it "should error if { or } are found in results" do
       inputs[:raw_template] = inputs[:raw_template] << "{"
-      bad = TemplateAssigner.new(holders,inputs ).process
-      expect{bad}.to raise_error ArgumentError, "A delimitor has been found. Possible placeholder issue"
+      expect{ TemplateAssigner.new(holders,inputs).process 
+      }.to raise_error(ArgumentError)
     end
   end
-  
-  let(:inputs){
-    {
-      # mandatory input
-      directory: 'lib/data', # tests for rspec don't include subdirs 
-      firstName: "Candy", 
-      lastName: "Pace", 
-      template: "Default",  
-      
-      # reservation data
-      roomNumber: 529, 
-      startTimestamp: 1486654792, 
-      endTimestamp: 1486852373, 
-      
-      # template data
-      raw_template: raw_template_const, 
-      deliminator: Deliminators.new('{','}'), 
-      
-      # company data
-      id: 1, 
-      company: "Hotel California", 
-      city: "Santa Barbara", 
-      timezone: "US/Pacific",
-      
-      # derived and passed in up the chain
-      timeMessage: "Good Morning"
-    }
-  }
-  
-  let(:holders){
-    ["timeMessage", "firstName", "lastName", "roomNumber", "company", "city"]
-  }
 end
 

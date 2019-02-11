@@ -2,7 +2,6 @@
 require 'greet/greeting'
 require 'template_reader'
 require 'template_assigner'
-require 'deliminators'
 
 ## TemplateTool
 #

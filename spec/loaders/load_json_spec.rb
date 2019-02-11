@@ -1,6 +1,6 @@
 require 'spec_helper.rb'
 require 'loaders/loaders'
-require 'json_requires'     # json setup & testing data
+require 'spec_helpers/json_requires'     # json setup & testing data
 
 include JsonParser
 
