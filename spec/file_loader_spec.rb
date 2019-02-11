@@ -1,4 +1,4 @@
-require 'loaders/file_loader'
+Grequire 'loaders/file_loader'
 
 include FileLoader
 

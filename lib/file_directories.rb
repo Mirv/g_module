@@ -5,6 +5,8 @@ require_relative 'file_helpers'
 # Call with loader ...
 # ... Directories::Requirer.require_current_directory
 # ... Directories::Requirer.require_directory('greet')
+# 
+# Note shelved due to calling itself & caller file - need to write ignore method
 
 module Directories
   def self.search(target, ignore)
