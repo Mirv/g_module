@@ -1,4 +1,4 @@
-require 'loaders/deliminators'
+require_relative 'loaders/deliminators'
 
 class TemplateAssigner
   attr_accessor :result

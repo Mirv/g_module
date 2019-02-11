@@ -1,9 +1,9 @@
-require 'cust_error_location'
-require 'loaders/load_guest'
-require 'loaders/load_company'
-require 'loaders/load_template'
-require 'loaders/load_message'
-require 'logging'
+require_relative 'cust_error_location'
+require_relative 'loaders/load_guest'
+require_relative 'loaders/load_company'
+require_relative 'loaders/load_template'
+require_relative 'loaders/load_message'
+require_relative 'logging'
 
 ## AssembleLoaders
 #

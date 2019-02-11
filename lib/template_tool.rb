@@ -1,7 +1,7 @@
 # require 'cust_error_location'
-require 'greet/greeting'
-require 'template_reader'
-require 'template_assigner'
+require_relative 'greet/greeting'
+require_relative 'template_reader'
+require_relative 'template_assigner'
 
 ## TemplateTool
 #
