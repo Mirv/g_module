@@ -6,6 +6,10 @@ def raw_template_const
 end
 
 
+def template_assigner_should_gen_message
+  "Good Morning Candy Pace. Room number 529 is now available for your use at Hotel California in Santa Barbara.  If you require anything please reach out to us."
+end
+
 def deliminator_found
   "A delimitor has been found. Possible placeholder issue"
 end
