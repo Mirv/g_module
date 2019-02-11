@@ -1,6 +1,10 @@
 # For the purposes of the script, we execute inside the lib dir
 require 'optparse'
-require_relative 'lib/file_directories' 
+# require_relative 'lib/file_directories'
+require_relative 'file_directories' 
+  # puts "LD - cur - #{Directories::Requirer.require_current_directory}"
+  # puts "LD - greet - #{Directories::Requirer.require_directory('greet')}"
+  Directories::Requirer.require_current_directory
 
 puts "Entering Greeting Script successfully ..."
 
@@ -21,13 +25,13 @@ raise OptionParser::MissingArgument, "Template name is required" if options[:tem
 # puts "Opt parsing -- #{options}"
 
 # Doing this as temp dir change allows to keep lib / test dirs
-Dir.chdir('lib') do
-  Directories::Requirer.require_current_directory
-  puts greeting = nil
+# Dir.chdir('lib') do
+  # Directories::Requirer.require_current_directory
+  # puts greeting = nil
   # puts "Options received #{options}"
   message = MessageSystem.new(options).result
   puts "Message Data loaded ... \n#{message}" if message
   
-end
+# end
 
 puts "Exciting Greeting Script.  Goodbye!"

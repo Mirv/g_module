@@ -16,5 +16,8 @@ module FileHelpers
     file_only = drop_path(file)  
     file_as_class = snake_to_camel(file_only)
     constant_name.const_defined? file_as_class.to_s
+    # puts "File #{file_only} -- #{constant_name.defined? file_as_class.to_s}"
+    puts "File #{file_only} -- #{constant_name.const_defined? file_as_class}"
+    # puts 
   end
 end

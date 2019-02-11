@@ -11,7 +11,8 @@ module Directories
     # ack target 
   end
   
-# Directories.search("load '", "blah")
+require 'byebug'
+
 ## Requirer (class)
 #
 # In:   directory to require
@@ -64,4 +65,3 @@ module Directories
   end
 end
 
-# Directories::Requirer.require_directory('greet')
