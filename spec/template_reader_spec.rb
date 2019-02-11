@@ -1,4 +1,6 @@
-require 'template_reader.rb'
+require 'template_reader'
+require 'template_assigner'
+require 'spec_helpers/test_constants'
 
 describe "initialized" do
   let(:template) { template_reader(valid_template_inputs.dup) }
@@ -54,7 +56,7 @@ end
 
 def valid_template_inputs
   {
-    :raw_template=>"{timeMessage} {firstName} {lastName}. Room number {roomNumber} is now available for your use at {company} in {city}.  If you require anything please reach out to us.", 
+    :raw_template=>raw_template_const,
     :deliminator=> Deliminators.new('{','}')
   }
 end
