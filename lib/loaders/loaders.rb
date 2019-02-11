@@ -1,6 +1,6 @@
 require_relative 'load_data'
-require_relative '../file_loader'
-require_relative '../json_parser'
+require_relative 'file_loader'
+require_relative 'json_parser'
 require_relative '../match_utilities'
 require_relative '../logging'
 

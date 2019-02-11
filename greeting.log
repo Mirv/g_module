@@ -570,3 +570,15 @@ I, [2019-02-11T14:12:02.496967 #2035]  INFO -- : File not found
 I, [2019-02-11T14:12:02.497125 #2035]  INFO -- : "/home/ubuntu/workspace/lib/file_loader.rb:3:in `opener'"
 I, [2019-02-11T14:12:02.532830 #2035]  INFO -- : Issue with JSON parsing in...
 I, [2019-02-11T14:12:02.532983 #2035]  INFO -- : "/home/ubuntu/workspace/lib/json_parser.rb:6:in `process_json'"
+I, [2019-02-11T18:28:26.231666 #6504]  INFO -- : File not found
+I, [2019-02-11T18:28:26.231930 #6504]  INFO -- : "/home/ubuntu/workspace/lib/file_loader.rb:3:in `opener'"
+I, [2019-02-11T18:28:26.269299 #6504]  INFO -- : Issue with JSON parsing in...
+I, [2019-02-11T18:28:26.269458 #6504]  INFO -- : "/home/ubuntu/workspace/lib/json_parser.rb:6:in `process_json'"
+I, [2019-02-11T18:35:06.742785 #6667]  INFO -- : File not found
+I, [2019-02-11T18:35:06.742964 #6667]  INFO -- : "/home/ubuntu/workspace/lib/loaders/file_loader.rb:3:in `opener'"
+I, [2019-02-11T18:35:06.781232 #6667]  INFO -- : Issue with JSON parsing in...
+I, [2019-02-11T18:35:06.781445 #6667]  INFO -- : "/home/ubuntu/workspace/lib/loaders/json_parser.rb:6:in `process_json'"
+I, [2019-02-11T18:36:01.218374 #6705]  INFO -- : File not found
+I, [2019-02-11T18:36:01.218610 #6705]  INFO -- : "/home/ubuntu/workspace/lib/loaders/file_loader.rb:3:in `opener'"
+I, [2019-02-11T18:36:01.258594 #6705]  INFO -- : Issue with JSON parsing in...
+I, [2019-02-11T18:36:01.258720 #6705]  INFO -- : "/home/ubuntu/workspace/lib/loaders/json_parser.rb:6:in `process_json'"
