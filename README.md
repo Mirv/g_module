@@ -18,7 +18,7 @@ Installation
 - Run `bundle install` to install support gems 
 
 Usage 
-- Run `ruby master.rb -h` to list options from parent directory of 'lib' file
+- Run `ruby master.rb -h` to list options 'lib' file
 
 Usage: master [options]
 - `--f, --first_name FIRST_NAME`
