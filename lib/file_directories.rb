@@ -9,7 +9,6 @@ require_relative 'file_helpers'
 module Directories
   def self.search(target, ignore)
     # ack target 
-
   end
   
 # Directories.search("load '", "blah")
@@ -65,4 +64,4 @@ module Directories
   end
 end
 
-Directories::Requirer.require_directory('greet')
+# Directories::Requirer.require_directory('greet')
