@@ -1,4 +1,0 @@
-I, [2019-02-06T12:42:03.559400 #2722]  INFO -- : File not found
-I, [2019-02-06T12:42:03.559635 #2722]  INFO -- : "/home/ubuntu/workspace/lib/loaders/load_file.rb:8:in `opener'"
-I, [2019-02-06T13:50:18.678050 #4317]  INFO -- : File not found
-I, [2019-02-06T13:50:18.678306 #4317]  INFO -- : "/home/ubuntu/workspace/lib/loaders/load_file.rb:8:in `opener'"
