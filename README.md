@@ -2,6 +2,12 @@
 
 Template for g_messages
 
+Branch:  Data On Demand
+
+Synopsis:  
+  Each method of process calls all data from JSON as it goes.
+  Versus batching style calls previously.
+
 Designed to match inputs against files with option of writing your own db adaptor.
 
 If matches are found ...
