@@ -23,11 +23,8 @@ class LoadTemplate < Loaders
       records[:deliminator][:start], 
       records[:deliminator][:stop]
     )
-    
-    ###
-    # This chunk of result = hash_name: object is redundant - since obj knows what is...but v1 relies on it
-    @result = {template: Template.new(records[:template], deliminator)} # tempalte knows what is now TODO remove
-    # @result = Template.new(records[:template], deliminator)
+
+    @result = Template.new(records[:template], deliminator)
   end
 end
 

@@ -4,15 +4,10 @@ class TemplateAssigner
   attr_accessor :result
   
   def initialize(template, args)
-    # @delims = args.delete(:deliminator)
-    # formerly template
-    # @message = args.delete(:template)
-
     @raw = template.raw
     @holders = template.pull_holders
     @start = template.start
     @stop = template.stop
-    
     @parameters = args
   end
   
@@ -30,14 +25,12 @@ class TemplateAssigner
 
   def fill_out_template_with_placeholders
     @loaded_holders.map do |x,y| 
-      # old - finished template?
       @raw.gsub!(@start + x.to_s + @stop, y.to_s) 
     end
   end
   
   # deliminitors should all be removed if there are no empty placeholders
   def check_no_orphans
-    # old
     [@start, @stop].any? { |x| @raw.include? x }
   end
 end

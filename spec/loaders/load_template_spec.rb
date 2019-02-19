@@ -11,14 +11,14 @@ describe ".load" do
     
     let (:template_test) { 
       template_loader.execute_process
-      template_loader.result[:template]
+      template_loader.result
     }
     
     let (:template_value){
       template_holder.first[:template]
     }
 
-    it "should have record_lookup return hash with key template" do
+    it "should have record_lookup return template object" do
       expect(template_test.raw).to be_truthy
       expect(template_test.start).to_not be_empty
       expect(template_test.stop).to_not be_empty

@@ -23,7 +23,6 @@ class AssembleLoaders
     @names =    args
     @files =    args[:files] || [
                 'LoadGuest', 
-                'LoadTemplate', 
                 'LoadCompany',
                 'LoadMessage'
       ]
