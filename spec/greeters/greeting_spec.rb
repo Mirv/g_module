@@ -25,7 +25,7 @@ describe "Message initialized" do
   context "given errors" do
     it "should default message if hours or greeting are not valid" do
       allow(valid).to receive(:valid?).and_return(false)
-      expect(valid.execute_process).to eq("Greetings")
+      expect(valid.process).to eq("Greetings")
     end
   end
 end

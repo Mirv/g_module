@@ -50,7 +50,7 @@ class AssembleLoaders
     msg = "Data File not loaded #{obj_name} - ensure path & name were correct"
     file_msg = err_location(msg, 2)
     raise(ArgumentError, file_msg) unless obj = obj.new(@names)
-    obj.execute_process
+    obj.process
     
     # Check all entries in obj exposed data have values
     entry_msg = "Entries missing in #{obj} file"

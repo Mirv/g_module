@@ -25,14 +25,14 @@ module Greet
     end
   
     def greetings_file_load
-      LoadMessage.new(@parameters).execute_process
+      LoadMessage.new(@parameters).process
     end
   
     def valid?
       @hours && @greetings
     end
     
-    def execute_process
+    def process
       return "Greetings" unless valid?
       greetings = Selector.data_from_array_of_hashes(@greetings[:greetings]) 
       greeting_message = greetings.find(@hours).message

@@ -18,7 +18,7 @@ class LoadGuest < Loaders
 
   # Current - exits if process finds a nil, otherwise merges good result
   # TODO - execute process could be annonymized by adding a target hash key ...
-  def execute_process
+  def process
     return unless records = retrieve_json
     return unless record = record_lookup(records, firstName: @first, lastName: @last) 
     @result = record[:reservation]

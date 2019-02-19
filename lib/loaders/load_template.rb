@@ -16,7 +16,7 @@ class LoadTemplate < Loaders
   end
   
   # Current - exits if process finds a nil, otherwise merges good result
-  def execute_process
+  def process
     return unless records = retrieve_json
     return unless records = record_lookup(records, name: @template) 
     deliminator = Deliminators.new(

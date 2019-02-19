@@ -1,5 +1,9 @@
 require_relative 'deliminators'
 
+## TemplateAssinger
+#
+# In:  template object, args is values to load
+#
 class TemplateAssigner
   attr_accessor :result
   

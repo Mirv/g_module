@@ -5,7 +5,7 @@ describe "#initialize" do
     let (:get_greeting) { LoadMessage.new(directory: "lib/data") }
       
     subject(:greeting) {
-      get_greeting.execute_process
+      get_greeting.process
       get_greeting.result
     }
       

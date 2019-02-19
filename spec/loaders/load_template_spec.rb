@@ -10,7 +10,7 @@ describe ".load" do
     }
     
     let (:template_test) { 
-      template_loader.execute_process
+      template_loader.process
       template_loader.result
     }
     

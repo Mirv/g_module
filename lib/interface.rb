@@ -1,6 +1,5 @@
 require 'optparse'
 require_relative 'message_system' 
-require_relative 'file_directories' 
 
 puts "Entering Greeting Script successfully ..."
 

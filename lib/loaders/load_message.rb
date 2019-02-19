@@ -16,7 +16,7 @@ class LoadMessage < Loaders
     @result =       Hash.new
   end
 
-  def execute_process
+  def process
     return unless records = retrieve_json
     return unless records = records_to_hash_with_symbols(records)
     @result = {greetings: records}

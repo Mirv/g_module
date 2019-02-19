@@ -5,7 +5,7 @@ describe "#initialize" do
     LoadGuest.new(firstName: 'Candy', lastName: 'Pace', directory: 'lib/data') 
   }
   subject(:reservation) {
-    guest.execute_process
+    guest.process
     guest.result
   }
 

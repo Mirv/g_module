@@ -7,7 +7,7 @@ describe "#initialize" do
       company: "Hotel California", directory: "lib/data") }
       
     subject(:company) {
-      get_company.execute_process
+      get_company.process
       get_company.result
     }
       

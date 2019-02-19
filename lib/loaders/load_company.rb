@@ -12,7 +12,7 @@ class LoadCompany < Loaders
   end
   
   # Current - exits if process finds a nil, otherwise merges good result
-  def execute_process
+  def process
     return unless records = retrieve_json
     return unless record = record_lookup(records, company: @company) 
     @result = record
