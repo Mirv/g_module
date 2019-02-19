@@ -21,6 +21,7 @@ class TemplateTool
     @result = template_assigner(holders, args)
   end
 
+  # load_template doesn't use loader_assembly or result hash as it's actor class 
   def retrieve_placeholders
     @template = LoadTemplate.new(directory: @dir, template: 'Bond Style')
     @template.execute_process  
