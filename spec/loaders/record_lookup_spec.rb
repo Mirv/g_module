@@ -1,7 +1,7 @@
 require 'loaders/match_utilities'
 require 'logging'
 require 'loaders/load_template'
-require_relative 'spec_helpers/record_lookup_files'  # test data independent of the class
+require_relative '../spec_helpers/record_lookup_files'  # test data independent of the class
 
 include MatchUtilities
 

@@ -13,6 +13,7 @@ module MatchUtilities
     return "Failed" if args.empty?   # no need to execute if empty
     # cycling all possible matches 
     records_to_check.each do |entry|
+      # puts "entry is #{entry} #{args.all? {|k, v| entry[k] == v ? true : false}}"
       # An entry needs to pass all checks held in args to be valid
       record = args.all? {|k, v| entry[k] == v ? true : false}
       # if we find it matches all checks - we can just return the value found

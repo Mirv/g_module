@@ -1,6 +1,6 @@
 require_relative 'hour.rb'
-require_relative 'selector.rb'
-load 'loaders/load_message.rb'
+require_relative 'selector'
+require_relative '../loaders/load_message'
 
 ## TimeToMessage
 #

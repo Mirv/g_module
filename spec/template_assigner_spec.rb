@@ -11,7 +11,11 @@ describe "Assigner" do
   }
   
   let(:holders){
-    ["timeMessage", "firstName", "lastName", "roomNumber", "company", "city"]
+    # ["timeMessage", "firstName", "lastName", "roomNumber", "company", "city"]
+    Template.new(
+      template_assigner_constant[:raw_template], 
+      template_assigner_constant[:deliminator]
+    )
   }
   
   context "loads successfully" do
@@ -30,14 +34,22 @@ describe "Assigner" do
   
   context "given there are issues" do
     it "should error if any placeholders have no replacement in template" do
-      holders << "Willnotbefound"
-      expect{ TemplateAssigner.new(holders, inputs).process 
+     bad = Template.new(
+      template_assigner_constant[:raw_template].dup << "{Willnotbefound}",
+      template_assigner_constant[:deliminator]
+    )
+      puts bad.inspect
+      expect{ TemplateAssigner.new(bad, inputs).process 
       }.to raise_error(KeyError)
     end
     
     it "should error if { or } are found in results" do
-      inputs[:raw_template] = inputs[:raw_template] << "{"
-      expect{ TemplateAssigner.new(holders,inputs).process 
+      inputs[:template] = inputs[:template] << "{"
+      bad = Template.new(
+        template_assigner_constant[:raw_template].dup << "{",
+        template_assigner_constant[:deliminator]
+      )
+      expect{ TemplateAssigner.new(bad,inputs).process 
       }.to raise_error(ArgumentError)
     end
   end

@@ -1,4 +1,4 @@
-load 'loaders/deliminators.rb'
+load 'deliminators.rb'
 
 describe "Deliminators" do
   let(:delims){ Deliminators.new('{', '}') }

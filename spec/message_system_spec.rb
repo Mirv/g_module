@@ -10,10 +10,8 @@ describe "#intialization" do
     
     it "should have keys" do
       greeting.assemble_loaders
-      expect(greeting.names).to have_key(:raw_template)
+      expect(greeting.names).to have_key(:template)
       expect(greeting.names).to have_key(:company)
-      expect(greeting.names).to have_key(:raw_template)
-      expect(greeting.names).to have_key(:raw_template)
     end
   end
 end

@@ -30,7 +30,7 @@ describe "post run" do
 
     it "should load data hash with keys" do
       good_assembler.process_loaders
-      expect(good_assembler.result).to have_key(:raw_template)
+      expect(good_assembler.result).to have_key(:template)
       expect(good_assembler.result).to have_key(:roomNumber)
       expect(good_assembler.result).to have_key(:startTimestamp)
       expect(good_assembler.result).to have_key(:company)

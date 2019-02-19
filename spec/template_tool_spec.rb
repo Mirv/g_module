@@ -14,9 +14,9 @@ describe "template initialized" do
     end
     
     it "should retrieve template to use" do
-      temp = template.retrieve_placeholders(placeholders)
-      expect(temp.count).to be > 0
-      expect(temp).to_not include(:raw_template)
+      temp = template.retrieve_placeholders #(placeholders)
+      expect(temp.pull_holders.count).to be > 0
+      expect(temp.pull_holders).to_not include(:template)
     end
     
     it "should fill a template with all the placeholder markers removed" do
