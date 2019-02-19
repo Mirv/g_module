@@ -6,7 +6,6 @@ describe "template initialized" do
   context "successfully initialized" do
 
     it "should have a working object" do
-      puts template
       expect(template.result).to be_truthy
     end
     

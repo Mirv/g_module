@@ -34,11 +34,10 @@ describe "Assigner" do
   
   context "given there are issues" do
     it "should error if any placeholders have no replacement in template" do
-     bad = Template.new(
-      template_assigner_constant[:raw_template].dup << "{Willnotbefound}",
-      template_assigner_constant[:deliminator]
-    )
-      puts bad.inspect
+      bad = Template.new(
+        template_assigner_constant[:raw_template].dup << "{Willnotbefound}",
+        template_assigner_constant[:deliminator]
+      )
       expect{ TemplateAssigner.new(bad, inputs).process 
       }.to raise_error(KeyError)
     end

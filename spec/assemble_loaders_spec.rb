@@ -18,11 +18,6 @@ describe "initialized" do
     }.to raise_error(ArgumentError, "company was empty")
   end
 
-  # v2 doesn't load template here - old - TODO
-  # it "should fail to make new object if tempalte null" do
-  #   expect{ assembler((valid_inputs.dup.merge!(template: "")))
-  #   }.to raise_error(ArgumentError, "template was empty")
-  # end
 end
 
 describe "post run" do
@@ -31,8 +26,6 @@ describe "post run" do
 
     it "should load data hash with keys" do
       good_assembler.process_loaders
-      # expect(good_assembler.result).to have_key(:template)   # v2 doesn't load template here - old - TODO
-
       expect(good_assembler.result).to have_key(:roomNumber)
       expect(good_assembler.result).to have_key(:startTimestamp)
       expect(good_assembler.result).to have_key(:company)

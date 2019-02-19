@@ -24,8 +24,6 @@ describe "Message initialized" do
   
   context "given errors" do
     it "should default message if hours or greeting are not valid" do
-      # defaults = inputs.dup.merge!({default_greetings: messages})
-      # t2g = time2greeting(defaults)
       allow(valid).to receive(:valid?).and_return(false)
       expect(valid.execute_process).to eq("Greetings")
     end
