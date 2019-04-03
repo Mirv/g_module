@@ -19,7 +19,7 @@ class TemplateAssigner
     fill_holders
     fill_out_template_with_placeholders
     raise ArgumentError.new(deliminator_found) if check_no_orphans
-    @result = @raw # old
+    @result = @raw 
   end
 
   # create hash of placer as key & values loaded to substitute

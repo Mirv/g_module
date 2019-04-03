@@ -1,0 +1,6 @@
+I, [2019-02-20T13:09:06.758207 #1796]  INFO -- : File bad not found
+I, [2019-02-20T13:09:06.758366 #1796]  INFO -- : "/home/ubuntu/workspace/lib/loaders/file_loader.rb:3:in `opener'"
+I, [2019-02-20T13:09:06.764104 #1796]  INFO -- : Issue with JSON parsing in...
+I, [2019-02-20T13:09:06.764226 #1796]  INFO -- : "/home/ubuntu/workspace/lib/loaders/json_parser.rb:6:in `process_json'"
+I, [2019-02-20T13:09:26.657659 #1839]  INFO -- : File data/Guests.json not found
+I, [2019-02-20T13:09:26.657812 #1839]  INFO -- : "/home/ubuntu/workspace/lib/loaders/file_loader.rb:3:in `opener'"

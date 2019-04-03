@@ -1,7 +1,7 @@
 require_relative 'deliminators'
 
 class Template
-  attr_reader :raw, :deliminator, :start, :stop  # TODO - trim this interface?
+  attr_reader :raw, :start, :stop  # TODO - trim this interface?
   
   def initialize(raw, deliminator)
     @raw = raw

@@ -22,7 +22,7 @@ Installation
 - Run `bundle install` to install support gems 
 
 Usage 
-- Run `ruby master.rb -h` to list options 'lib' file
+- From the 'lib' directory run `ruby master.rb -h` to list options 
 
 Usage: master [options]
 - `--f, --first_name FIRST_NAME`
